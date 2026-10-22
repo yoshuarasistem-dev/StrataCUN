@@ -1,483 +1,1182 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="dark" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strata CUN | Private Airport Transfers Cancun</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>STRATA CUN | Transportación Privada & VIP Aeropuerto de Cancún</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-color: #030712;
-            --surface-color: rgba(15, 23, 42, 0.75);
-            --surface-solid: #0f172a;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #0ea5e9;
-            --primary-hover: #0284c7;
-            --accent-glow: rgba(14, 165, 233, 0.25);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            --radius-xl: 24px;
-            --radius-md: 12px;
+            --bg-main: #050a18;
+            --bg-card: rgba(11, 20, 43, 0.82);
+            --bg-elevated: rgba(15, 26, 54, 0.92);
+            --bg-input: rgba(5, 10, 24, 0.92);
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --cyan: #0ea5e9;
+            --cyan-glow: #00b4d8;
+            --gold: #eab308;
+            --emerald: #10b981;
+            --border-glass: rgba(14, 165, 233, 0.24);
+            --border-subtle: rgba(148, 163, 184, 0.14);
+            --shadow-luxury: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 35px rgba(14, 165, 233, 0.12);
         }
 
         [data-theme="light"] {
-            --bg-color: #f8fafc;
-            --surface-color: rgba(255, 255, 255, 0.85);
-            --surface-solid: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --primary: #0284c7;
-            --primary-hover: #0369a1;
-            --accent-glow: rgba(2, 132, 199, 0.15);
-            --border-color: rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+            --bg-main: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --bg-elevated: #ffffff;
+            --bg-input: #f8fafc;
+            --text-primary: #070d1f;
+            --text-secondary: #475569;
+            --cyan: #0284c7;
+            --cyan-glow: #0ea5e9;
+            --border-glass: rgba(2, 132, 199, 0.3);
+            --border-subtle: rgba(15, 23, 42, 0.12);
+            --shadow-luxury: 0 20px 50px -15px rgba(7, 13, 31, 0.15);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 40%);
-            background-attachment: fixed;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
             overflow-x: hidden;
+            transition: background 0.35s ease, color 0.35s ease;
         }
 
-        /* Barra de Navegación Superior */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background-color: var(--surface-color);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        .serif-lux { font-family: 'Cormorant Garamond', Georgia, serif; }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .brand img {
-            height: 42px;
-            width: auto;
-            border-radius: 8px;
-            object-fit: contain;
-        }
-
-        .brand h1 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            color: var(--text-main);
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .btn-toggle, .nav-select {
-            background: var(--surface-solid);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 8px 16px;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .btn-toggle:hover, .nav-select:hover {
-            border-color: var(--primary);
-        }
-        /* Contenedor Principal y Hero */
-        .main-hero {
-            text-align: center;
-            padding: 60px 20px 40px 20px;
-            max-width: 900px;
+        .container {
+            max-width: 1340px;
             margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
-        .main-hero h2 {
-            font-size: 2.75rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 16px;
-            line-height: 1.2;
-            background: linear-gradient(135deg, var(--text-main) 30%, var(--primary));
+        /* FONDO GEOMÉTRICO ENVOLVENTE */
+        .geo-bg-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.28;
+            pointer-events: none;
+        }
+
+        /* NAVBAR DE ALTA GAMA */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 86px;
+            background: rgba(5, 10, 24, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        [data-theme="light"] .navbar {
+            background: rgba(255, 255, 255, 0.88);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .brand-logo-img {
+            height: 54px;
+            width: auto;
+            border-radius: 10px;
+            object-fit: contain;
+            border: 1px solid var(--border-glass);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.86rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover { color: var(--cyan-glow); }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .btn-glass {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border-glass);
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-glass:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 18px rgba(0, 180, 216, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* HERO CINEMATOGRÁFICO CON SUV5 */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            padding: 125px 0 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-backdrop {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .hero-backdrop img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(0.38) contrast(1.1);
+            transform: scale(1.03);
+        }
+
+        [data-theme="light"] .hero-backdrop img {
+            filter: brightness(0.85) opacity(0.18);
+        }
+
+        .hero-backdrop::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--bg-main) 15%, rgba(5, 10, 24, 0.55) 55%, var(--bg-main) 100%),
+                        linear-gradient(180deg, transparent 60%, var(--bg-main) 100%);
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 2.75rem;
+            align-items: start;
+        }
+
+        .shield-badge-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+            background: rgba(14, 165, 233, 0.12);
+            border: 1px solid var(--border-glass);
+            padding: 0.45rem 1.1rem 0.45rem 0.55rem;
+            border-radius: 999px;
+            margin-bottom: 1.4rem;
+        }
+
+        .shield-badge-row img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .hero-headline {
+            font-size: clamp(2.5rem, 4.4vw, 4.1rem);
+            line-height: 1.06;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+        }
+
+        .hero-headline span {
+            background: linear-gradient(90deg, #ffffff, var(--cyan-glow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .main-hero p {
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
+        .hero- showcase-box {
+            margin-top: 1.75rem;
+            position: relative;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-luxury);
         }
 
-        /* Tarjeta del Cotizador */
-        .booking-card {
-            background-color: var(--surface-color);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-xl);
-            padding: 40px;
-            box-shadow: var(--shadow-lg);
-            max-width: 900px;
-            margin: 0 auto 60px auto;
-            text-align: left;
+        .hero-showcase-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
         }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .form-group {
+        .hero-showcase-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 1rem 1.25rem;
+            background: linear-gradient(transparent, rgba(5, 10, 24, 0.95));
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
         }
 
-        .form-group.full-width {
-            grid-column: span 2;
+        /* COTIZADOR POS AVANZADO + MAPA GOOGLE EN VIVO */
+        .pos-master-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-glass);
+            border-radius: 26px;
+            padding: 1.85rem;
+            box-shadow: var(--shadow-luxury);
         }
 
-        .form-group label {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: 0.3px;
+        .service-pills {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.45rem;
+            background: var(--bg-input);
+            padding: 0.4rem;
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 1.2rem;
         }
 
-        .form-control {
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 14px 16px;
-            border-radius: var(--radius-md);
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px var(--accent-glow);
-        }
-
-        .btn-submit {
-            grid-column: span 2;
-            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-            color: #ffffff;
+        .service-pill-btn {
+            background: transparent;
             border: none;
-            padding: 16px;
-            border-radius: var(--radius-md);
-            font-size: 1.1rem;
+            color: var(--text-secondary);
+            padding: 0.6rem 0.3rem;
+            border-radius: 10px;
+            font-size: 0.76rem;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 10px 25px -5px var(--accent-glow);
-            margin-top: 10px;
+            transition: all 0.2s;
         }
 
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            opacity: 0.95;
+        .service-pill-btn.active {
+            background: linear-gradient(135deg, var(--cyan), var(--cyan-glow));
+            color: #050a18;
+            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
         }
 
-        @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            .form-group.full-width, .btn-submit {
-                grid-column: span 1;
-            }
-            .main-hero h2 {
-                font-size: 2rem;
-            }
-            .booking-card {
-                padding: 24px;
-            }
+        /* SELECTOR DE VEHÍCULO CON PRECIOS CLAROS */
+        .vehicle-selector-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.7rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .veh-option-card {
+            background: var(--bg-input);
+            border: 1.5px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 0.75rem 0.9rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .veh-option-card.selected {
+            border-color: var(--cyan-glow);
+            background: rgba(14, 165, 233, 0.12);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.18);
+        }
+
+        .veh-option-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .veh-option-pax {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+        }
+
+        .veh-option-price {
+            text-align: right;
+            font-weight: 800;
+            color: var(--cyan-glow);
+            font-size: 0.95rem;
+        }
+
+        .pos-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.85rem;
+        }
+
+        .pos-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .pos-field.full { grid-column: span 2; }
+
+        .pos-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--text-secondary);
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pos-input {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 0.75rem 0.95rem;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .pos-input:focus { border-color: var(--cyan-glow); }
+
+        /* CAJA INTERACTIVA GOOGLE MAPS + CONFIRMACIÓN DE ZONA */
+        .map-zone-container {
+            grid-column: span 2;
+            background: var(--bg-input);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 0.85rem;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 0.85rem;
+            align-items: stretch;
+        }
+
+        .google-map-frame {
+            width: 100%;
+            height: 155px;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        .zone-confirm-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 0.78rem;
+        }
+
+        .zone-status-pill {
+            display: inline-block;
+            padding: 0.3rem 0.65rem;
+            border-radius: 8px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid var(--emerald);
+            color: var(--emerald);
+            font-weight: 700;
+            font-size: 0.72rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .price-bar-live {
+            grid-column: span 2;
+            background: linear-gradient(90deg, rgba(14, 165, 233, 0.15), rgba(0, 180, 216, 0.05));
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 0.85rem 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-book-now {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--cyan), var(--cyan-glow));
+            color: #050a18;
+            border: none;
+            padding: 1rem;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            box-shadow: 0 12px 28px -6px rgba(0, 180, 216, 0.55);
+            transition: transform 0.2s;
+        }
+
+        .btn-book-now:hover { transform: translateY(-2px); }
+
+        @media (max-width: 1024px) {
+            .hero-layout, .map-zone-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+        @media (max-width: 640px) {
+            .vehicle-selector-grid, .pos-form-grid { grid-template-columns: 1fr; }
+            .pos-field.full, .map-zone-container, .price-bar-live, .btn-book-now { grid-column: span 1; }
+            .service-pills { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="brand">
-            <img src="assets/StrataCUNlogo.jpg" alt="Strata CUN">
-            <h1>STRATA CUN</h1>
-        </a>
-        <div class="nav-actions">
-            <select class="nav-select" id="langSwitch" onchange="cambiarIdioma()">
-                <option value="es">🇪🇸 ES</option>
-                <option value="en">🇬🇧 EN</option>
-            </select>
-            <button class="btn-toggle" onclick="toggleTheme()">🌓 <span id="txt-mode">Modo</span></button>
+    <!-- FONDO GEOMÉTRICO (Geometric1) -->
+    <div id="geoBg" class="geo-bg-layer"></div>
+
+    <!-- 1. NAVBAR DE LUJO CON LOGOS OFICIALES -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="brand-box">
+                <img data-asset="StrataCUNog" alt="Strata CUN Logo" class="brand-logo-img">
+                <div>
+                    <strong style="font-size: 1.25rem; letter-spacing: 0.14em; display: block; line-height: 1;">STRATA <span style="color: var(--cyan-glow);">CUN</span></strong>
+                    <span style="font-size: 0.65rem; letter-spacing: 0.22em; color: var(--text-secondary); text-transform: uppercase;">Executive Airport Transfer</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#terminales">Guía Terminales CUN</a></li>
+                <li><a href="#flota">Flota & Capacidad</a></li>
+                <li><a href="#zonas">Mapa de Zonas</a></li>
+                <li><a href="#partners">Partners CR & UY</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <button id="langBtn" class="btn-glass">🌐 <span id="langLabel">ES</span></button>
+                <button id="themeBtn" class="btn-glass">☀️/🌙</button>
+                <button onclick="openPassengerPortal()" class="btn-glass">👤 Mi Reserva</button>
+                <a href="https://wa.me/5219987864835?text=Hola%20Strata%20CUN,%20solicito%20asistencia%20directa" target="_blank" class="btn-glass" style="border-color: #25d366; color: #25d366;">
+                    💬 WhatsApp 24/7
+                </a>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="main-hero">
-            <h2 id="txt-title">Traslado Privado y Seguro en Cancún</h2>
-            <p id="txt-subtitle">Atención directa, unidades con permisos en regla y comunicación constante desde el momento en que aterrizas.</p>
-        </section>
+    <!-- 2. HERO SECTION + COTIZADOR CON GOOGLE MAPS Y ZONAS -->
+    <section class="hero-section">
+        <!-- Imagen de fondo cinematográfica SUV5 -->
+        <div class="hero-backdrop">
+            <img data-asset="SUV5" alt="Flota de Lujo Strata CUN">
+        </div>
 
-        <div class="booking-card">
-            <div class="form-grid">
-                <div class="form-group">
-                    <label id="lbl-service">Tipo de Servicio:</label>
-                    <select class="form-control" id="tipoServicio">
-                        <option value="llegada">Solo Llegada (Aeropuerto ➔ Hotel)</option>
-                        <option value="salida">Solo Salida (Hotel ➔ Aeropuerto)</option>
-                        <option value="redondo">Viaje Redondo / Multidestino</option>
-                    </select>
+        <div class="container hero-layout">
+            <!-- Columna Izquierda: Impacto Visual con fotos reales -->
+            <div>
+                <div class="shield-badge-row">
+                    <img data-asset="Shield" alt="100% Private Secure Transport">
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--cyan-glow); display: block; text-transform: uppercase; letter-spacing: 0.12em;">100% Private & Secure Transport</strong>
+                        <span style="font-size: 0.72rem; color: var(--text-secondary);">Aeropuerto Internacional de Cancún (CUN) • Sin Tiempos Compartidos</span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label id="lbl-terminal">Terminal de Llegada / Salida:</label>
-                    <select class="form-control" id="terminalAeropuerto">
-                        <option value="t3">Terminal 3 (Air Margaritaville)</option>
-                        <option value="t4">Terminal 4 (Welcome Bar)</option>
-                        <option value="t2-nal">Terminal 2 Nal. (Welcome Bar / La Palapa)</option>
-                        <option value="t2-int">Terminal 2 Int. (Welcome Bar)</option>
-                        <option value="fbo">FBO (Aviación Privada / Especial)</option>
-                    </select>
+                <h1 class="hero-headline serif-lux">
+                    Recepción Ejecutiva y <span>Traslado Privado</span> en Cancún.
+                </h1>
+                <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem;">
+                    Tarifas transparentes por zona desde <strong>$700 MXN (Van Privada 1-8 pax)</strong> y <strong>Suburban VIP (1-6 pax)</strong>. Monitoreo de vuelos en vivo y punto de encuentro blindado en cada terminal.
+                </p>
+
+                <!-- Tarjeta Fotográfica con SUV5 en vivo -->
+                <div class="hero-showcase-box">
+                    <img data-asset="SUV5" alt="Suburban VIP y Van Ejecutiva Strata CUN" class="hero-showcase-img">
+                    <div class="hero-showcase-caption">
+                        <span>✨ <strong>Flota Garantizada:</strong> Van Privada (1-8 pax) &amp; Suburban VIP (1-6 pax)</span>
+                        <span style="color: var(--cyan-glow); font-weight: 700;">Tolerancia 1h 20m</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Nuevo Cotizador con Confirmador de Zona y Mapa Google -->
+            <div class="pos-master-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <h2 style="font-size: 1.18rem; font-weight: 800;">Cotizador Oficial y Confirmador GPS</h2>
+                        <span style="font-size: 0.74rem; color: var(--text-secondary);">Seleccione su unidad, confirme su zona en el mapa y reserve al instante</span>
+                    </div>
+                    <img data-asset="Strata4CUN" alt="Strata CUN" style="height: 38px; border-radius: 8px;">
                 </div>
 
-                <div class="form-group full-width">
-                    <label id="lbl-destino">Hotel o Destino Exacto (Zona Tabulador):</label>
-                    <input type="text" class="form-control" id="inputDestino" placeholder="Ej. Hilton Cancun, Riu Palace o dirección de Airbnb...">
+                <!-- Tipo de Viaje -->
+                <div class="service-pills" id="tripTypeTabs">
+                    <button type="button" class="service-pill-btn active" onclick="setTripType('llegada', this)">✈️ Solo Llegada</button>
+                    <button type="button" class="service-pill-btn" onclick="setTripType('salida', this)">🛫 Solo Salida</button>
+                    <button type="button" class="service-pill-btn" onclick="setTripType('redondo', this)">🔄 Viaje Redondo</button>
+                    <button type="button" class="service-pill-btn" onclick="setTripType('multi', this)">📍 Multidestino</button>
                 </div>
 
-                <div class="form-group full-width">
-                    <label id="lbl-pax">Número de Pasajeros y Modalidad:</label>
-                    <select class="form-control" id="modalidadPax">
-                        <option value="flexi">Opción Flexi (1-4 Pax - Auto o Camioneta disponible sin cargo extra)</option>
-                        <option value="privado-normal">Privado Normal / Suburban (Máximo 6 Pax - Confort Asegurado)</option>
-                        <option value="grupo-16">Minibús / Suburban Grande (9 a 16 Pax)</option>
-                    </select>
+                <!-- Selección Clara de Vehículo (Sin mezclar servicios) -->
+                <label class="pos-label" style="margin-bottom: 0.45rem;">
+                    <span>1. Elija su Unidad Privada</span>
+                    <span style="color: var(--cyan-glow);">Precio Base Zona Local (Cancún)</span>
+                </label>
+                <div class="vehicle-selector-grid">
+                    <!-- OPCIÓN 1: VAN PRIVADA 1 A 8 PASAJEROS ($700 LOCAL) -->
+                    <div class="veh-option-card selected" id="card-van" onclick="selectUnitType('van')">
+                        <div>
+                            <span class="veh-option-title">🚐 Van Privada</span>
+                            <span class="veh-option-pax">De 1 a 8 Pasajeros • Amplio Equipaje</span>
+                        </div>
+                        <div class="veh-option-price" id="price-badge-van">$700 <small style="font-size:0.65rem;">MXN</small></div>
+                    </div>
+
+                    <!-- OPCIÓN 2: SUBURBAN VIP 1 A 6 PASAJEROS -->
+                    <div class="veh-option-card" id="card-suburban" onclick="selectUnitType('suburban')">
+                        <div>
+                            <span class="veh-option-title">🚙 Suburban VIP</span>
+                            <span class="veh-option-pax">De 1 a 6 Pasajeros • Ultra-Lujo</span>
+                        </div>
+                        <div class="veh-option-price" id="price-badge-suburban">$1,450 <small style="font-size:0.65rem;">MXN</small></div>
+                    </div>
+
+                    <!-- OPCIÓN 3: FLEXI 1 A 4 PASAJEROS -->
+                    <div class="veh-option-card" id="card-flexi" onclick="selectUnitType('flexi')">
+                        <div>
+                            <span class="veh-option-title">🚘 Opción Flexi</span>
+                            <span class="veh-option-pax">De 1 a 4 Pasajeros • Unidad Disponible</span>
+                        </div>
+                        <div class="veh-option-price" id="price-badge-flexi">$650 <small style="font-size:0.65rem;">MXN</small></div>
+                    </div>
+
+                    <!-- OPCIÓN 4: MINIBÚS / GRUPOS 9 A 16+ PASAJEROS -->
+                    <div class="veh-option-card" id="card-minibus" onclick="selectUnitType('minibus')">
+                        <div>
+                            <span class="veh-option-title">🚌 Minibús / Grupo</span>
+                            <span class="veh-option-pax">De 9 a 16+ Pasajeros • Sprinter/Convoy</span>
+                        </div>
+                        <div class="veh-option-price" id="price-badge-minibus">$1,650 <small style="font-size:0.65rem;">MXN</small></div>
+                    </div>
                 </div>
 
-                <button class="btn-submit" id="btn-cotizar">Cotizar y Reservar Ahora</button>
+                <!-- Formulario con Buscador de Hotel, Confirmación de Zona y Mapa Google -->
+                <form id="bookingPosForm" onsubmit="openBookingSummary(event)" class="pos-form-grid">
+                    <!-- Terminal -->
+                    <div class="pos-field">
+                        <label class="pos-label">Terminal de Aeropuerto (CUN)</label>
+                        <select id="posTerminal" class="pos-input" onchange="updateTerminalHint()">
+                            <option value="Terminal 3 (Ref: Air Margaritaville)">Terminal 3 (Air Margaritaville)</option>
+                            <option value="Terminal 4 (Ref: Welcome Bar)">Terminal 4 (Welcome Bar)</option>
+                            <option value="Terminal 2 (Ref: Welcome Bar / La Palapa)">Terminal 2 (La Palapa)</option>
+                            <option value="Terminal FBO (Aviación Privada)">FBO (Aviación Privada)</option>
+                        </select>
+                    </div>
+
+                    <!-- Pasajeros (Ajustado al límite del vehículo elegido) -->
+                    <div class="pos-field">
+                        <label class="pos-label">
+                            <span>Número de Pasajeros</span>
+                            <span id="paxLimitHint" style="color: var(--cyan-glow);">Máx 8 en Van</span>
+                        </label>
+                        <input type="number" id="posPax" class="pos-input" min="1" max="40" value="4" onchange="recalculateTotal()" required>
+                    </div>
+
+                    <!-- Buscador de Hotel con Auto-Detección de Zona -->
+                    <div class="pos-field full">
+                        <label class="pos-label">
+                            <span>2. Escriba su Hotel, Resort o Airbnb (Se mostrará en Google Maps)</span>
+                            <span style="color: var(--emerald);">📍 GPS Activo</span>
+                        </label>
+                        <input type="text" id="posHotelInput" list="cancunHotelsList" class="pos-input" placeholder="Ej. Hotel Riu Cancun, Moon Palace, Hard Rock Riviera Maya, Tulum..." oninput="onHotelInputChange()" required>
+                        <datalist id="cancunHotelsList">
+                            <option value="Zona Hotelera Cancún - Hotel Riu Cancun (Zona 1: Local)">
+                            <option value="Zona Hotelera Cancún - Hyatt Ziva Cancun (Zona 1: Local)">
+                            <option value="Cancún Centro / Puerto Juárez Ultramar (Zona 1: Local)">
+                            <option value="Moon Palace Cancún / Nizuc (Zona 2: Sur Aeropuerto)">
+                            <option value="Playa Mujeres - Excellence / Finest (Zona 2: Costa Mujeres)">
+                            <option value="Puerto Morelos - Dreams Jade / Royalton Riviera (Zona 3)">
+                            <option value="Playa del Carmen - Rosewood Mayakoba / Xcaret (Zona 4)">
+                            <option value="Akumal / Tulum Zona Hotelera (Zona 5: Tulum)">
+                        </datalist>
+                    </div>
+
+                    <!-- MAPA DE GOOGLE EN VIVO + CONFIRMADOR DE ZONA -->
+                    <div class="map-zone-container">
+                        <div>
+                            <iframe id="liveGoogleMap" class="google-map-frame" loading="lazy" allowfullscreen
+                                src="https://maps.google.com/maps?q=Zona+Hotelera+Cancun+Quintana+Roo&t=&z=12&ie=UTF8&iwloc=&output=embed">
+                            </iframe>
+                        </div>
+                        <div class="zone-confirm-box">
+                            <div>
+                                <span class="zone-status-pill" id="zoneBadgeStatus">✓ Confirme la Zona de su Hotel</span>
+                                <label class="pos-label" style="margin-bottom: 0.3rem;">3. Zona Tarifaria Detectada:</label>
+                                <select id="posZoneSelect" class="pos-input" style="width: 100%; padding: 0.55rem;" onchange="recalculateTotal()">
+                                    <option value="z1">Zona 1: Cancún Local / Zona Hotelera / Centro</option>
+                                    <option value="z2">Zona 2: Playa Mujeres / Costa Mujeres / Moon Palace</option>
+                                    <option value="z3">Zona 3: Puerto Morelos / Paraíso / Vidanta</option>
+                                    <option value="z4">Zona 4: Playa del Carmen / Mayakoba / Xcaret</option>
+                                    <option value="z5">Zona 5: Puerto Aventuras / Akumal / Tulum</option>
+                                </select>
+                            </div>
+                            <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                                💡 Verifique en el mapa que el marcador coincida con la ubicación de su hotel o Airbnb.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Número de Vuelo y Fecha -->
+                    <div class="pos-field">
+                        <label class="pos-label">Número de Vuelo</label>
+                        <input type="text" id="posFlight" class="pos-input" placeholder="Ej. AA1420 / Viva / Aeroméxico" required>
+                    </div>
+                    <div class="pos-field">
+                        <label class="pos-label">Fecha y Hora de Llegada/Cita</label>
+                        <input type="datetime-local" id="posDate" class="pos-input" required>
+                    </div>
+
+                    <!-- Barra de Precio Total en Tiempo Real -->
+                    <div class="price-bar-live">
+                        <div>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary); display: block;" id="liveSummaryText">Van Privada (1-8 pax) • Zona 1 Local • Solo Llegada</span>
+                            <strong style="font-size: 0.82rem; color: var(--emerald);" id="terminalSafeNote">🛡️ Punto Seguro T3: Frente a Air Margaritaville</strong>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-size: 0.7rem; color: var(--text-secondary); display: block;">Total Oficial</span>
+                            <strong style="font-size: 1.55rem; color: var(--cyan-glow); line-height: 1;" id="liveTotalAmount">$700 MXN</strong>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-book-now">
+                        Confirmar Zona y Reservar Unidad Ahora
+                    </button>
+                </form>
             </div>
         </div>
-        <!-- Sección de Beneficios y Confianza -->
-        <section class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">🛡️</div>
-                <h3 id="feat-1-title">100% Seguro y Privado</h3>
-                <p id="feat-1-desc">Unidades con todos los permisos en regla para operar de forma totalmente legal y exclusiva en el aeropuerto de Cancún.</p>
-            </div>
-            
-            <div class="feature-item">
-                <div class="feature-icon">⏰</div>
-                <h3 id="feat-2-title">Tolerancia y Respaldo</h3>
-                <p id="feat-2-desc">1 hora 20 min de espera tras el aterrizaje y monitoreo constante de vuelos ante cualquier cambio o retraso.</p>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-icon">🎯</div>
-                <h3 id="feat-3-title">Guía Antifraude</h3>
-                <p id="feat-3-desc">Instrucciones precisas para ubicar los puntos de encuentro oficiales, esquivando vendedores de tiempos compartidos.</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- Botón Flotante de WhatsApp Directo -->
-    <a href="https://wa.me/5219987864835?text=Hola,%20quiero%20cotizar%20un%20traslado%20privado%20desde%20el%20aeropuerto" class="whatsapp-float" target="_blank">
-        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        <span>WhatsApp Directo</span>
-    </a>
-
+    </section>
+    <!-- ESTILOS AVANZADOS PARA PARTE 2 (IMÁGENES Y TARJETAS) -->
     <style>
-        /* Estilos de la sección de beneficios añadidos en la Parte 3 */
-        .features-grid {
-            max-width: 900px;
-            margin: 0 auto 80px auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            padding: 0 20px;
-        }
+        .section-block { padding: 90px 0; position: relative; }
+        .section-header { max-width: 800px; margin-bottom: 3.5rem; }
+        .section-tag { color: var(--cyan-glow); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.8rem; display: inline-block; }
+        .section-title { font-size: clamp(2.2rem, 3.5vw, 3.2rem); line-height: 1.1; margin-bottom: 1.2rem; }
+        .section-desc { color: var(--text-secondary); font-size: 1.05rem; }
 
-        .feature-item {
-            background-color: var(--surface-color);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-xl);
-            padding: 30px 24px;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-        }
+        /* GUÍA DE TERMINALES CON FOTOS REALES */
+        .terminals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .terminal-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; }
+        .terminal-card:hover { border-color: var(--cyan-glow); transform: translateY(-5px); box-shadow: var(--shadow-luxury); }
+        .terminal-img-box { height: 190px; width: 100%; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-subtle); }
+        .terminal-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .terminal-card:hover .terminal-img-box img { transform: scale(1.05); }
+        .terminal-badge { position: absolute; top: 1rem; right: 1rem; background: rgba(5, 10, 24, 0.85); backdrop-filter: blur(10px); color: var(--cyan-glow); padding: 0.4rem 0.8rem; border-radius: 8px; font-weight: 800; font-size: 0.75rem; border: 1px solid var(--border-glass); }
+        .terminal-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .terminal-ref { color: var(--gold); font-size: 0.82rem; font-weight: 700; margin-bottom: 0.8rem; display: block; }
 
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-        }
+        /* FLOTA DE VEHÍCULOS (Black1SUV, Black2SUV) */
+        .fleet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+        .fleet-card { background: var(--bg-input); border: 1px solid var(--border-glass); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
+        .fleet-visual { height: 280px; width: 100%; position: relative; background: #000; }
+        .fleet-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+        .fleet-visual-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-input) 0%, transparent 50%); }
+        .fleet-body { padding: 2rem; position: relative; z-index: 2; margin-top: -3rem; }
+        .fleet-title-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1rem; }
+        .fleet-specs-box { background: rgba(14, 165, 233, 0.08); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1rem; display: flex; gap: 1rem; align-items: center; margin-top: 1.5rem; }
+        .fleet-specs-box img { height: 40px; opacity: 0.8; filter: drop-shadow(0 0 5px rgba(14, 165, 233, 0.3)); }
 
-        .feature-item h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--text-main);
-        }
+        /* MAPA DE ZONAS Y MULTIDESTINO */
+        .map-section-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; background: var(--bg-card); border-radius: 28px; border: 1px solid var(--border-glass); overflow: hidden; margin-top: 2rem; }
+        .map-visual-box { height: 100%; min-height: 400px; background: #050a18; position: relative; border-right: 1px solid var(--border-subtle); }
+        .map-visual-box img { width: 100%; height: 100%; object-fit: cover; object-position: left center; opacity: 0.85; }
+        .map-content-box { padding: 3rem; }
 
-        .feature-item p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin: 0;
+        @media (max-width: 1024px) {
+            .terminals-grid { grid-template-columns: repeat(2, 1fr); }
+            .fleet-grid, .map-section-grid { grid-template-columns: 1fr; }
+            .map-visual-box { min-height: 250px; border-right: none; border-bottom: 1px solid var(--border-subtle); }
         }
-
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            padding: 14px 22px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 1000;
-            transition: transform 0.2s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.05);
-        }
-
-        @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 640px) {
+            .terminals-grid { grid-template-columns: 1fr; }
+            .map-content-box { padding: 1.5rem; }
         }
     </style>
+
+    <!-- 3. GUÍA VISUAL DE TERMINALES (FOTOS REALES) -->
+    <section class="section-block" id="terminales">
+        <div class="container">
+            <div class="section-header text-center mx-auto" style="text-align: center; margin-left: auto; margin-right: auto;">
+                <span class="section-tag">Anti-Timeshare Shield Protocol</span>
+                <h2 class="section-title serif-lux">Puntos de Encuentro Blindados.</h2>
+                <p class="section-desc max-w-2xl mx-auto">
+                    Evite confusiones y fraudes a la salida de su vuelo. Conozca exactamente dónde le espera nuestro equipo con letrero oficial según su terminal de llegada, respaldado por fotografía de campo en vivo.
+                </p>
+            </div>
+
+            <div class="terminals-grid">
+                <!-- Terminal 3 (T3PUNTO) -->
+                <div class="terminal-card">
+                    <div class="terminal-img-box">
+                        <img data-asset="T3PUNTO" alt="Punto de encuentro Terminal 3 Air Margaritaville">
+                        <span class="terminal-badge">T3 Internacional</span>
+                    </div>
+                    <div class="terminal-content">
+                        <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem;">Vuelos Internacionales</h3>
+                        <span class="terminal-ref">📍 Exterior: Air Margaritaville</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Salga directo por las puertas de cristal e ignore a los promotores internos. Nuestro chofer estará junto a la valla de Air Margaritaville.</p>
+                    </div>
+                </div>
+
+                <!-- Terminal 4 (T4PUNTO) -->
+                <div class="terminal-card">
+                    <div class="terminal-img-box">
+                        <img data-asset="T4PUNTO" alt="Punto de encuentro Terminal 4 Welcome Bar">
+                        <span class="terminal-badge">T4 Nacional/Intl</span>
+                    </div>
+                    <div class="terminal-content">
+                        <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem;">Terminal de Última Generación</h3>
+                        <span class="terminal-ref">📍 Exterior: Welcome Bar</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Camine por el pasillo de transporte pre-contratado. El encuentro es exclusivamente frente a la barra del Welcome Bar.</p>
+                    </div>
+                </div>
+
+                <!-- Terminal 2 Internacional (T2INTER) -->
+                <div class="terminal-card">
+                    <div class="terminal-img-box">
+                        <img data-asset="T2INTER" alt="Punto de encuentro Terminal 2 Internacional">
+                        <span class="terminal-badge">T2 Internacional</span>
+                    </div>
+                    <div class="terminal-content">
+                        <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem;">Vuelos USA / Europa</h3>
+                        <span class="terminal-ref">📍 Exterior: Welcome Bar (T2)</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Una vez pasada la aduana, salga del edificio. El equipo Strata CUN estará situado en la bahía de recepción internacional exterior.</p>
+                    </div>
+                </div>
+
+                <!-- Terminal 2 Nacional (T2NACIONALPUNTO) -->
+                <div class="terminal-card">
+                    <div class="terminal-img-box">
+                        <img data-asset="T2NACIONALPUNTO" alt="Punto de encuentro Terminal 2 Nacional">
+                        <span class="terminal-badge" style="color: var(--emerald); border-color: rgba(16, 185, 129, 0.3);">T2 Nacional</span>
+                    </div>
+                    <div class="terminal-content">
+                        <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem;">Vuelos Domésticos</h3>
+                        <span class="terminal-ref">📍 Exterior: La Palapa / Andén</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Para llegadas nacionales, el protocolo de encuentro se realiza directo en los andenes exteriores designados para agencias.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FLOTA DE VEHÍCULOS DE ALTA GAMA (FOTOS REALES Y EQUIPAJE) -->
+    <section class="section-block" id="flota" style="background: linear-gradient(180deg, transparent, rgba(14, 165, 233, 0.03)); border-top: 1px solid var(--border-subtle);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Confort Ejecutivo y Espacio</span>
+                <h2 class="section-title serif-lux">Unidades Configuradas para el Descanso.</h2>
+                <p class="section-desc">
+                    Mantenemos límites estrictos de ocupación. Evitamos el sobrecupo masivo para que sus acompañantes y maletas viajen con el estándar de amplitud de una aerolínea ejecutiva.
+                </p>
+            </div>
+
+            <div class="fleet-grid">
+                <!-- Suburban VIP (Black1SUV) -->
+                <div class="fleet-card">
+                    <div class="fleet-visual">
+                        <img data-asset="Black1SUV" alt="Chevrolet Suburban VIP Strata CUN">
+                        <div class="fleet-visual-overlay"></div>
+                    </div>
+                    <div class="fleet-body">
+                        <div class="fleet-title-row">
+                            <div>
+                                <h3 style="font-size: 1.6rem; margin-bottom: 0.2rem; font-weight: 800;">Suburban VIP</h3>
+                                <span style="font-size: 0.85rem; color: var(--cyan-glow);">La insignia ejecutiva de la Riviera Maya</span>
+                            </div>
+                            <div style="text-align: right;">
+                                <span style="display: block; font-size: 0.7rem; color: var(--text-secondary);">Zona 1 Base</span>
+                                <strong style="font-size: 1.3rem; color: var(--emerald);">$1,450 MXN</strong>
+                            </div>
+                        </div>
+                        <ul style="list-style: none; display: grid; gap: 0.6rem; font-size: 0.85rem; color: var(--text-secondary); margin-top: 1rem;">
+                            <li>✔️ <strong>Límite Estricto:</strong> 1 a 6 Pasajeros para máxima comodidad.</li>
+                            <li>✔️ <strong>Interiores:</strong> Piel, aislamiento acústico y A/C independiente.</li>
+                            <li>✔️ <strong>Recepción:</strong> Chofer bilingüe ejecutivo y rastreo satelital.</li>
+                        </ul>
+                        <div class="fleet-specs-box">
+                            <img data-asset="Luggage" alt="Iconos de capacidad de equipaje">
+                            <div style="font-size: 0.8rem;">
+                                <strong style="color: var(--text-primary); display: block;">Capacidad de Equipaje SUV:</strong>
+                                Hasta 6 maletas documentadas grandes o 7 equipajes de mano.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Van Privada (Black2SUV) -->
+                <div class="fleet-card">
+                    <div class="fleet-visual">
+                        <img data-asset="Black2SUV" alt="Van Privada Ejecutiva Strata CUN">
+                        <div class="fleet-visual-overlay"></div>
+                    </div>
+                    <div class="fleet-body">
+                        <div class="fleet-title-row">
+                            <div>
+                                <h3 style="font-size: 1.6rem; margin-bottom: 0.2rem; font-weight: 800;">Van Ejecutiva</h3>
+                                <span style="font-size: 0.85rem; color: var(--cyan-glow);">Ideal para Familias y Grupos Medianos</span>
+                            </div>
+                            <div style="text-align: right;">
+                                <span style="display: block; font-size: 0.7rem; color: var(--text-secondary);">Zona 1 Base</span>
+                                <strong style="font-size: 1.3rem; color: var(--emerald);">$700 MXN</strong>
+                            </div>
+                        </div>
+                        <ul style="list-style: none; display: grid; gap: 0.6rem; font-size: 0.85rem; color: var(--text-secondary); margin-top: 1rem;">
+                            <li>✔️ <strong>Espacio Familiar:</strong> 1 a 8 Pasajeros sin comprometer las piernas.</li>
+                            <li>✔️ <strong>Versatilidad:</strong> Asientos reclinables y conectividad móvil.</li>
+                            <li>✔️ <strong>Transparencia:</strong> Tarifa local inigualable con trato de agencia VIP.</li>
+                        </ul>
+                        <div class="fleet-specs-box">
+                            <img data-asset="Multidestination" alt="Ruta Multidestino">
+                            <div style="font-size: 0.8rem;">
+                                <strong style="color: var(--text-primary); display: block;">Modalidad Multidestino Disponible:</strong>
+                                Perfecta para cambios de hotel (Inter-hoteles) y tours en Riviera Maya.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. MAPA DE ZONAS Y COBERTURA (RivieraMaya) -->
+    <section class="section-block" id="zonas">
+        <div class="container">
+            <div class="map-section-grid">
+                <div class="map-visual-box">
+                    <img data-asset="RivieraMaya" alt="Mapa de Zonas de Cobertura en la Riviera Maya">
+                </div>
+                <div class="map-content-box">
+                    <span class="section-tag">Cobertura Satelital Total</span>
+                    <h2 class="section-title serif-lux" style="font-size: 2.4rem;">Zonificación Exacta.</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 2rem;">
+                        Nuestro sistema tarifario se basa en un cálculo milimétrico de zonas para garantizar precios justos sin sorpresas ni tarifas ocultas, abarcando todo el corredor turístico.
+                    </p>
+                    <div style="display: grid; gap: 1rem;">
+                        <div style="padding: 1rem; border-left: 3px solid var(--cyan); background: var(--bg-input); border-radius: 0 12px 12px 0;">
+                            <strong style="display: block; font-size: 0.9rem; color: var(--text-primary);">📍 Zona 1 y 2 (Norte y Local)</strong>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">Cancún Centro, Zona Hotelera, Puerto Juárez (Ultramar) y Costa Mujeres.</span>
+                        </div>
+                        <div style="padding: 1rem; border-left: 3px solid var(--emerald); background: var(--bg-input); border-radius: 0 12px 12px 0;">
+                            <strong style="display: block; font-size: 0.9rem; color: var(--text-primary);">📍 Zona 3 y 4 (Riviera Centro)</strong>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">Puerto Morelos, Vidanta, Playa del Carmen, Mayakoba y Xcaret.</span>
+                        </div>
+                        <div style="padding: 1rem; border-left: 3px solid var(--gold); background: var(--bg-input); border-radius: 0 12px 12px 0;">
+                            <strong style="display: block; font-size: 0.9rem; color: var(--text-primary);">📍 Zona 5 (Sur Profundo)</strong>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">Puerto Aventuras, Akumal y toda la Zona Hotelera de Tulum.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 6. PORTAL DE AUTOGESTIÓN, TECNOLOGÍA & HUMAN BRIDGE -->
+    <section class="section-block" id="tecnologia" style="border-top: 1px solid var(--border-subtle);">
+        <div class="container">
+            <div class="section-header text-center mx-auto" style="text-align: center; margin-bottom: 4rem;">
+                <span class="section-tag">Zero-Click Philosophy</span>
+                <h2 class="section-title serif-lux">Control Total en su Dispositivo.</h2>
+                <p class="section-desc max-w-2xl mx-auto">
+                    Gestione su reserva, actualice vuelos y comuníquese con su chofer sin descargar aplicaciones pesadas. Una experiencia fluida, rápida y 100% segura.
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                
+                <!-- Tarjeta 1: Portal y Smartphone -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 3rem 2.5rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                    <img data-asset="Smartphone" alt="Portal de Pasajero Strata CUN" style="height: 140px; object-fit: contain; margin-bottom: 2rem; filter: drop-shadow(0 15px 25px rgba(14, 165, 233, 0.2));">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem; font-weight: 700;">Portal de Pasajero Flex</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Acceda a su itinerario, actualice la hora de su vuelo si la aerolínea lo retrasa (modificación el mismo día) y visualice la foto y placas de su operador asignado.
+                    </p>
+                    <button onclick="openPassengerPortal()" class="btn-glass" style="margin-top: auto; padding: 0.8rem 1.5rem; font-size: 0.85rem;">
+                        👤 Abrir Mi Reserva
+                    </button>
+                </div>
+
+                <!-- Tarjeta 2: Monitoreo Satelital (Clock3) -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 3rem 2.5rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                    <img data-asset="Clock3" alt="Rastreo Satelital y Tolerancia" style="height: 140px; object-fit: contain; margin-bottom: 2rem; filter: drop-shadow(0 15px 25px rgba(0, 180, 216, 0.2));">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem; font-weight: 700;">Monitoreo Satelital en Vivo</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Rastreamos su vuelo por radar. Disfrute de <strong>1 hora y 20 minutos de tolerancia gratuita</strong> tras el aterrizaje. Ajustamos la cita automáticamente si su vuelo se adelanta o retrasa.
+                    </p>
+                    <div style="margin-top: auto; color: var(--emerald); font-weight: 700; font-size: 0.85rem; padding: 0.6rem 1.2rem; background: rgba(16, 185, 129, 0.1); border-radius: 12px; border: 1px solid var(--emerald);">
+                        ✓ Ajuste Automático Sin Penalización
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: The Human Bridge & Partner Network -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 3rem 2.5rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                    <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem;">
+                        <span style="font-size: 4rem;">🤝</span>
+                        <span style="font-size: 4rem;">🌎</span>
+                    </div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem; font-weight: 700;">Concierge 24/7 & Partners B2B</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Línea directa humana The Human Bridge vía WhatsApp. Operamos con los más altos estándares corporativos, respaldados por agencias asociadas en <strong>Costa Rica y Uruguay</strong>.
+                    </p>
+                    <a href="https://wa.me/5219987864835" target="_blank" class="btn-glass" style="margin-top: auto; padding: 0.8rem 1.5rem; font-size: 0.85rem; border-color: #25d366; color: #25d366; background: rgba(37, 211, 102, 0.05);">
+                        💬 Contactar Operaciones
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER INSTITUCIONAL Y PAGOS SEGUROS -->
+    <footer style="background: #02050e; border-top: 1px solid var(--border-glass); padding: 5rem 0 2rem; margin-top: 2rem;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 4rem; margin-bottom: 4rem;">
+                
+                <!-- Columna Logo y Empresa -->
+                <div>
+                    <img data-asset="StrataCUNog" alt="Logo Oficial Strata CUN" style="height: 75px; border-radius: 12px; margin-bottom: 1.5rem;">
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                        El referente indiscutible de ultra-lujo, exclusividad y eficiencia tecnológica en transporte privado para el Aeropuerto de Cancún (CUN) y Riviera Maya.
+                    </p>
+                    <!-- Panel de Seguridad (Secure) -->
+                    <img data-asset="Secure" alt="Pagos Seguros y Encriptados" style="height: 45px; opacity: 0.9;">
+                </div>
+
+                <!-- Columna Enlaces Legales -->
+                <div>
+                    <h4 style="color: var(--text-primary); font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em;">Políticas y Garantías</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.85rem; color: var(--text-secondary);">
+                        <li><a href="#" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cyan-glow)'" onmouseout="this.style.color='var(--text-secondary)'">Reglas de Tolerancia (1h 20m)</a></li>
+                        <li><a href="#" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cyan-glow)'" onmouseout="this.style.color='var(--text-secondary)'">Política de Reembolso (-3.16% Clip)</a></li>
+                        <li><a href="#" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cyan-glow)'" onmouseout="this.style.color='var(--text-secondary)'">Restricción de 24h para Cambios</a></li>
+                        <li><a href="#" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cyan-glow)'" onmouseout="this.style.color='var(--text-secondary)'">Prevención Anti-Timeshare</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna Contacto -->
+                <div>
+                    <h4 style="color: var(--text-primary); font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em;">The Human Bridge</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.85rem; color: var(--text-secondary);">
+                        <li><strong>Base CUN:</strong> Aeropuerto Internacional de Cancún, Q.R.</li>
+                        <li><strong>WhatsApp 24/7:</strong> +52 1 998 786 4835</li>
+                        <li><strong>Partners:</strong> Costa Rica (CR) | Uruguay (UY)</li>
+                        <li><strong>Horario Operativo:</strong> 365 días, 24 horas.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: var(--text-secondary);">
+                <p>&copy; 2026 STRATA CUN. Todos los derechos reservados. Diseñado para movilidad ejecutiva de clase mundial.</p>
+                <div style="display: flex; gap: 1.5rem;">
+                    <span>Desarrollo VIP</span>
+                    <span>Reservas Seguras</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WIDGET WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/5219987864835" target="_blank" rel="noopener" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-size: 2rem; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); text-decoration: none; transition: transform 0.3s;">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.333.158 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.332 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+
+    <!-- CEREBRO JAVASCRIPT: PRECIOS, MAPAS E IMÁGENES -->
     <script>
-        // Función para alternar entre Modo Oscuro y Modo Claro
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            
-            // Actualizar texto del botón de modo
-            const modeText = document.getElementById('txt-mode');
-            if (newTheme === 'light') {
-                modeText.innerText = lang === 'en' ? 'Light' : 'Claro';
-            } else {
-                modeText.innerText = lang === 'en' ? 'Dark' : 'Oscuro';
-            }
-        }
+        /* 
+         * 1. CARGADOR INTELIGENTE DE IMÁGENES (Soluciona el problema de PNG vs JPG)
+         * Busca automáticamente tus fotos en la carpeta actual y en /assets/
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageElements = document.querySelectorAll('img[data-asset]');
+            const extensions = ['.png', '.jpg', '.jpeg', '.webp', '.svg'];
+            const folders = ['./', 'assets/', '../assets/'];
 
-        // Variable global de idioma actual
-        let currentLang = 'es';
+            imageElements.forEach(img => {
+                const assetName = img.getAttribute('data-asset');
+                let extIndex = 0;
+                let folderIndex = 0;
 
-        // Función de traducción multiidioma (Español / Inglés)
-        function cambiarIdioma() {
-            currentLang = document.getElementById('langSwitch').value;
-            
-            if (currentLang === 'en') {
-                document.getElementById('txt-title').innerText = "Private & Safe Airport Transfers in Cancun";
-                document.getElementById('txt-subtitle').innerText = "Direct assistance, authorized legal units, and constant communication from the moment you land.";
-                document.getElementById('lbl-service').innerText = "Service Type:";
-                document.getElementById('lbl-terminal').innerText = "Airport Terminal:";
-                document.getElementById('lbl-destino').innerText = "Hotel or Exact Destination:";
-                document.getElementById('lbl-pax').innerText = "Passengers & Vehicle Tier:";
-                document.getElementById('btn-cotizar').innerText = "Quote & Book Now";
-                
-                // Traducción de Beneficios
-                document.getElementById('feat-1-title').innerText = "100% Private & Secure";
-                document.getElementById('feat-1-desc').innerText = "Authorized units fully licensed to operate exclusively at Cancun Airport.";
-                document.getElementById('feat-2-title').innerText = "Tolerances & Support";
-                document.getElementById('feat-2-desc').innerText = "1h 20m waiting time after landing and constant flight tracking.";
-                document.getElementById('feat-3-title').innerText = "Anti-Fraud Guide";
-                document.getElementById('feat-3-desc').innerText = "Precise instructions to avoid timeshare sellers and safely meet your driver.";
-            } else {
-                document.getElementById('txt-title').innerText = "Traslado Privado y Seguro en Cancún";
-                document.getElementById('txt-subtitle').innerText = "Atención directa, unidades con permisos en regla y comunicación constante desde el momento en que aterrizas.";
-                document.getElementById('lbl-service').innerText = "Tipo de Servicio:";
-                document.getElementById('lbl-terminal').innerText = "Terminal de Llegada / Salida:";
-                document.getElementById('lbl-destino').innerText = "Hotel o Destino Exacto (Zona Tabulador):";
-                document.getElementById('lbl-pax').innerText = "Número de Pasajeros y Modalidad:";
-                document.getElementById('btn-cotizar').innerText = "Cotizar y Reservar Ahora";
-                
-                // Traducción de Beneficios (Español)
-                document.getElementById('feat-1-title').innerText = "100% Seguro y Privado";
-                document.getElementById('feat-1-desc').innerText = "Unidades con todos los permisos en regla para operar de forma totalmente legal y exclusiva en el aeropuerto de Cancún.";
-                document.getElementById('feat-2-title').innerText = "Tolerancia y Respaldo";
-                document.getElementById('feat-2-desc').innerText = "1 hora 20 min de espera tras el aterrizaje y monitoreo constante de vuelos ante cualquier cambio o retraso.";
-                document.getElementById('feat-3-title').innerText = "Guía Antifraude";
-                document.getElementById('feat-3-desc').innerText = "Instrucciones precisas para ubicar los puntos de encuentro oficiales, esquivando vendedores de tiempos compartidos.";
-            }
-        }
+                const tryNextLoad = () => {
+                    if (folderIndex >= folders.length) return; // Se agotaron las opciones
+                    if (extIndex >= extensions.length) {
+                        extIndex = 0;
+                        folderIndex++;
+                        if (folderIndex >= folders.length) {
+                            // Failsafe: Imagen no encontrada
+                            img.style.border = "1px dashed var(--cyan-glow)";
+                            return; 
+                        }
+                    }
+                    img.src = `${folders[folderIndex]}${assetName}${extensions[extIndex]}`;
+                    extIndex++;
+                };
 
-        // Evento preliminar para el botón de cotizar
-        document.getElementById('btn-cotizar').addEventListener('click', function() {
-            const destino = document.getElementById('inputDestino').value;
-            if (!destino.trim()) {
-                alert(currentLang === 'en' ? 'Please enter your destination hotel or address.' : 'Por favor ingresa tu hotel o destino exacto.');
-                return;
-            }
-            alert(currentLang === 'en' ? 'Processing your secure private transfer quote...' : 'Procesando tu cotización de traslado privado...');
+                img.onerror = tryNextLoad;
+                tryNextLoad(); // Iniciar primer intento
+            });
         });
+
+
+        /* 
+         * 2. MOTOR DE PRECIOS EXACTOS POR ZONA Y VEHÍCULO
+         * Base Z1: Van $700, Flexi $650, Suburban $1450, Mini $1650
+         */
+        const pricingData = {
+            'van':      { cap: 8, rates: { z1: 700, z2: 850, z3: 1100, z4: 1500, z5: 2200 } },
+            'suburban': { cap: 6, rates: { z1: 1450, z2: 1600, z3: 1900, z4: 2400, z5: 3200 } },
+            'flexi':    { cap: 4, rates: { z1: 650, z2: 750, z3: 950, z4: 1350, z5: 1950 } },
+            'minibus':  { cap: 16, rates: { z1: 1650, z2: 1850, z3: 2200, z4: 2800, z5: 3800 } }
+        };
+
+        let currentService = 'llegada';
+        let currentVehicle = 'van';
+
+        // Cambiar Tipo de Viaje
+        function setTripType(type, btnElement) {
+            currentService = type;
+            document.querySelectorAll('.service-pill-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            recalculateTotal();
+        }
+
+        // Cambiar Vehículo (Actualiza interfaz y limites)
+        function selectUnitType(vehicleCode) {
+            currentVehicle = vehicleCode;
+            document.querySelectorAll('.veh-option-card').forEach(card => card.classList.remove('selected'));
+            document.getElementById(`card-${vehicleCode}`).classList.add('selected');
+            
+            // Ajustar el número de pasajeros máximo según la unidad
+            const maxPax = pricingData[vehicleCode].cap;
+            const inputPax = document.getElementById('posPax');
+            inputPax.max = vehicleCode === 'minibus' ? 40 : maxPax;
+            if(parseInt(inputPax.value) > maxPax && vehicleCode !== 'minibus') {
+                inputPax.value = maxPax;
+            }
+            document.getElementById('paxLimitHint').textContent = `Máx ${maxPax} en ${vehicleCode.toUpperCase()}`;
+            
+            recalculateTotal();
+        }
+
+        // Recalcular Precios en Vivo
+        function recalculateTotal() {
+            const zone = document.getElementById('posZoneSelect').value;
+            const isRoundTrip = currentService === 'redondo' ? 2 : 1;
+            
+            // Obtener precio base de la matriz
+            let finalPrice = pricingData[currentVehicle].rates[zone] * isRoundTrip;
+
+            // Actualizar la pantalla
+            const formatPrice = new Intl.NumberFormat('es-MX').format(finalPrice);
+            document.getElementById('liveTotalAmount').textContent = `$${formatPrice} MXN`;
+            
+            // Actualizar el texto del resumen
+            const zoneNames = { z1:'Zona 1 Local', z2:'Zona 2 Playa Mujeres', z3:'Zona 3 Pto. Morelos', z4:'Zona 4 Playa del Carmen', z5:'Zona 5 Tulum' };
+            const vehNames = { van: 'Van Privada', suburban: 'Suburban VIP', flexi: 'Opción Flexi', minibus: 'Minibús Grupos' };
+            
+            document.getElementById('liveSummaryText').textContent = `${vehNames[currentVehicle]} • ${zoneNames[zone]} • ${currentService.toUpperCase()}`;
+        }
+
+
+        /* 
+         * 3. ACTUALIZADOR DE MAPA GOOGLE Y AUTO-ZONA
+         */
+        function onHotelInputChange() {
+            const input = document.getElementById('posHotelInput').value;
+            const iframe = document.getElementById('liveGoogleMap');
+            const zoneSelect = document.getElementById('posZoneSelect');
+            const zoneBadge = document.getElementById('zoneBadgeStatus');
+
+            if (input.length > 3) {
+                // Actualizar iframe de Google Maps con la búsqueda
+                iframe.src = `https://maps.google.com/maps?q=${encodeURIComponent(input)}+Quintana+Roo&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+
+                // Detectar zona automáticamente por palabras clave
+                const lowerInput = input.toLowerCase();
+                let detectedZone = 'z1';
+
+                if (lowerInput.includes('tulum') || lowerInput.includes('akumal') || lowerInput.includes('aventuras')) { detectedZone = 'z5'; }
+                else if (lowerInput.includes('carmen') || lowerInput.includes('mayakoba') || lowerInput.includes('xcaret')) { detectedZone = 'z4'; }
+                else if (lowerInput.includes('morelos') || lowerInput.includes('vidanta') || lowerInput.includes('paraiso')) { detectedZone = 'z3'; }
+                else if (lowerInput.includes('mujeres') || lowerInput.includes('moon palace') || lowerInput.includes('nizuc')) { detectedZone = 'z2'; }
+                
+                zoneSelect.value = detectedZone;
+                zoneBadge.innerHTML = "✨ Zona GPS Detectada Automáticamente";
+                zoneBadge.style.background = "rgba(14, 165, 233, 0.15)";
+                zoneBadge.style.color = "var(--cyan-glow)";
+                zoneBadge.style.borderColor = "var(--cyan-glow)";
+
+                recalculateTotal();
+            }
+        }
+
+
+        /* 
+         * 4. HINT DE TERMINALES SEGURAS
+         */
+        function updateTerminalHint() {
+            const term = document.getElementById('posTerminal').value;
+            const hint = document.getElementById('terminalSafeNote');
+            if(term.includes('T3')) hint.innerHTML = '🛡️ Punto Seguro T3: Exterior Air Margaritaville';
+            if(term.includes('T4')) hint.innerHTML = '🛡️ Punto Seguro T4: Exterior Welcome Bar';
+            if(term.includes('T2')) hint.innerHTML = '🛡️ Punto Seguro T2: Exterior La Palapa';
+            if(term.includes('FBO')) hint.innerHTML = '🛡️ Recepción FBO: Rampa Ejecutiva Privada';
+        }
+
+
+        /* 
+         * 5. APERTURA DE MODAL Y ENVÍO
+         */
+        function openBookingSummary(e) {
+            e.preventDefault();
+            const total = document.getElementById('liveTotalAmount').textContent;
+            alert(`¡Cotización Oficial Exitosa!\n\nDestino: ${document.getElementById('posHotelInput').value}\nTotal: ${total}\n\nConectando con plataforma de pago seguro Clip...`);
+            // Aquí iría el código real para abrir el Modal de Clip
+        }
+
+        function openPassengerPortal() {
+            alert('Abriendo Portal de Autogestión...\nPor favor tenga su código de reserva a la mano.');
+        }
+
+        // Inicializador de UI
+        recalculateTotal();
+        updateTerminalHint();
+
     </script>
 </body>
 </html>
-/* Ajustes Finos de Diseño y Responsividad Avanzada */
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-            .brand h1 {
-                font-size: 1.1rem;
-            }
-            .main-hero {
-                padding: 40px 15px 20px 15px;
-            }
-            .booking-card {
-                padding: 20px;
-                margin: 0 15px 40px 15px;
-            }
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-                padding: 12px 18px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Animaciones suaves para la aparición del cotizador */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .booking-card, .feature-item {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
