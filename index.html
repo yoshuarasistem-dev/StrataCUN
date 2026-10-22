@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strata CUN | Private Airport Transfers Cancun</title>
+    <style>
+        :root {
+            --bg-color: #070d1f;
+            --card-bg: rgba(19, 28, 56, 0.75);
+            --text-color: #ffffff;
+            --text-muted: #94a3b8;
+            --accent-color: #00b4d8;
+            --accent-hover: #0096c7;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        [data-theme="light"] {
+            --bg-color: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-color: #0f172a;
+            --text-muted: #64748b;
+            --accent-color: #0284c7;
+            --accent-hover: #0369a1;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        * {
+            box-sizing: border-box;
+            transition: background 0.3s, color 0.3s;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-image: url('assets/Geometric_network_background_pattern_2K_20261021195500.png');
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-area img {
+            height: 48px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        .logo-area h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+        .nav-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        select, button {
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        select:hover, button:hover {
+            border-color: var(--accent-color);
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px 30px 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .cotizador-container {
+            max-width: 850px;
+            margin: 0 auto 60px auto;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(16px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 180, 216, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 180, 216, 0.4);
+        }
+        .features-section {
+            max-width: 1000px;
+            margin: 0 auto 60px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 0 20px;
+        }
+        .feature-card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .feature-card img {
+            height: 50px;
+            margin-bottom: 15px;
+        }
+        .feature-card h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.1rem;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            transition: transform 0.2s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+        @media(max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+            .features-section { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="assets/StrataCUNlogo.jpg" alt="Strata CUN Logo">
+            <h2>STRATA CUN</h2>
+        </div>
+        <div class="nav-controls">
+            <select id="langSwitch" onchange="cambiarIdioma()">
+                <option value="es">🇪🇸 Español</option>
+                <option value="en">🇬🇧 English</option>
+            </select>
+            <button onclick="toggleTheme()">🌓 <span id="txt-mode">Modo</span></button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1 id="txt-title">Traslado Privado y Seguro en Cancún</h1>
+        <p id="txt-subtitle">Atención directa, unidades en regla y comunicación constante desde el momento en que aterrizas.</p>
+    </section>
+
+    <div class="cotizador-container">
+        <div class="form-grid">
+            <div class="form-group">
+                <label id="lbl-service">Tipo de Servicio:</label>
+                <select id="tipoServicio">
+                    <option value="llegada">Solo Llegada (Aeropuerto ➔ Hotel)</option>
+                    <option value="salida">Solo Salida (Hotel ➔ Aeropuerto)</option>
+                    <option value="redondo">Viaje Redondo / Multidestino</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label id="lbl-terminal">Terminal de Llegada / Salida:</label>
+                <select id="terminalAeropuerto">
+                    <option value="t3">Terminal 3 (Air Margaritaville)</option>
+                    <option value="t4">Terminal 4 (Welcome Bar)</option>
+                    <option value="t2-nal">Terminal 2 Nal. (Welcome Bar / La Palapa)</option>
+                    <option value="t2-int">Terminal 2 Int. (Welcome Bar)</option>
+                    <option value="fbo">FBO (Aviación Privada / Especial)</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width">
+                <label id="lbl-destino">Hotel o Destino Exacto (Zona Tabulador):</label>
+                <input type="text" id="inputDestino" placeholder="Ej. Hilton Cancun, Riu Palace o dirección de Airbnb...">
+            </div>
+
+            <div class="form-group full-width">
+                <label id="lbl-pax">Número de Pasajeros y Modalidad:</label>
+                <select id="modalidadPax">
+                    <option value="flexi">Opción Flexi (1-4 Pax - Auto o Camioneta disponible sin cargo extra)</option>
+                    <option value="privado-normal">Privado Normal / Suburban (Máximo 6 Pax - Confort Asegurado)</option>
+                    <option value="grupo-16">Minibús / Suburban Grande (9 a 16 Pax)</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="btn-primary" id="btn-cotizar">Cotizar y Reservar Ahora</button>
+    </div>
+
+    <!-- Sección de Beneficios Visuales -->
+    <div class="features-section">
+        <div class="feature-card">
+            <img src="assets/Shield_badge_icon_symbolizing_secure_digital_transport_2K_20261021114914.png" alt="Seguridad">
+            <h4 id="feat-1-title">100% Seguro y Privado</h4>
+            <p id="feat-1-desc">Unidades con todos los permisos en regla para operar en el aeropuerto de Cancún.</p>
+        </div>
+        <div class="feature-card">
+            <img src="assets/Clock_and_airplane_badge_2K_20261021195524.png" alt="Puntualidad">
+            <h4 id="feat-2-title">Tolerancia y Respaldo</h4>
+            <p id="feat-2-desc">1 hora 20 min de espera tras aterrizar y monitoreo constante de vuelos.</p>
+        </div>
+        <div class="feature-card">
+            <img src="assets/Airport_terminal_route_map_icon_2K_202610211194852.png" alt="Punto de Encuentro">
+            <h4 id="feat-3-title">Guía Antifraude</h4>
+            <p id="feat-3-desc">Instrucciones precisas para esquivar tiempos compartidos y llegar con tu chofer.</p>
+        </div>
+    </div>
+
+    <a href="https://wa.me/5219987864835?text=Hola,%20quiero%20cotizar%20un%20traslado%20privado%20desde%20el%20aeropuerto" class="whatsapp-float" target="_blank">
+        💬 WhatsApp Directo
+    </a>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        function cambiarIdioma() {
+            const lang = document.getElementById('langSwitch').value;
+            if (lang === 'en') {
+                document.getElementById('txt-title').innerText = "Private & Safe Airport Transfers in Cancun";
+                document.getElementById('txt-subtitle').innerText = "Direct assistance, authorized legal units, and constant communication from the moment you land.";
+                document.getElementById('lbl-service').innerText = "Service Type:";
+                document.getElementById('lbl-terminal').innerText = "Airport Terminal:";
+                document.getElementById('lbl-destino').innerText = "Hotel or Exact Destination:";
+                document.getElementById('lbl-pax').innerText = "Passengers & Vehicle Tier:";
+                document.getElementById('btn-cotizar').innerText = "Quote & Book Now";
+                document.getElementById('feat-1-title').innerText = "100% Private & Secure";
+                document.getElementById('feat-1-desc').innerText = "Authorized units fully licensed to operate at Cancun Airport.";
+                document.getElementById('feat-2-title').innerText = "Tolerances & Support";
+                document.getElementById('feat-2-desc').innerText = "1h 20m waiting time after landing and constant flight tracking.";
+                document.getElementById('feat-3-title').innerText = "Anti-Fraud Guide";
+                document.getElementById('feat-3-desc').innerText = "Precise instructions to avoid timeshare sellers and meet your driver.";
+            } else {
+                document.getElementById('txt-title').innerText = "Traslado Privado y Seguro en Cancún";
+                document.getElementById('txt-subtitle').innerText = "Atención directa, unidades en regla y comunicación constante desde el momento en que aterrizas.";
+                document.getElementById('lbl-service').innerText = "Tipo de Servicio:";
+                document.getElementById('lbl-terminal').innerText = "Terminal de Llegada / Salida:";
+                document.getElementById('lbl-destino').innerText = "Hotel o Destino Exacto (Zona Tabulador):";
+                document.getElementById('lbl-pax').innerText = "Número de Pasajeros y Modalidad:";
+                document.getElementById('btn-cotizar').innerText = "Cotizar y Reservar Ahora";
+                document.getElementById('feat-1-title').innerText = "100% Seguro y Privado";
+                document.getElementById('feat-1-desc').innerText = "Unidades con todos los permisos en regla para operar en el aeropuerto de Cancún.";
+                document.getElementById('feat-2-title').innerText = "Tolerancia y Respaldo";
+                document.getElementById('feat-2-desc').innerText = "1 hora 20 min de espera tras aterrizar y monitoreo constante de vuelos.";
+                document.getElementById('feat-3-title').innerText = "Guía Antifraude";
+                document.getElementById('feat-3-desc').innerText = "Instrucciones precisas para esquivar tiempos compartidos y llegar con tu chofer.";
+            }
+        }
+    </script>
+</body>
+</html>
