@@ -4,312 +4,405 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strata CUN | Private Airport Transfers Cancun</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #070d1f;
-            --card-bg: rgba(19, 28, 56, 0.75);
-            --text-color: #ffffff;
+            --bg-color: #030712;
+            --surface-color: rgba(15, 23, 42, 0.75);
+            --surface-solid: #0f172a;
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent-color: #00b4d8;
-            --accent-hover: #0096c7;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --shadow: 0 20px 40px rgba(0,0,0,0.4);
+            --primary: #0ea5e9;
+            --primary-hover: #0284c7;
+            --accent-glow: rgba(14, 165, 233, 0.25);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            --radius-xl: 24px;
+            --radius-md: 12px;
         }
+
         [data-theme="light"] {
-            --bg-color: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --text-color: #0f172a;
+            --bg-color: #f8fafc;
+            --surface-color: rgba(255, 255, 255, 0.85);
+            --surface-solid: #ffffff;
+            --text-main: #0f172a;
             --text-muted: #64748b;
-            --accent-color: #0284c7;
-            --accent-hover: #0369a1;
-            --border-color: rgba(0, 0, 0, 0.1);
-            --shadow: 0 20px 40px rgba(0,0,0,0.08);
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --accent-glow: rgba(2, 132, 199, 0.15);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
         }
+
         * {
             box-sizing: border-box;
-            transition: background 0.3s, color 0.3s;
-        }
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
             margin: 0;
             padding: 0;
-            background-image: url('assets/Geometric_network_background_pattern_2K_20261021195500.png');
-            background-size: cover;
-            background-attachment: fixed;
-            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Barra de Navegación Superior */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            background-color: var(--card-bg);
-            backdrop-filter: blur(12px);
+            padding: 20px 5%;
+            background-color: var(--surface-color);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .logo-area img {
-            height: 48px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-        .logo-area h2 {
-            margin: 0;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-        }
-        .nav-controls {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        select, button {
-            padding: 10px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            cursor: pointer;
-            font-weight: 600;
-        }
-        select:hover, button:hover {
-            border-color: var(--accent-color);
-        }
-        .hero {
-            text-align: center;
-            padding: 50px 20px 30px 20px;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            font-weight: 800;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .cotizador-container {
-            max-width: 850px;
-            margin: 0 auto 60px auto;
-            background-color: var(--card-bg);
-            backdrop-filter: blur(16px);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .form-group.full-width {
-            grid-column: span 2;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
-        }
-        .btn-primary {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #00b4d8, #0077b6);
-            color: #ffffff;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.15rem;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 180, 216, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(0, 180, 216, 0.4);
-        }
-        .features-section {
-            max-width: 1000px;
-            margin: 0 auto 60px auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 0 20px;
-        }
-        .feature-card {
-            background-color: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-        }
-        .feature-card img {
-            height: 50px;
-            margin-bottom: 15px;
-        }
-        .feature-card h4 {
-            margin: 0 0 10px 0;
-            font-size: 1.1rem;
-        }
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            padding: 16px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+
+        .brand {
             display: flex;
             align-items: center;
             gap: 12px;
-            z-index: 1000;
-            transition: transform 0.2s;
+            text-decoration: none;
         }
-        .whatsapp-float:hover {
-            transform: scale(1.05);
+
+        .brand img {
+            height: 42px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
         }
-        @media(max-width: 768px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
-            .features-section { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.2rem; }
+
+        .brand h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: var(--text-main);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-toggle, .nav-select {
+            background: var(--surface-solid);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .btn-toggle:hover, .nav-select:hover {
+            border-color: var(--primary);
+        }
+        /* Contenedor Principal y Hero */
+        .main-hero {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .main-hero h2 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--text-main) 30%, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* Tarjeta del Cotizador */
+        .booking-card {
+            background-color: var(--surface-color);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+            text-align: left;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 0.3px;
+        }
+
+        .form-control {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .btn-submit {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: #ffffff;
+            border: none;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 25px -5px var(--accent-glow);
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width, .btn-submit {
+                grid-column: span 1;
+            }
+            .main-hero h2 {
+                font-size: 2rem;
+            }
+            .booking-card {
+                padding: 24px;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-area">
-            <img src="assets/StrataCUNlogo.jpg" alt="Strata CUN Logo">
-            <h2>STRATA CUN</h2>
-        </div>
-        <div class="nav-controls">
-            <select id="langSwitch" onchange="cambiarIdioma()">
-                <option value="es">🇪🇸 Español</option>
-                <option value="en">🇬🇧 English</option>
+        <a href="#" class="brand">
+            <img src="assets/StrataCUNlogo.jpg" alt="Strata CUN">
+            <h1>STRATA CUN</h1>
+        </a>
+        <div class="nav-actions">
+            <select class="nav-select" id="langSwitch" onchange="cambiarIdioma()">
+                <option value="es">🇪🇸 ES</option>
+                <option value="en">🇬🇧 EN</option>
             </select>
-            <button onclick="toggleTheme()">🌓 <span id="txt-mode">Modo</span></button>
+            <button class="btn-toggle" onclick="toggleTheme()">🌓 <span id="txt-mode">Modo</span></button>
         </div>
     </header>
 
-    <section class="hero">
-        <h1 id="txt-title">Traslado Privado y Seguro en Cancún</h1>
-        <p id="txt-subtitle">Atención directa, unidades en regla y comunicación constante desde el momento en que aterrizas.</p>
-    </section>
+    <main>
+        <section class="main-hero">
+            <h2 id="txt-title">Traslado Privado y Seguro en Cancún</h2>
+            <p id="txt-subtitle">Atención directa, unidades con permisos en regla y comunicación constante desde el momento en que aterrizas.</p>
+        </section>
 
-    <div class="cotizador-container">
-        <div class="form-grid">
-            <div class="form-group">
-                <label id="lbl-service">Tipo de Servicio:</label>
-                <select id="tipoServicio">
-                    <option value="llegada">Solo Llegada (Aeropuerto ➔ Hotel)</option>
-                    <option value="salida">Solo Salida (Hotel ➔ Aeropuerto)</option>
-                    <option value="redondo">Viaje Redondo / Multidestino</option>
-                </select>
-            </div>
+        <div class="booking-card">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label id="lbl-service">Tipo de Servicio:</label>
+                    <select class="form-control" id="tipoServicio">
+                        <option value="llegada">Solo Llegada (Aeropuerto ➔ Hotel)</option>
+                        <option value="salida">Solo Salida (Hotel ➔ Aeropuerto)</option>
+                        <option value="redondo">Viaje Redondo / Multidestino</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label id="lbl-terminal">Terminal de Llegada / Salida:</label>
-                <select id="terminalAeropuerto">
-                    <option value="t3">Terminal 3 (Air Margaritaville)</option>
-                    <option value="t4">Terminal 4 (Welcome Bar)</option>
-                    <option value="t2-nal">Terminal 2 Nal. (Welcome Bar / La Palapa)</option>
-                    <option value="t2-int">Terminal 2 Int. (Welcome Bar)</option>
-                    <option value="fbo">FBO (Aviación Privada / Especial)</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label id="lbl-terminal">Terminal de Llegada / Salida:</label>
+                    <select class="form-control" id="terminalAeropuerto">
+                        <option value="t3">Terminal 3 (Air Margaritaville)</option>
+                        <option value="t4">Terminal 4 (Welcome Bar)</option>
+                        <option value="t2-nal">Terminal 2 Nal. (Welcome Bar / La Palapa)</option>
+                        <option value="t2-int">Terminal 2 Int. (Welcome Bar)</option>
+                        <option value="fbo">FBO (Aviación Privada / Especial)</option>
+                    </select>
+                </div>
 
-            <div class="form-group full-width">
-                <label id="lbl-destino">Hotel o Destino Exacto (Zona Tabulador):</label>
-                <input type="text" id="inputDestino" placeholder="Ej. Hilton Cancun, Riu Palace o dirección de Airbnb...">
-            </div>
+                <div class="form-group full-width">
+                    <label id="lbl-destino">Hotel o Destino Exacto (Zona Tabulador):</label>
+                    <input type="text" class="form-control" id="inputDestino" placeholder="Ej. Hilton Cancun, Riu Palace o dirección de Airbnb...">
+                </div>
 
-            <div class="form-group full-width">
-                <label id="lbl-pax">Número de Pasajeros y Modalidad:</label>
-                <select id="modalidadPax">
-                    <option value="flexi">Opción Flexi (1-4 Pax - Auto o Camioneta disponible sin cargo extra)</option>
-                    <option value="privado-normal">Privado Normal / Suburban (Máximo 6 Pax - Confort Asegurado)</option>
-                    <option value="grupo-16">Minibús / Suburban Grande (9 a 16 Pax)</option>
-                </select>
+                <div class="form-group full-width">
+                    <label id="lbl-pax">Número de Pasajeros y Modalidad:</label>
+                    <select class="form-control" id="modalidadPax">
+                        <option value="flexi">Opción Flexi (1-4 Pax - Auto o Camioneta disponible sin cargo extra)</option>
+                        <option value="privado-normal">Privado Normal / Suburban (Máximo 6 Pax - Confort Asegurado)</option>
+                        <option value="grupo-16">Minibús / Suburban Grande (9 a 16 Pax)</option>
+                    </select>
+                </div>
+
+                <button class="btn-submit" id="btn-cotizar">Cotizar y Reservar Ahora</button>
             </div>
         </div>
+        <!-- Sección de Beneficios y Confianza -->
+        <section class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🛡️</div>
+                <h3 id="feat-1-title">100% Seguro y Privado</h3>
+                <p id="feat-1-desc">Unidades con todos los permisos en regla para operar de forma totalmente legal y exclusiva en el aeropuerto de Cancún.</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">⏰</div>
+                <h3 id="feat-2-title">Tolerancia y Respaldo</h3>
+                <p id="feat-2-desc">1 hora 20 min de espera tras el aterrizaje y monitoreo constante de vuelos ante cualquier cambio o retraso.</p>
+            </div>
 
-        <button class="btn-primary" id="btn-cotizar">Cotizar y Reservar Ahora</button>
-    </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎯</div>
+                <h3 id="feat-3-title">Guía Antifraude</h3>
+                <p id="feat-3-desc">Instrucciones precisas para ubicar los puntos de encuentro oficiales, esquivando vendedores de tiempos compartidos.</p>
+            </div>
+        </section>
+    </main>
 
-    <!-- Sección de Beneficios Visuales -->
-    <div class="features-section">
-        <div class="feature-card">
-            <img src="assets/Shield_badge_icon_symbolizing_secure_digital_transport_2K_20261021114914.png" alt="Seguridad">
-            <h4 id="feat-1-title">100% Seguro y Privado</h4>
-            <p id="feat-1-desc">Unidades con todos los permisos en regla para operar en el aeropuerto de Cancún.</p>
-        </div>
-        <div class="feature-card">
-            <img src="assets/Clock_and_airplane_badge_2K_20261021195524.png" alt="Puntualidad">
-            <h4 id="feat-2-title">Tolerancia y Respaldo</h4>
-            <p id="feat-2-desc">1 hora 20 min de espera tras aterrizar y monitoreo constante de vuelos.</p>
-        </div>
-        <div class="feature-card">
-            <img src="assets/Airport_terminal_route_map_icon_2K_202610211194852.png" alt="Punto de Encuentro">
-            <h4 id="feat-3-title">Guía Antifraude</h4>
-            <p id="feat-3-desc">Instrucciones precisas para esquivar tiempos compartidos y llegar con tu chofer.</p>
-        </div>
-    </div>
-
+    <!-- Botón Flotante de WhatsApp Directo -->
     <a href="https://wa.me/5219987864835?text=Hola,%20quiero%20cotizar%20un%20traslado%20privado%20desde%20el%20aeropuerto" class="whatsapp-float" target="_blank">
-        💬 WhatsApp Directo
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>WhatsApp Directo</span>
     </a>
 
+    <style>
+        /* Estilos de la sección de beneficios añadidos en la Parte 3 */
+        .features-grid {
+            max-width: 900px;
+            margin: 0 auto 80px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding: 0 20px;
+        }
+
+        .feature-item {
+            background-color: var(--surface-color);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 30px 24px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transition: transform 0.2s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
     <script>
+        // Función para alternar entre Modo Oscuro y Modo Claro
         function toggleTheme() {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
-            html.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            
+            // Actualizar texto del botón de modo
+            const modeText = document.getElementById('txt-mode');
+            if (newTheme === 'light') {
+                modeText.innerText = lang === 'en' ? 'Light' : 'Claro';
+            } else {
+                modeText.innerText = lang === 'en' ? 'Dark' : 'Oscuro';
+            }
         }
 
+        // Variable global de idioma actual
+        let currentLang = 'es';
+
+        // Función de traducción multiidioma (Español / Inglés)
         function cambiarIdioma() {
-            const lang = document.getElementById('langSwitch').value;
-            if (lang === 'en') {
+            currentLang = document.getElementById('langSwitch').value;
+            
+            if (currentLang === 'en') {
                 document.getElementById('txt-title').innerText = "Private & Safe Airport Transfers in Cancun";
                 document.getElementById('txt-subtitle').innerText = "Direct assistance, authorized legal units, and constant communication from the moment you land.";
                 document.getElementById('lbl-service').innerText = "Service Type:";
@@ -317,28 +410,74 @@
                 document.getElementById('lbl-destino').innerText = "Hotel or Exact Destination:";
                 document.getElementById('lbl-pax').innerText = "Passengers & Vehicle Tier:";
                 document.getElementById('btn-cotizar').innerText = "Quote & Book Now";
+                
+                // Traducción de Beneficios
                 document.getElementById('feat-1-title').innerText = "100% Private & Secure";
-                document.getElementById('feat-1-desc').innerText = "Authorized units fully licensed to operate at Cancun Airport.";
+                document.getElementById('feat-1-desc').innerText = "Authorized units fully licensed to operate exclusively at Cancun Airport.";
                 document.getElementById('feat-2-title').innerText = "Tolerances & Support";
                 document.getElementById('feat-2-desc').innerText = "1h 20m waiting time after landing and constant flight tracking.";
                 document.getElementById('feat-3-title').innerText = "Anti-Fraud Guide";
-                document.getElementById('feat-3-desc').innerText = "Precise instructions to avoid timeshare sellers and meet your driver.";
+                document.getElementById('feat-3-desc').innerText = "Precise instructions to avoid timeshare sellers and safely meet your driver.";
             } else {
                 document.getElementById('txt-title').innerText = "Traslado Privado y Seguro en Cancún";
-                document.getElementById('txt-subtitle').innerText = "Atención directa, unidades en regla y comunicación constante desde el momento en que aterrizas.";
+                document.getElementById('txt-subtitle').innerText = "Atención directa, unidades con permisos en regla y comunicación constante desde el momento en que aterrizas.";
                 document.getElementById('lbl-service').innerText = "Tipo de Servicio:";
                 document.getElementById('lbl-terminal').innerText = "Terminal de Llegada / Salida:";
                 document.getElementById('lbl-destino').innerText = "Hotel o Destino Exacto (Zona Tabulador):";
                 document.getElementById('lbl-pax').innerText = "Número de Pasajeros y Modalidad:";
                 document.getElementById('btn-cotizar').innerText = "Cotizar y Reservar Ahora";
+                
+                // Traducción de Beneficios (Español)
                 document.getElementById('feat-1-title').innerText = "100% Seguro y Privado";
-                document.getElementById('feat-1-desc').innerText = "Unidades con todos los permisos en regla para operar en el aeropuerto de Cancún.";
+                document.getElementById('feat-1-desc').innerText = "Unidades con todos los permisos en regla para operar de forma totalmente legal y exclusiva en el aeropuerto de Cancún.";
                 document.getElementById('feat-2-title').innerText = "Tolerancia y Respaldo";
-                document.getElementById('feat-2-desc').innerText = "1 hora 20 min de espera tras aterrizar y monitoreo constante de vuelos.";
+                document.getElementById('feat-2-desc').innerText = "1 hora 20 min de espera tras el aterrizaje y monitoreo constante de vuelos ante cualquier cambio o retraso.";
                 document.getElementById('feat-3-title').innerText = "Guía Antifraude";
-                document.getElementById('feat-3-desc').innerText = "Instrucciones precisas para esquivar tiempos compartidos y llegar con tu chofer.";
+                document.getElementById('feat-3-desc').innerText = "Instrucciones precisas para ubicar los puntos de encuentro oficiales, esquivando vendedores de tiempos compartidos.";
             }
         }
+
+        // Evento preliminar para el botón de cotizar
+        document.getElementById('btn-cotizar').addEventListener('click', function() {
+            const destino = document.getElementById('inputDestino').value;
+            if (!destino.trim()) {
+                alert(currentLang === 'en' ? 'Please enter your destination hotel or address.' : 'Por favor ingresa tu hotel o destino exacto.');
+                return;
+            }
+            alert(currentLang === 'en' ? 'Processing your secure private transfer quote...' : 'Procesando tu cotización de traslado privado...');
+        });
     </script>
 </body>
 </html>
+/* Ajustes Finos de Diseño y Responsividad Avanzada */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            .brand h1 {
+                font-size: 1.1rem;
+            }
+            .main-hero {
+                padding: 40px 15px 20px 15px;
+            }
+            .booking-card {
+                padding: 20px;
+                margin: 0 15px 40px 15px;
+            }
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 18px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animaciones suaves para la aparición del cotizador */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .booking-card, .feature-item {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
