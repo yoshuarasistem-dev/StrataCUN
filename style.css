@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 @media (max-width: 768px) {
             header { padding: 15px 20px; }
             .brand h1 { font-size: 1.1rem; }
             .main-hero { padding: 40px 15px 20px 15px; }
             .booking-card { padding: 24px; margin: 0 15px 40px 15px; }
             .whatsapp-float { bottom: 20px; right: 20px; padding: 12px 18px; font-size: 0.9rem; }
+=======
+@media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            .brand h1 { font-size: 1.1rem; }
+            .main-hero { padding: 40px 15px 20px 15px; }
+            .booking-card { padding: 24px; margin: 0 15px 40px 15px; }
+            .whatsapp-float { bottom: 20px; right: 20px; padding: 12px 18px; font-size: 0.9rem; }
+>>>>>>> 1fd656c94653795583492e7bb286bd4eab07d34c
         }
