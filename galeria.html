@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Ejecutiva | STRATA CUN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #050a18;
+            --bg-card: rgba(11, 20, 43, 0.82);
+            --bg-elevated: rgba(15, 26, 54, 0.92);
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --cyan: #1d4ed8; 
+            --cyan-glow: #3b82f6; 
+            --border-glass: rgba(59, 130, 246, 0.24);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-main); color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; }
+        .serif-lux { font-family: 'Cormorant Garamond', Georgia, serif; }
+        .container { max-width: 1340px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* NAVBAR (Igual al Index) */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; height: 75px; background: rgba(5, 10, 24, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass); z-index: 1000; display: flex; align-items: center; }
+        .nav-content { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+        .brand-box { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text-primary); }
+        .brand-logo-img { height: 40px; width: auto; border-radius: 6px; }
+        .brand-text-container strong { font-size: 1.1rem; letter-spacing: 0.15em; }
+        .brand-text-container span { font-size: 0.55rem; letter-spacing: 0.2em; color: var(--text-secondary); text-transform: uppercase; display: block;}
+        
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; transition: color 0.25s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--cyan-glow); }
+        
+        /* HEADER GALERIA */
+        .page-header { padding: 150px 0 50px; text-align: center; border-bottom: 1px solid var(--border-glass); background: radial-gradient(circle at top, rgba(59, 130, 246, 0.1), transparent 60%);}
+        .page-title { font-size: 3.5rem; margin-bottom: 1rem; color: #fff; }
+        .page-desc { color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+
+        /* GRID DE GALERIA */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 4rem 0;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            border: 1px solid var(--border-glass);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5, 10, 24, 0.9) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-title { font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 0.3rem;}
+        .gallery-tag { font-size: 0.75rem; color: var(--cyan-glow); text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em;}
+
+        /* LIGHTBOX (Visor de fotos grande) */
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; display: none; justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90vh; border-radius: 8px; border: 1px solid var(--border-glass); }
+        .lightbox-close { position: absolute; top: 2rem; right: 2rem; color: #fff; font-size: 2rem; cursor: pointer; background: none; border: none; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .page-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="brand-box">
+                <img src="assets/Strata1CUNlogo.jpg" alt="Strata CUN" class="brand-logo-img" onerror="this.src='assets/StrataCUNog.jpg'">
+                <div class="brand-text-container">
+                    <strong>STRATA <span style="color: var(--cyan-glow);">CUN</span></strong>
+                    <span>Executive Transfer</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#flota">Flota</a></li>
+                <li><a href="bodas.html">Bodas & VIP</a></li>
+                <li><a href="galeria.html" class="active">Galería</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title serif-lux">Estándar Ejecutivo.</h1>
+            <p class="page-desc">Un recorrido visual por nuestra flota de lujo y recepciones operativas en el Aeropuerto Internacional de Cancún.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- La galería se llenará dinámicamente -->
+        </div>
+    </div>
+
+    <!-- Visor de Fotos -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightbox-img" src="" alt="Vista ampliada">
+    </div>
+
+    <script>
+        // Array con las fotos de tu marca (usa los nombres exactos que tienes en tu carpeta "assets")
+        const fotos = [
+            { src: "SUV5.jpg", title: "Suburban VIP", tag: "Flota Exclusiva" },
+            { src: "BlackLOGOSUV.jpg", title: "Interior Ejecutivo", tag: "Confort" },
+            { src: "VANPRIVADA8.jpg", title: "Van Privada", tag: "Grupos y Familias" },
+            { src: "FLEXI4.jpg", title: "Servicio Flexi", tag: "Traslados Ágiles" },
+            { src: "MINIBUS16.jpg", title: "Minibús Sprinter", tag: "Alta Capacidad" },
+            { src: "T3PUNTO.jpg", title: "Punto de Encuentro T3", tag: "Operaciones" },
+            { src: "T4PUNTO.jpg", title: "Punto de Encuentro T4", tag: "Operaciones" },
+            { src: "T2INTER.jpg", title: "Punto de Encuentro T2", tag: "Operaciones" }
+        ];
+
+        const grid = document.getElementById('galleryGrid');
+
+        // Generar la galería
+        fotos.forEach(foto => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.onclick = () => openLightbox(`assets/${foto.src}`);
+            
+            item.innerHTML = `
+                <img src="assets/${foto.src}" alt="${foto.title}" onerror="this.src='assets/StrataCUNog.jpg'">
+                <div class="gallery-overlay">
+                    <span class="gallery-tag">${foto.tag}</span>
+                    <h3 class="gallery-title">${foto.title}</h3>
+                </div>
+            `;
+            grid.appendChild(item);
+        });
+
+        function openLightbox(imgSrc) {
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
