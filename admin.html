@@ -12,7 +12,7 @@
             --bg-card: rgba(11, 20, 43, 0.95);
             --text-primary: #ffffff;
             --text-secondary: #94a3b8;
-            --cyan: #3b82f6; /* Azul cálido */
+            --cyan: #3b82f6; 
             --gold: #eab308;
             --emerald: #10b981;
             --gray-pending: rgba(148, 163, 184, 0.2);
@@ -27,7 +27,7 @@
             overflow: hidden;
         }
         
-        /* BARRA LATERAL (SIDEBAR) */
+        /* BARRA LATERAL */
         .sidebar { 
             width: 280px; 
             background: var(--bg-card); 
@@ -44,13 +44,13 @@
         .main-content { flex: 1; padding: 3rem 4rem; overflow-y: auto; background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 50%); }
         .header-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
         
-        /* TARJETAS DE MÉTRICAS */
+        /* MÉTRICAS */
         .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; margin-bottom: 2rem; }
         .stat-card { background: var(--bg-card); padding: 1.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .stat-card h3 { color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
         .stat-card .value { font-size: 2.2rem; font-weight: 800; color: var(--cyan); }
 
-        /* TABLA DE OPERACIONES (SEMÁFORO) */
+        /* TABLA DE OPERACIONES */
         .table-container { background: var(--bg-card); border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.15); overflow: hidden; margin-bottom: 2rem; }
         table { width: 100%; border-collapse: collapse; text-align: left; }
         th { background: rgba(59, 130, 246, 0.1); padding: 1rem; color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -61,7 +61,7 @@
         .status-pending { background: var(--gray-pending); color: var(--text-secondary); border: 1px solid rgba(148,163,184,0.3); }
         .status-completed { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid var(--emerald); }
         
-        .action-btn { background: transparent; border: 1px solid var(--cyan); color: var(--cyan); padding: 0.4rem 0.6rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; margin-right: 0.5rem; transition: all 0.2s; }
+        .action-btn { background: transparent; border: 1px solid var(--cyan); color: var(--cyan); padding: 0.4rem 0.6rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; margin-right: 0.5rem; transition: all 0.2s; text-decoration: none;}
         .action-btn:hover { background: var(--cyan); color: #fff; }
         .btn-wa { border-color: #25d366; color: #25d366; }
         .btn-wa:hover { background: #25d366; color: #000; }
@@ -71,7 +71,6 @@
     </style>
 </head>
 <body>
-
     <!-- MENÚ LATERAL -->
     <div class="sidebar">
         <h2>Bóveda Master 🔒</h2>
@@ -79,7 +78,6 @@
         <a href="#" class="nav-item">📋 Histórico de Reservas</a>
         <a href="#" class="nav-item">🚙 Liquidación Flota</a>
         
-        <!-- Botón para regresar a la web -->
         <a href="index.html" class="nav-item" style="margin-top: auto; color: #ef4444; border-left: none;">🚪 Cerrar Sesión Segura</a>
     </div>
 
@@ -121,27 +119,28 @@
             <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 600px; margin: 0 auto;">
                 Espacio de 5TB reservado para cargas de capturas de No-Show, reportes fotográficos de la flota aliada y respaldos semanales automáticos.
             </p>
-            <button style="margin-top: 1.5rem; background: var(--gold); color: #000; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: not-allowed; opacity: 0.7;">
-                Abrir Carpeta Master (Próximamente)
-            </button>
+            
+            <!-- ENLACE DIRECTO A TU CARPETA DE DRIVE -->
+            <a href="https://drive.google.com/drive/folders/1tKPfrKr7TuAomnKXxOEYB6y8EuXag5PG" target="_blank" style="display: inline-block; margin-top: 1.5rem; background: var(--gold); color: #000; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; transition: transform 0.2s;">
+                Abrir Carpeta Master 📂
+            </a>
         </div>
     </div>
 
     <script>
-        // TU URL DE APPS SCRIPT
+        // EL ENLACE A TU BASE DE DATOS (Google Apps Script)
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec";
 
         document.addEventListener('DOMContentLoaded', fetchReservations);
 
         function fetchReservations() {
-            // Hacemos una petición GET a tu script
             fetch(SCRIPT_URL)
                 .then(response => response.json())
                 .then(data => {
                     renderTable(data);
                 })
                 .catch(error => {
-                    document.getElementById('reservasTableBody').innerHTML = `<tr><td colspan="7" style="text-align:center; color: #ef4444;">Error al conectar con la base de datos.</td></tr>`;
+                    document.getElementById('reservasTableBody').innerHTML = `<tr><td colspan="7" style="text-align:center; color: #ef4444;">Error al conectar con la base de datos. Verifica tu conexión.</td></tr>`;
                     console.error('Error:', error);
                 });
         }
@@ -154,12 +153,9 @@
             let completados = 0;
             let ingresos = 0;
 
-            // Ignoramos la fila 0 porque son los encabezados del Excel
             for (let i = 1; i < rows.length; i++) {
                 const row = rows[i];
-                // Excel map: [0]Folio, [1]FechaRes, [2]Estado, [3]Nombre, [4]WA, [5]Correo, [6]Vehiculo, [7]TipoViaje, [8]Pax, [9]Zona, [10]Hotel, [11]Terminal, [12]Vuelo, [13]FechaServicio, [14]TotalMXN
-                
-                if(!row[0]) continue; // Si la fila está vacía, saltar
+                if(!row[0]) continue; 
                 
                 const isCompleted = row[2].toLowerCase().includes('completado') || row[2].toLowerCase().includes('pagado');
                 const badgeClass = isCompleted ? 'status-completed' : 'status-pending';
@@ -167,7 +163,6 @@
                 if (isCompleted) { completados++; ingresos += parseFloat(row[14]) || 0; } 
                 else { pendientes++; ingresos += parseFloat(row[14]) || 0; }
 
-                // Generar Link WhatsApp Directo
                 const waLink = `https://wa.me/${row[4].replace(/[^0-9]/g, '')}?text=Hola%20${row[3]},%20le%20escribimos%20de%20STRATA%20CUN.%20Su%20folio%20es%20${row[0]}`;
 
                 const tr = document.createElement('tr');
@@ -180,13 +175,12 @@
                     <td><strong style="color:var(--gold)">$${row[14]} MXN</strong></td>
                     <td>
                         <a href="${waLink}" target="_blank" class="action-btn btn-wa">💬 WA</a>
-                        <button class="action-btn" title="Editar en Excel">✏️</button>
+                        <a href="https://docs.google.com/spreadsheets/d/1ww2AcaXE_9QXyaDRQzUwXen92wZNUhnM_7YOHfH0mco/edit" target="_blank" class="action-btn" title="Editar en Excel">✏️</a>
                     </td>
                 `;
-                tbody.prepend(tr); // Agrega los más nuevos arriba
+                tbody.prepend(tr); 
             }
             
-            // Actualizar Dashboards
             document.getElementById('countPending').textContent = pendientes;
             document.getElementById('countCompleted').textContent = completados;
             document.getElementById('totalRevenue').textContent = `$${new Intl.NumberFormat('es-MX').format(ingresos)}`;
