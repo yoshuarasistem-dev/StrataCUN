@@ -82,6 +82,7 @@
                 </tbody>
             </table>
         </div>
+
         <div class="drive-box">
             <span style="font-size: 3rem; margin-bottom: 1rem; display: block;">📁</span>
             <h3 style="color: var(--gold); margin-bottom: 0.5rem; font-size: 1.3rem;">Bóveda de Evidencias (Google Drive)</h3>
@@ -96,9 +97,9 @@
 
     <script>
         // =========================================================================
-        // !!! AQUÍ DEBES PEGAR LA NUEVA URL QUE TE DA APPS SCRIPT !!!
+        // URL EXACTA VERSIÓN 7
         // =========================================================================
-        const SCRIPT_URL = "AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec";
 
         document.addEventListener('DOMContentLoaded', fetchReservations);
 
@@ -109,7 +110,7 @@
                     renderTable(data);
                 })
                 .catch(error => {
-                    document.getElementById('reservasTableBody').innerHTML = `<tr><td colspan="7" style="text-align:center; color: #ef4444;">Error de acceso: Recuerda que Apps Script debe estar en "Cualquier Persona" (Anyone).</td></tr>`;
+                    document.getElementById('reservasTableBody').innerHTML = `<tr><td colspan="7" style="text-align:center; color: #ef4444;">Error de acceso o conexión de red.</td></tr>`;
                     console.error('Error:', error);
                 });
         }
