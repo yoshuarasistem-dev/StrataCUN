@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Confirmada | STRATA CUN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #050a18; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
+        .success-box { background: rgba(11, 20, 43, 0.95); padding: 3rem; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 500px; width: 90%; }
+        .icon { font-size: 4rem; color: #10b981; margin-bottom: 1rem; }
+        h1 { margin: 0 0 1rem; color: #10b981; }
+        p { color: #94a3b8; margin-bottom: 2rem; line-height: 1.6; }
+        .folio-display { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; font-size: 1.5rem; font-weight: 800; color: #eab308; letter-spacing: 0.1em; margin-bottom: 2rem; border: 1px dashed #eab308; }
+        .btn { background: #3b82f6; color: #fff; text-decoration: none; padding: 1rem 2rem; border-radius: 10px; font-weight: 800; display: inline-block; transition: background 0.3s; }
+        .btn:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+    <div class="success-box">
+        <div class="icon">✓</div>
+        <h1>¡Reserva Procesada!</h1>
+        <p>Tu solicitud ha sido registrada exitosamente en nuestra Bóveda de Operaciones Seguras. Un coordinador se pondrá en contacto contigo a la brevedad.</p>
+        
+        <div class="folio-display" id="folioNumber">Cargando Folio...</div>
+
+        <a href="index.html" class="btn">Volver al Inicio</a>
+    </div>
+
+    <script>
+        // Extraer el folio de la URL y mostrarlo
+        const urlParams = new URLSearchParams(window.location.search);
+        const folio = urlParams.get('folio');
+        if(folio) {
+            document.getElementById('folioNumber').textContent = folio;
+        } else {
+            document.getElementById('folioNumber').textContent = "Operación Exitosa";
+        }
+    </script>
+</body>
+</html>
