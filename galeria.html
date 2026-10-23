@@ -133,48 +133,65 @@
         <img id="lightbox-img" src="" alt="Vista ampliada">
     </div>
 
-    <script>
-        // Array con las fotos actualizadas de la carpeta "assets"
-        const fotos = [
-            { src: "SUV5.jpg", title: "Suburban VIP", tag: "Flota Exclusiva" },
-            { src: "BlackLOGOSUV.jpg", title: "Interior Ejecutivo", tag: "Confort" },
-            { src: "Black1SUV.jpg", title: "Suburban Exterior", tag: "Elegancia" },
-            { src: "JACBLAMCA.jpg", title: "Unidad JAC Ejecutiva", tag: "Modernidad" },
-            { src: "JAC1.jpg", title: "Flota JAC", tag: "Alta Capacidad" },
-            { src: "VANPRIVADA8.jpg", title: "Van Privada", tag: "Grupos y Familias" },
-            { src: "VANBLANCA.jpg", title: "Van Ejecutiva", tag: "Confort" },
-            { src: "VAN1.jpg", title: "Recepción Van", tag: "Traslados" },
-            { src: "FLEXI4.jpg", title: "Servicio Flexi", tag: "Traslados Ágiles" },
-            { src: "MINIBUS16.jpg", title: "Minibús Sprinter", tag: "Alta Capacidad" },
-            { src: "SEDAN.jpg", title: "Sedán VIP", tag: "Ejecutivo" },
-            { src: "SUB6OAX.jpg", title: "Servicio Foráneo", tag: "Rutas Especiales" },
-            { src: "T3PUNTO.jpg", title: "Punto de Encuentro T3", tag: "Operaciones" },
-            { src: "T4PUNTO.jpg", title: "Punto de Encuentro T4", tag: "Operaciones" },
-            { src: "T2INTER.jpg", title: "Punto de Encuentro T2", tag: "Operaciones" }
+   <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec";
+
+        const fotosLocales = [
+            { src: "assets/SUV5.jpg", title: "Suburban VIP", tag: "Flota Exclusiva" },
+            { src: "assets/BlackLOGOSUV.jpg", title: "Suburban Ejecutiva", tag: "Confort VIP" },
+            { src: "assets/Black1SUV.jpg", title: "Recepción Aeropuerto", tag: "Flota VIP" },
+            { src: "assets/Black2SUV.jpg", title: "Servicio Nocturno", tag: "Operaciones 24/7" },
+            { src: "assets/SUB6OAX.jpg", title: "Suburban Gran Turismo", tag: "Flota Exclusiva" },
+            { src: "assets/SUBPAX.jpg", title: "Recepción Personalizada", tag: "Clientes VIP" },
+            { src: "assets/JACBLAMCA.jpg", title: "Van JAC Ejecutiva", tag: "Grupos y Familias" },
+            { src: "assets/JAC1.jpg", title: "Flota JAC", tag: "Alta Capacidad" },
+            { src: "assets/VANPRIVADA8.jpg", title: "Van Privada 8 Pax", tag: "Traslados Privados" },
+            { src: "assets/VANBLANCA.jpg", title: "Van Confort", tag: "Riviera Maya" },
+            { src: "assets/VAN1.jpg", title: "Unidad de Grupo", tag: "Flota STRATA" },
+            { src: "assets/MINIBUS16.jpg", title: "Minibús Sprinter 16 Pax", tag: "Bodas & Eventos" },
+            { src: "assets/FLEXI4.jpg", title: "Opción Flexi", tag: "Traslados Ágiles" },
+            { src: "assets/SEDAN.jpg", title: "Sedán Ejecutivo", tag: "Viajes de Negocios" },
+            { src: "assets/T3PUNTO.jpg", title: "Punto Blindado Terminal 3", tag: "Air Margaritaville" },
+            { src: "assets/T4PUNTO.jpg", title: "Punto Blindado Terminal 4", tag: "Welcome Bar" },
+            { src: "assets/T2INTER.jpg", title: "Punto Blindado Terminal 2 Intl", tag: "Welcome Bar T2" },
+            { src: "assets/T2NACIONALPUNTO.jpg", title: "Punto Blindado Terminal 2 Nac", tag: "La Palapa" }
         ];
 
         const grid = document.getElementById('galleryGrid');
 
-        fotos.forEach(foto => {
+        function agregarTarjetaFoto(imgSrc, title, tag) {
             const item = document.createElement('div');
             item.className = 'gallery-item';
-            item.onclick = () => openLightbox(`assets/${foto.src}`);
-            
+            item.onclick = () => openLightbox(imgSrc);
             item.innerHTML = `
-                <img src="assets/${foto.src}" alt="${foto.title}" onerror="this.src='assets/StrataCUNog.jpg'">
+                <img src="${imgSrc}" alt="${title}" onerror="this.src='assets/StrataCUNog.jpg'">
                 <div class="gallery-overlay">
-                    <span class="gallery-tag">${foto.tag}</span>
-                    <h3 class="gallery-title">${foto.title}</h3>
+                    <span class="gallery-tag">${tag}</span>
+                    <h3 class="gallery-title">${title}</h3>
                 </div>
             `;
             grid.appendChild(item);
-        });
+        }
+
+        // 1. Pintar todas las fotos de tu carpeta assets
+        fotosLocales.forEach(f => agregarTarjetaFoto(f.src, f.title, f.tag));
+
+        // 2. Cargar fotos nuevas subidas desde la Bóveda Admin (Google Drive 5TB)
+        fetch(`${SCRIPT_URL}?action=get_galeria`)
+            .then(r => r.json())
+            .then(data => {
+                if (data.status === 'success' && data.fotos) {
+                    data.fotos.forEach(row => {
+                        if (row[3]) agregarTarjetaFoto(row[3], row[1], row[2]);
+                    });
+                }
+            })
+            .catch(() => {});
 
         function openLightbox(imgSrc) {
             document.getElementById('lightbox-img').src = imgSrc;
             document.getElementById('lightbox').classList.add('active');
         }
-
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
         }

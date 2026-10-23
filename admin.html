@@ -3,173 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BÓVEDA MASTER | Strata CUN Operaciones</title>
+    <title>BÓVEDA MASTER | STRATA CUN Operaciones</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    
     <style>
-        :root { --bg-main: #02050e; --bg-card: rgba(11, 20, 43, 0.95); --text-primary: #ffffff; --text-secondary: #94a3b8; --cyan: #3b82f6; --gold: #eab308; --emerald: #10b981; --gray-pending: rgba(148, 163, 184, 0.2); }
+        :root { --bg-main: #02050e; --bg-card: rgba(11, 20, 43, 0.95); --text-primary: #ffffff; --text-secondary: #94a3b8; --cyan: #3b82f6; --gold: #eab308; --emerald: #10b981; }
+        * { box-sizing: border-box; }
         body { background-color: var(--bg-main); color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
-        .sidebar { width: 280px; background: var(--bg-card); border-right: 1px solid rgba(59, 130, 246, 0.2); padding: 2rem; display: flex; flex-direction: column; }
-        .sidebar h2 { color: var(--gold); font-size: 1.1rem; margin-bottom: 2.5rem; letter-spacing: 0.15em; text-transform: uppercase; }
-        .nav-item { padding: 1rem 1.2rem; color: var(--text-secondary); text-decoration: none; display: block; border-radius: 12px; margin-bottom: 0.5rem; transition: all 0.3s; font-weight: 600; font-size: 0.9rem; cursor: pointer; border-left: 4px solid transparent; }
-        .nav-item:hover, .nav-item.active { background: rgba(59, 130, 246, 0.15); color: var(--cyan); border-left: 4px solid var(--cyan); }
-        .main-content { flex: 1; padding: 3rem 4rem; overflow-y: auto; background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 50%); }
-        .header-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
-        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; margin-bottom: 2rem; }
-        .stat-card { background: var(--bg-card); padding: 1.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .stat-card h3 { color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-        .stat-card .value { font-size: 2.2rem; font-weight: 800; color: var(--cyan); }
-        .table-container { background: var(--bg-card); border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.15); overflow: hidden; margin-bottom: 2rem; }
-        table { width: 100%; border-collapse: collapse; text-align: left; }
-        th { background: rgba(59, 130, 246, 0.1); padding: 1rem; color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; color: var(--text-primary); }
-        tr:hover td { background: rgba(255,255,255,0.02); }
-        .status-badge { padding: 0.4rem 0.8rem; border-radius: 8px; font-weight: 700; font-size: 0.75rem; display: inline-block; }
-        .status-pending { background: var(--gray-pending); color: var(--text-secondary); border: 1px solid rgba(148,163,184,0.3); }
-        .status-completed { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid var(--emerald); }
-        .action-btn { background: transparent; border: 1px solid var(--cyan); color: var(--cyan); padding: 0.4rem 0.6rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; margin-right: 0.5rem; text-decoration: none;}
-        .action-btn:hover { background: var(--cyan); color: #fff; }
         
-        .tab-content { display: none; animation: fadeIn 0.3s ease; }
+        #loginOverlay { position: fixed; inset: 0; background: #02050e; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+        .login-box { background: var(--bg-card); padding: 2.8rem; border-radius: 22px; border: 1px solid rgba(234, 179, 8, 0.4); width: 100%; max-width: 410px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.85); }
+        .admin-input { background: rgba(5, 10, 24, 0.95); border: 1px solid rgba(148, 163, 184, 0.3); color: #fff; padding: 0.85rem 1rem; border-radius: 12px; font-family: inherit; font-size: 0.9rem; width: 100%; margin-bottom: 1rem; color-scheme: dark; }
+        .admin-input:focus { border-color: var(--gold); outline: none; }
+        .form-btn { background: var(--gold); color: #000; font-weight: 800; border: none; padding: 0.95rem 1.5rem; border-radius: 12px; cursor: pointer; width: 100%; text-transform: uppercase; transition: transform 0.2s; }
+        .form-btn:hover { transform: translateY(-2px); }
+
+        .sidebar { width: 270px; background: var(--bg-card); border-right: 1px solid rgba(59, 130, 246, 0.2); padding: 2rem 1.5rem; display: flex; flex-direction: column; }
+        .sidebar h2 { color: var(--gold); font-size: 1.05rem; margin: 0 0 0.3rem; letter-spacing: 0.12em; text-transform: uppercase; }
+        .nav-item { padding: 0.9rem 1.1rem; color: var(--text-secondary); text-decoration: none; display: block; border-radius: 12px; margin-bottom: 0.4rem; font-weight: 600; font-size: 0.88rem; cursor: pointer; border-left: 4px solid transparent; }
+        .nav-item:hover, .nav-item.active { background: rgba(59, 130, 246, 0.15); color: var(--cyan); border-left: 4px solid var(--cyan); }
+        .main-content { flex: 1; padding: 2.5rem 3rem; overflow-y: auto; }
+        .tab-content { display: none; }
         .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .admin-input { background: rgba(5, 10, 24, 0.95); border: 1px solid rgba(148, 163, 184, 0.3); color: #fff; padding: 0.8rem 1rem; border-radius: 12px; font-family: inherit; font-size: 0.9rem; width: 100%; margin-top: 0.4rem; }
-        .admin-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 700; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .form-btn { background: var(--gold); color: #000; font-weight: 800; border: none; padding: 1rem 2rem; border-radius: 12px; cursor: pointer; width: 100%; }
+
+        .dashboard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 1.5rem 0 2rem; }
+        .stat-card { background: var(--bg-card); padding: 1.4rem; border-radius: 18px; border: 1px solid rgba(59, 130, 246, 0.2); }
+        .stat-card h3 { color: var(--text-secondary); font-size: 0.72rem; text-transform: uppercase; margin: 0 0 0.4rem; }
+        .stat-card .value { font-size: 2rem; font-weight: 800; color: var(--cyan); }
+
+        .table-wrap { background: var(--bg-card); border-radius: 18px; border: 1px solid rgba(59, 130, 246, 0.2); overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { background: rgba(59, 130, 246, 0.12); padding: 1rem; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; }
+        td { padding: 0.9rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.83rem; }
+        .status-badge { padding: 0.35rem 0.7rem; border-radius: 8px; font-weight: 700; font-size: 0.72rem; display: inline-block; }
+        .status-completed { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid var(--emerald); }
+        .status-pending { background: rgba(234, 179, 8, 0.15); color: var(--gold); border: 1px solid var(--gold); }
+        .mini-btn { padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.72rem; font-weight: 700; cursor: pointer; border: 1px solid var(--cyan); background: transparent; color: var(--cyan); text-decoration: none; display: inline-block; margin-right: 0.3rem; }
+        .mini-btn:hover { background: var(--cyan); color: #fff; }
+        .admin-only { display: none; }
     </style>
 </head>
 <body>
+
+    <!-- LOGIN MULTIUSUARIO -->
+    <div id="loginOverlay">
+        <div class="login-box">
+            <img src="assets/Strata1CUNlogo.jpg" alt="STRATA CUN" style="height: 55px; margin: 0 auto 1rem; border-radius: 8px;" onerror="this.style.display='none'">
+            <h2 style="color: var(--gold); margin: 0 0 0.4rem; letter-spacing: 2px;">BÓVEDA MASTER</h2>
+            <p style="color: var(--text-secondary); font-size: 0.82rem; margin-bottom: 1.8rem;">Control Operativo STRATA CUN</p>
+            <form onsubmit="realizarLogin(event)">
+                <input type="text" id="loginUser" class="admin-input" placeholder="Usuario (Ej. admin o ventas1)" required>
+                <input type="password" id="loginPass" class="admin-input" placeholder="Contraseña" required>
+                <button type="submit" class="form-btn" id="btnLogin">Desbloquear Bóveda 🔒</button>
+            </form>
+            <div id="loginError" style="color: #ef4444; font-size: 0.82rem; margin-top: 1rem; display: none;"></div>
+        </div>
+    </div>
+
+    <!-- SIDEBAR -->
     <div class="sidebar">
         <h2>Bóveda Master 🔒</h2>
+        <p id="userNameDisplay" style="color: var(--emerald); font-size: 0.78rem; font-weight: 700; margin-bottom: 1.8rem;"></p>
+        
         <a class="nav-item active" id="btn-monitor" onclick="switchTab('monitor')">📊 Monitor Operativo</a>
-        <a class="nav-item" id="btn-partners" onclick="switchTab('partners')">🤝 Partners (Ingreso)</a>
-        <a class="nav-item" id="btn-historial" onclick="switchTab('historial')">📋 Histórico / Flota</a>
-        <a href="index.html" class="nav-item" style="margin-top: auto; color: #ef4444; border-left: none;">🚪 Salir</a>
+        <a class="nav-item" id="btn-partners" onclick="switchTab('partners')">🤝 Ingreso Partners / Ventas</a>
+        <a class="nav-item admin-only" id="btn-usuarios" onclick="switchTab('usuarios')">👥 Gestión de Usuarios</a>
+        <a class="nav-item admin-only" id="btn-nube" onclick="switchTab('nube')">📸 Subir Fotos / Nube 5TB</a>
+        <a class="nav-item admin-only" id="btn-historial" onclick="switchTab('historial')">📋 Matriz Google Sheets</a>
+        
+        <a href="index.html" class="nav-item" style="margin-top: auto; color: #ef4444;">🚪 Volver a la Web</a>
     </div>
 
     <div class="main-content">
-        
+        <!-- PESTAÑA 1: MONITOR OPERATIVO -->
         <div id="tab-monitor" class="tab-content active">
-            <h1 class="header-title">Centro de Control</h1>
-            
-            <div class="dashboard-grid">
-                <div class="stat-card"><h3>Pendientes</h3><div class="value" id="countPending">0</div></div>
-                <div class="stat-card"><h3>Completados</h3><div class="value" style="color: var(--emerald);" id="countCompleted">0</div></div>
-                <div class="stat-card"><h3>Ingresos</h3><div class="value" style="color: var(--gold);" id="totalRevenue">$0</div></div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 style="margin: 0; font-size: 2rem;">Centro de Control en Tiempo Real</h1>
+                <button onclick="fetchReservations()" class="form-btn" style="width: auto; padding: 0.6rem 1.2rem; font-size: 0.8rem;">🔄 Actualizar Radar</button>
             </div>
             
-            <div class="table-container">
+            <div class="dashboard-grid">
+                <div class="stat-card"><h3>Pendientes de Pago</h3><div class="value" style="color: var(--gold);" id="countPending">0</div></div>
+                <div class="stat-card"><h3>Confirmados / Pagados</h3><div class="value" style="color: var(--emerald);" id="countCompleted">0</div></div>
+                <div class="stat-card"><h3>Volumen Operativo</h3><div class="value" id="totalRevenue">$0 MXN</div></div>
+            </div>
+
+            <div class="table-wrap">
                 <table>
-                    <thead><tr><th>Folio</th><th>Estado</th><th>Cliente</th><th>Servicio</th><th>Vuelo</th><th>Total</th><th>Acciones</th></tr></thead>
-                    <tbody id="reservasTableBody"><tr><td colspan="7" style="text-align:center; padding: 2rem;">Cargando Bóveda...</td></tr></tbody>
+                    <thead>
+                        <tr><th>Folio</th><th>Estado</th><th>Pasajero / WA</th><th>Servicio / Ruta</th><th>Vuelo / Fecha</th><th>Monto</th><th>Acciones</th></tr>
+                    </thead>
+                    <tbody id="reservasTableBody">
+                        <tr><td colspan="7" style="text-align:center; padding: 2rem;">Sincronizando con la Bóveda... ⏳</td></tr>
+                    </tbody>
                 </table>
             </div>
         </div>
 
+        <!-- PESTAÑA 2: REGISTRO DE PARTNERS Y VENDEDORES -->
         <div id="tab-partners" class="tab-content">
-            <h1 class="header-title">Módulo de Partners</h1>
-            <div style="background: var(--bg-card); border: 1px solid rgba(234, 179, 8, 0.3); padding: 2.5rem; border-radius: 20px;">
-                <form id="partnerForm" onsubmit="submitPartnerBooking(event)">
-                    <div class="form-grid">
-                        <div><label class="admin-label">Agencia / Origen</label><input type="text" id="p-agencia" class="admin-input" required></div>
-                        <div><label class="admin-label">Pasajero</label><input type="text" id="p-nombre" class="admin-input" required></div>
-                        <div><label class="admin-label">WhatsApp</label><input type="text" id="p-wa" class="admin-input"></div>
-                        <div><label class="admin-label">Servicio</label><input type="text" id="p-servicio" class="admin-input" required></div>
-                        <div><label class="admin-label">Fecha</label><input type="datetime-local" id="p-fecha" class="admin-input" required></div>
-                        <div><label class="admin-label">Total (MXN)</label><input type="text" id="p-total" class="admin-input" required></div>
-                    </div>
-                    <button type="submit" class="form-btn" style="margin-top:2rem;">Guardar en Base de Datos 💾</button>
+            <h1 style="font-size: 2rem; margin-bottom: 1.2rem;">Registrar Operación (Partners / Agencias / Ventas)</h1>
+            <form onsubmit="guardarReservaManual(event)" style="background: var(--bg-card); padding: 2rem; border-radius: 20px; border: 1px solid rgba(234,179,8,0.3);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <input type="text" id="p-agencia" class="admin-input" placeholder="Agencia / Vendedor (Ej. Expedia, Hotel, Ventas1)" required>
+                    <input type="text" id="p-nombre" class="admin-input" placeholder="Nombre Completo del Pasajero" required>
+                    <input type="text" id="p-wa" class="admin-input" placeholder="WhatsApp del Pasajero (Ej. 52998...)" required>
+                    <input type="email" id="p-correo" class="admin-input" placeholder="Correo del Cliente (Para enviarle Voucher)">
+                    <select id="p-servicio" class="admin-input">
+                        <option>Van Privada - Llegada</option>
+                        <option>Van Privada - Salida</option>
+                        <option>Van Privada - Hotel a Hotel</option>
+                        <option>Suburban VIP - Llegada</option>
+                        <option>Suburban VIP - Salida</option>
+                        <option>Minibús Sprinter - Grupo</option>
+                    </select>
+                    <input type="text" id="p-hotel" class="admin-input" placeholder="Hotel o Ruta (Origen ➔ Destino)" required>
+                    <input type="text" id="p-vuelo" class="admin-input" placeholder="Vuelo y Terminal (Ej. AA1312 - T3)">
+                    <input type="datetime-local" id="p-fecha" class="admin-input" required>
+                    <input type="text" id="p-total" class="admin-input" placeholder="Monto Total en MXN (Ej. 1450)" required>
+                </div>
+                <button type="submit" class="form-btn" id="btnGuardarPartner">Guardar y Emitir Folio 💾</button>
+            </form>
+        </div>
+
+        <!-- PESTAÑA 3: CREAR USUARIOS (SOLO ADMIN) -->
+        <div id="tab-usuarios" class="tab-content admin-only">
+            <h1 style="font-size: 2rem; margin-bottom: 1rem;">Control de Accesos y Vendedores</h1>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <form onsubmit="crearNuevoUsuario(event)" style="background: var(--bg-card); padding: 2rem; border-radius: 20px;">
+                    <h3 style="color: var(--gold); margin-top: 0;">Crear Nuevo Usuario</h3>
+                    <input type="text" id="u-nombre" class="admin-input" placeholder="Nombre del Colaborador o Agencia" required>
+                    <input type="text" id="u-user" class="admin-input" placeholder="Usuario de acceso (Ej. ventas3)" required>
+                    <input type="text" id="u-pass" class="admin-input" placeholder="Contraseña asignada" required>
+                    <select id="u-rol" class="admin-input">
+                        <option value="vendedor">Vendedor (Solo ver e ingresar reservas)</option>
+                        <option value="admin">Administrador (Control total y modificar estados)</option>
+                    </select>
+                    <button type="submit" class="form-btn" id="btnCrearUser">Registrar Usuario ➕</button>
                 </form>
+                <div style="background: var(--bg-card); padding: 2rem; border-radius: 20px;">
+                    <h3 style="color: var(--cyan); margin-top: 0;">Usuarios Activos</h3>
+                    <div id="listaUsuariosBox" style="font-size: 0.85rem; color: var(--text-secondary);">Cargando usuarios...</div>
+                </div>
             </div>
         </div>
 
-        <div id="tab-historial" class="tab-content">
-            <h1 class="header-title">Histórico General</h1>
-            <div style="text-align: center; padding: 4rem; background: var(--bg-card); border-radius: 20px; border: 1px dashed var(--cyan);">
-                <span style="font-size: 3rem;">📊</span><h3 style="margin: 1rem 0;">Matriz de Excel</h3>
-                <a href="https://docs.google.com/spreadsheets/d/1ww2AcaXE_9QXyaDRQzUwXen92wZNUhnM_7YOHfH0mco/edit" target="_blank" class="form-btn" style="background: var(--cyan); color: #fff; width: auto;">Abrir Excel Central ✏️</a>
+        <!-- PESTAÑA 4: SUBIR FOTOS A GALERÍA Y NUBE 5TB (SOLO ADMIN) -->
+        <div id="tab-nube" class="tab-content admin-only">
+            <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Subir Fotos a Galería Web y Nube 5TB</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Sube fotos de unidades, recepciones o evidencias. Si marcas "Publicar en Galería", aparecerán automáticamente en galeria.html.</p>
+            <div style="background: var(--bg-card); padding: 2.5rem; border-radius: 20px; max-width: 650px; border: 1px dashed var(--cyan);">
+                <input type="text" id="fotoTitulo" class="admin-input" placeholder="Título de la foto (Ej. Suburban VIP en T3)">
+                <input type="text" id="fotoTag" class="admin-input" placeholder="Categoría (Ej. Flota Exclusiva / Operaciones)">
+                <select id="fotoPublicar" class="admin-input">
+                    <option value="si">📸 Publicar en la Galería Web + Guardar en Nube 5TB</option>
+                    <option value="no">🔒 Solo Guardar en Bóveda Drive 5TB (Evidencia Privada)</option>
+                </select>
+                <input type="file" id="fotoUpload" accept="image/*" class="admin-input">
+                <button onclick="subirFotoDrive()" class="form-btn" id="btnUpload" style="background: var(--cyan); color: #fff;">Subir Imagen a la Nube ☁️</button>
+                <div id="uploadStatus" style="margin-top: 1.2rem; font-size: 0.9rem;"></div>
+            </div>
+        </div>
+
+        <!-- PESTAÑA 5: MATRIZ GOOGLE SHEETS (SOLO ADMIN) -->
+        <div id="tab-historial" class="tab-content admin-only">
+            <h1 style="font-size: 2rem; margin-bottom: 1rem;">Matriz Maestra y Nube 5TB</h1>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div style="background: var(--bg-card); padding: 2.5rem; border-radius: 20px; text-align: center;">
+                    <h3>📊 Hoja de Cálculo Central</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">Edición directa de celdas, histórico y corte de caja.</p>
+                    <a href="https://docs.google.com/spreadsheets/" target="_blank" class="form-btn" style="display: inline-block; width: auto; text-decoration: none;">Abrir Google Sheets ✏️</a>
+                </div>
+                <div style="background: var(--bg-card); padding: 2.5rem; border-radius: 20px; text-align: center;">
+                    <h3>☁️ Carpeta Google Drive 5TB</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">Acceso a todas las imágenes y evidencias operativas.</p>
+                    <a href="https://drive.google.com/" target="_blank" class="form-btn" style="background: var(--cyan); color: #fff; display: inline-block; width: auto; text-decoration: none;">Abrir Google Drive 📂</a>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec";
+        let currentUserRole = "";
+
         function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
             document.getElementById('tab-' + tabId).classList.add('active');
             document.getElementById('btn-' + tabId).classList.add('active');
         }
 
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec";
+        function realizarLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('loginUser').value.trim();
+            const p = document.getElementById('loginPass').value.trim();
+            const btn = document.getElementById('btnLogin');
+            const err = document.getElementById('loginError');
+            btn.innerHTML = "Verificando credenciales... ⏳";
+            btn.disabled = true;
+            err.style.display = 'none';
 
-        document.addEventListener('DOMContentLoaded', fetchReservations);
+            fetch(`${SCRIPT_URL}?action=login&user=${encodeURIComponent(u)}&pass=${encodeURIComponent(p)}`)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        currentUserRole = data.rol;
+                        document.getElementById('userNameDisplay').textContent = `👤 ${data.nombre} (${data.rol.toUpperCase()})`;
+                        document.getElementById('loginOverlay').style.display = 'none';
+                        if (currentUserRole === 'admin') {
+                            document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+                            cargarUsuarios();
+                        }
+                        fetchReservations();
+                    } else {
+                        err.textContent = data.message;
+                        err.style.display = 'block';
+                    }
+                })
+                .catch(() => {
+                    err.textContent = "Error de conexión. Verifica que el Script esté publicado como 'Cualquier persona'.";
+                    err.style.display = 'block';
+                })
+                .finally(() => {
+                    btn.innerHTML = "Desbloquear Bóveda 🔒";
+                    btn.disabled = false;
+                });
+        }
 
         function fetchReservations() {
-            fetch(SCRIPT_URL)
-                .then(response => response.json())
-                .then(data => renderTable(data))
-                .catch(() => { document.getElementById('reservasTableBody').innerHTML = `<tr><td colspan="7">Error de red al cargar reservas.</td></tr>`; });
+            const tbody = document.getElementById('reservasTableBody');
+            fetch(`${SCRIPT_URL}?action=get_reservas`)
+                .then(r => r.json())
+                .then(res => {
+                    if (res.status === 'success') renderTable(res.data);
+                    else tbody.innerHTML = `<tr><td colspan="7">${res.message}</td></tr>`;
+                })
+                .catch(() => {
+                    tbody.innerHTML = `<tr><td colspan="7" style="color:#ef4444;">No se pudo conectar con la Bóveda.</td></tr>`;
+                });
         }
 
         function renderTable(rows) {
             const tbody = document.getElementById('reservasTableBody');
             tbody.innerHTML = '';
-            let pendientes = 0; let completados = 0; let ingresos = 0;
+            let pen = 0, comp = 0, ing = 0;
 
             for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                if(!row[0]) continue; 
-                
-                const statusTexto = row[2] ? row[2].toLowerCase() : '';
-                const isCompleted = statusTexto.includes('completado') || statusTexto.includes('manual');
-                const badgeClass = isCompleted ? 'status-completed' : 'status-pending';
-                
-                if (isCompleted) { completados++; ingresos += parseFloat(row[14]) || 0; } 
-                else { pendientes++; ingresos += parseFloat(row[14]) || 0; }
+                const r = rows[i];
+                if (!r[0]) continue;
+                const folio = r[0];
+                const estado = r[2] || 'Pendiente';
+                const isComp = estado.toLowerCase().includes('completado') || estado.toLowerCase().includes('pagado') || estado.toLowerCase().includes('confirmado');
+                const badge = isComp ? 'status-completed' : 'status-pending';
 
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><strong>${row[0]}</strong></td>
-                    <td><span class="status-badge ${badgeClass}">${row[2]}</span></td>
-                    <td>${row[3]}</td><td>${row[6]}</td><td>${row[12]}</td>
-                    <td><strong style="color:var(--gold)">$${row[14]}</strong></td>
-                    <td><a href="https://docs.google.com/spreadsheets/d/1ww2AcaXE_9QXyaDRQzUwXen92wZNUhnM_7YOHfH0mco/edit" target="_blank" class="action-btn">✏️ Editar</a></td>
-                `;
-                tbody.prepend(tr); 
+                const montoNum = parseFloat(String(r[14]).replace(/[^0-9.]+/g, "")) || 0;
+                if (isComp) comp++; else pen++;
+                ing += montoNum;
+
+                const waClean = String(r[4] || '').replace(/[^0-9]/g, '');
+                const waUrl = `https://wa.me/${waClean}?text=${encodeURIComponent(`Hola ${r[3]}, le contactamos de STRATA CUN sobre su reserva ${folio}. Su voucher oficial está en: https://stratacun.com/exito.html?folio=${folio}`)}`;
+
+                // Solo Admin puede cambiar el estado a Pagado/Confirmado
+                let adminBtns = '';
+                if (currentUserRole === 'admin') {
+                    adminBtns = `<button onclick="cambiarEstado('${folio}', 'Completado (Pago Confirmado)')" class="mini-btn" style="border-color:#10b981;color:#10b981;">✓ Confirmar Pago</button>`;
+                }
+
+                tbody.insertAdjacentHTML('afterbegin', `
+                    <tr>
+                        <td><strong>${folio}</strong></td>
+                        <td><span class="status-badge ${badge}">${estado}</span></td>
+                        <td><strong>${r[3] || '-'}</strong><br><small style="color:var(--text-secondary)">${r[4] || ''}</small></td>
+                        <td>${r[6] || ''}<br><small style="color:var(--cyan)">${r[10] || ''}</small></td>
+                        <td>${r[12] || ''}<br><small style="color:var(--text-secondary)">${r[13] || ''}</small></td>
+                        <td style="color:var(--gold);font-weight:800;">$${montoNum}</td>
+                        <td>
+                            <a href="exito.html?folio=${folio}" target="_blank" class="mini-btn">📄 Voucher</a>
+                            <a href="${waUrl}" target="_blank" class="mini-btn" style="border-color:#25d366;color:#25d366;">💬 WA</a>
+                            ${adminBtns}
+                        </td>
+                    </tr>
+                `);
             }
-            document.getElementById('countPending').textContent = pendientes;
-            document.getElementById('countCompleted').textContent = completados;
-            document.getElementById('totalRevenue').textContent = `$${new Intl.NumberFormat('es-MX').format(ingresos)}`;
+            document.getElementById('countPending').textContent = pen;
+            document.getElementById('countCompleted').textContent = comp;
+            document.getElementById('totalRevenue').textContent = `$${new Intl.NumberFormat('es-MX').format(ing)} MXN`;
         }
 
-        function submitPartnerBooking(e) {
+        function cambiarEstado(folio, nuevoEstado) {
+            const fd = new URLSearchParams({ action: 'actualizar_estado', folio: folio, nuevoEstado: nuevoEstado });
+            fetch(SCRIPT_URL, { method: 'POST', body: fd })
+                .then(r => r.json())
+                .then(d => {
+                    if (d.status === 'success') fetchReservations();
+                    else alert(d.message);
+                });
+        }
+
+        function guardarReservaManual(e) {
             e.preventDefault();
-            const btn = e.target.querySelector('.form-btn');
-            btn.innerHTML = 'Guardando... ⏳';
-            btn.disabled = true;
-
-            const formData = new URLSearchParams();
-            formData.append('origen', 'partner_manual');
-            formData.append('agencia', document.getElementById('p-agencia').value);
-            formData.append('nombre', document.getElementById('p-nombre').value);
-            formData.append('whatsapp', document.getElementById('p-wa').value);
-            formData.append('servicio', document.getElementById('p-servicio').value);
-            formData.append('fecha', document.getElementById('p-fecha').value);
-            formData.append('total', document.getElementById('p-total').value);
-
-            // Fetch en modo seguro (no-cors) para forzar guardado sin depender del JSON de respuesta
-            fetch(SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' })
-            .then(() => {
-                alert("✅ Registro de Partner guardado exitosamente.");
-                e.target.reset();
-                setTimeout(fetchReservations, 1000);
-            })
-            .catch(() => alert("✅ Enviado (Verifica en Excel)"))
-            .finally(() => {
-                btn.innerHTML = 'Guardar en Base de Datos 💾';
-                btn.disabled = false;
+            const btn = document.getElementById('btnGuardarPartner');
+            btn.disabled = true; btn.innerHTML = "Guardando... ⏳";
+            const fd = new URLSearchParams({
+                action: 'manual_booking',
+                agencia: document.getElementById('p-agencia').value,
+                nombre: document.getElementById('p-nombre').value,
+                whatsapp: document.getElementById('p-wa').value,
+                correo: document.getElementById('p-correo').value,
+                servicio: document.getElementById('p-servicio').value,
+                hotel: document.getElementById('p-hotel').value,
+                vuelo: document.getElementById('p-vuelo').value,
+                fecha: document.getElementById('p-fecha').value,
+                total: document.getElementById('p-total').value
             });
+            fetch(SCRIPT_URL, { method: 'POST', body: fd })
+                .then(r => r.json())
+                .then(d => {
+                    if (d.status === 'success') {
+                        alert(`✅ Reserva registrada con éxito.\nFolio: ${d.folio}`);
+                        e.target.reset();
+                        fetchReservations();
+                        switchTab('monitor');
+                    } else alert("Error: " + d.message);
+                })
+                .finally(() => { btn.disabled = false; btn.innerHTML = "Guardar y Emitir Folio 💾"; });
+        }
+
+        function crearNuevoUsuario(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnCrearUser');
+            btn.disabled = true;
+            const fd = new URLSearchParams({
+                action: 'crear_usuario',
+                nuevoNombre: document.getElementById('u-nombre').value,
+                nuevoUser: document.getElementById('u-user').value,
+                nuevoPass: document.getElementById('u-pass').value,
+                nuevoRol: document.getElementById('u-rol').value
+            });
+            fetch(SCRIPT_URL, { method: 'POST', body: fd })
+                .then(r => r.json())
+                .then(d => {
+                    alert("✅ Usuario registrado correctamente.");
+                    e.target.reset();
+                    cargarUsuarios();
+                })
+                .finally(() => { btn.disabled = false; });
+        }
+
+        function cargarUsuarios() {
+            fetch(`${SCRIPT_URL}?action=get_usuarios`)
+                .then(r => r.json())
+                .then(d => {
+                    const box = document.getElementById('listaUsuariosBox');
+                    let html = `<p>🔑 <strong>admin</strong> (Admin Master)</p><p>🔑 <strong>ventas1</strong> (Vendedor)</p>`;
+                    if (d.usuarios) {
+                        d.usuarios.forEach(u => {
+                            html += `<p>🔑 <strong>${u[0]}</strong> - ${u[3]} (${u[2]})</p>`;
+                        });
+                    }
+                    box.innerHTML = html;
+                });
+        }
+
+        function subirFotoDrive() {
+            const fileInput = document.getElementById('fotoUpload');
+            if (fileInput.files.length === 0) return alert("Selecciona una imagen primero.");
+            const btn = document.getElementById('btnUpload');
+            const status = document.getElementById('uploadStatus');
+            btn.disabled = true; btn.innerHTML = "Subiendo a Nube 5TB... ⏳";
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const fd = new URLSearchParams({
+                    action: 'upload_image',
+                    fileName: file.name,
+                    fileData: ev.target.result,
+                    tituloFoto: document.getElementById('fotoTitulo').value || file.name,
+                    tagFoto: document.getElementById('fotoTag').value || 'Flota STRATA CUN',
+                    publicarGaleria: document.getElementById('fotoPublicar').value
+                });
+                fetch(SCRIPT_URL, { method: 'POST', body: fd })
+                    .then(r => r.json())
+                    .then(d => {
+                        if (d.status === 'success') {
+                            status.innerHTML = `<span style="color:#10b981;">✅ Imagen guardada en tu Nube 5TB y sincronizada con la Galería.</span>`;
+                            fileInput.value = "";
+                        } else {
+                            status.innerHTML = `<span style="color:#ef4444;">❌ Error: ${d.message}</span>`;
+                        }
+                    })
+                    .finally(() => { btn.disabled = false; btn.innerHTML = "Subir Imagen a la Nube ☁️"; });
+            };
+            reader.readAsDataURL(file);
         }
     </script>
 </body>

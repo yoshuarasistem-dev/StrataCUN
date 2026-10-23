@@ -3,200 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva Confirmada | STRATA CUN</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    <!-- Librería profesional para generar PDFs -->
+    <title>Voucher Oficial | STRATA CUN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    
     <style>
-        body { 
-            background-color: #050a18; 
-            color: #fff; 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            padding: 3rem 1rem;
-        }
-        .success-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .success-header h1 { color: #10b981; font-family: 'Cormorant Garamond', serif; font-size: 3rem; margin: 0.5rem 0; }
-        .success-header p { color: #94a3b8; font-size: 1.1rem; }
+        body { background-color: #050a18; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 2.5rem 1rem; margin: 0; }
+        .success-header { text-align: center; margin-bottom: 1.8rem; }
+        .success-header h1 { color: #10b981; font-family: 'Cormorant Garamond', serif; font-size: 3rem; margin: 0; }
         
-        /* DISEÑO DEL VOUCHER (Se verá en pantalla y se imprimirá en PDF) */
-        #voucher-container {
-            background: #ffffff;
-            color: #000000;
-            width: 100%;
-            max-width: 600px;
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            position: relative;
-            overflow: hidden;
-            border-top: 8px solid #1d4ed8;
-        }
-        .v-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .v-brand strong { font-size: 1.4rem; color: #0f172a; display: block; }
-        .v-brand span { font-size: 0.7rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; }
-        .v-folio { text-align: right; }
-        .v-folio span { font-size: 0.75rem; color: #64748b; text-transform: uppercase; }
-        .v-folio strong { display: block; font-size: 1.3rem; color: #1d4ed8; }
+        /* CONTENEDOR OFICIAL DEL VOUCHER */
+        #voucher-container { background: #ffffff; color: #0f172a; width: 100%; max-width: 680px; border-radius: 14px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.65); border: 2px solid #1d4ed8; }
+        .v-top-banner { background: linear-gradient(135deg, #050a18 0%, #0f1a36 100%); color: #ffffff; padding: 1.8rem 2.2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #eab308; }
+        .v-brand-box { display: flex; align-items: center; gap: 1rem; }
+        .v-brand-box img { height: 54px; width: auto; border-radius: 8px; }
+        .v-brand-text strong { font-size: 1.4rem; letter-spacing: 0.15em; display: block; color: #fff; }
+        .v-brand-text span { font-size: 0.65rem; letter-spacing: 0.2em; color: #eab308; text-transform: uppercase; font-weight: 700; }
+        .v-folio-box { text-align: right; }
+        .v-folio-box span { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; font-weight: 800; letter-spacing: 0.1em; }
+        .v-folio-box strong { display: block; font-size: 1.5rem; color: #eab308; margin-top: 0.2rem; }
+
+        .v-body { padding: 2.2rem; position: relative; }
+        .v-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-bottom: 1.8rem; }
+        .v-item span { display: block; font-size: 0.7rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 800; margin-bottom: 0.25rem; }
+        .v-item strong { display: block; font-size: 0.98rem; color: #050a18; }
         
-        .v-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .v-item span { display: block; font-size: 0.7rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 800; margin-bottom: 0.2rem; }
-        .v-item strong { display: block; font-size: 0.95rem; color: #0f172a; }
+        .v-meeting-box { background: #f8fafc; border-left: 4px solid #1d4ed8; padding: 1.1rem 1.3rem; border-radius: 8px; margin-bottom: 1.5rem; }
+        .v-meeting-box span { font-size: 0.72rem; color: #1d4ed8; font-weight: 800; text-transform: uppercase; display: block; margin-bottom: 0.2rem; }
+        .v-meeting-box strong { font-size: 1rem; color: #0f172a; display: block; margin-bottom: 0.3rem; }
+        .v-meeting-box p { font-size: 0.8rem; color: #475569; margin: 0; }
+
+        .v-footer { background: #050a18; color: #fff; padding: 1.4rem 2.2rem; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #eab308; }
+        .v-total { font-size: 1.65rem; font-weight: 800; color: #eab308; }
         
-        .v-footer {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2rem;
-            border: 1px dashed #cbd5e1;
-        }
-        .v-total { font-size: 1.5rem; font-weight: 800; color: #10b981; }
-        
-        /* BOTONES DE ACCIÓN */
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            font-size: 0.9rem;
-            transition: transform 0.2s;
-        }
+        .action-buttons { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center; }
+        .btn { padding: 0.95rem 1.8rem; border-radius: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; text-decoration: none; border: none; font-size: 0.85rem; transition: transform 0.2s; }
         .btn:hover { transform: translateY(-2px); }
-        .btn-primary { background: linear-gradient(135deg, #1d4ed8, #3b82f6); color: #fff; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
-        .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
-        
-        /* Marca de agua PDF */
-        .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg); font-size: 6rem; color: rgba(0,0,0,0.03); font-weight: 900; white-space: nowrap; pointer-events: none; }
+        .btn-gold { background: #eab308; color: #000; }
+        .btn-blue { background: #1d4ed8; color: #fff; }
+        .btn-outline { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .success-header, .action-buttons { display: none !important; }
+            #voucher-container { box-shadow: none; max-width: 100%; }
+        }
     </style>
 </head>
 <body>
 
     <div class="success-header">
-        <h1>✓ Reserva Aprobada</h1>
-        <p>Tu servicio ha sido ingresado a la Bóveda Master. Guarda tu comprobante.</p>
+        <h1>✓ Reserva Registrada</h1>
+        <p style="color: #94a3b8;">Su orden de servicio está respaldada en la Bóveda Master de STRATA CUN.</p>
     </div>
 
-    <!-- ESTE CONTENEDOR ES EL QUE SE TRANSFORMA EN PDF -->
     <div id="voucher-container">
-        <div class="watermark">STRATA CUN</div>
-        <div class="v-header">
-            <div class="v-brand">
-                <strong>STRATA CUN</strong>
-                <span>Executive Transfer</span>
+        <div class="v-top-banner">
+            <div class="v-brand-box">
+                <img src="assets/Strata1CUNlogo.jpg" alt="STRATA CUN" crossorigin="anonymous" onerror="this.src='assets/StrataCUNog.jpg'">
+                <div class="v-brand-text">
+                    <strong>STRATA CUN</strong>
+                    <span>Executive Transfer</span>
+                </div>
             </div>
-            <div class="v-folio">
+            <div class="v-folio-box">
                 <span>Folio de Seguridad</span>
                 <strong id="v-folio">STC-XXXX</strong>
             </div>
         </div>
 
-        <div class="v-grid">
-            <div class="v-item"><span>Pasajero Titular</span><strong id="v-nombre">Cargando...</strong></div>
-            <div class="v-item"><span>WhatsApp</span><strong id="v-wa">Cargando...</strong></div>
-            <div class="v-item" style="grid-column: span 2;"><span>Hotel / Destino</span><strong id="v-destino">Cargando...</strong></div>
-            
-            <div class="v-item"><span>Servicio</span><strong id="v-servicio">Cargando...</strong></div>
-            <div class="v-item"><span>Vehículo (Pax)</span><strong id="v-vehiculo">Cargando...</strong></div>
-            
-            <div class="v-item"><span>Vuelo</span><strong id="v-vuelo">Cargando...</strong></div>
-            <div class="v-item"><span>Fecha y Hora</span><strong id="v-fecha">Cargando...</strong></div>
-            
-            <div class="v-item" style="grid-column: span 2;"><span>Punto de Encuentro</span><strong id="v-terminal" style="color: #1d4ed8;">Cargando...</strong></div>
+        <div class="v-body">
+            <div class="v-grid">
+                <div class="v-item"><span>Pasajero Titular</span><strong id="v-nombre">Cargando...</strong></div>
+                <div class="v-item"><span>WhatsApp / Contacto</span><strong id="v-wa">Cargando...</strong></div>
+                <div class="v-item" style="grid-column: span 2;"><span>Ruta / Hotel Asignado</span><strong id="v-destino">Cargando...</strong></div>
+                <div class="v-item"><span>Modalidad de Servicio</span><strong id="v-servicio">Cargando...</strong></div>
+                <div class="v-item"><span>Unidad Asignada</span><strong id="v-vehiculo">Cargando...</strong></div>
+                <div class="v-item"><span>Vuelo / Referencia</span><strong id="v-vuelo">Cargando...</strong></div>
+                <div class="v-item"><span>Fecha y Hora Programada</span><strong id="v-fecha">Cargando...</strong></div>
+            </div>
+
+            <div class="v-meeting-box">
+                <span>📍 Punto de Encuentro Blindado</span>
+                <strong id="v-terminal">Cargando...</strong>
+                <p>Al salir de las puertas de cristal de la terminal, ignore a los vendedores de tiempos compartidos y diríjase directamente al punto oficial indicado. Atención 24/7: +52 1 998 786 4835.</p>
+            </div>
         </div>
 
         <div class="v-footer">
             <div>
-                <span style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; font-weight: 800; display: block;">Estado del Pago</span>
-                <strong style="color: #0f172a; font-size: 1rem;">COMPLETADO ✓</strong>
+                <span style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; font-weight: 800; display: block;">Estatus Operativo</span>
+                <strong id="v-estatus" style="color: #10b981; font-size: 1.05rem;">CONFIRMADO ✓</strong>
             </div>
             <div style="text-align: right;">
-                <span style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; font-weight: 800; display: block;">Total Operación</span>
+                <span style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; font-weight: 800; display: block;">Total Operación</span>
                 <span class="v-total" id="v-total">$0.00 MXN</span>
             </div>
         </div>
     </div>
 
     <div class="action-buttons">
-        <button onclick="descargarPDF()" class="btn btn-primary">📄 Descargar Voucher PDF</button>
-        <a href="index.html" class="btn btn-secondary">🏠 Volver al Inicio</a>
+        <button onclick="descargarPDF()" class="btn btn-gold">📄 Descargar Voucher PDF</button>
+        <button onclick="window.print()" class="btn btn-blue">🖨️ Imprimir Voucher</button>
+        <a href="index.html" class="btn btn-outline">🏠 Volver al Inicio</a>
     </div>
 
     <script>
-        // 1. Obtener el folio de la URL (lo envía el backend al redirigir)
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec";
         const urlParams = new URLSearchParams(window.location.search);
-        const folioParam = urlParams.get('folio') || 'STC-0000';
-        document.getElementById('v-folio').textContent = folioParam;
+        const folioParam = urlParams.get('folio');
 
-        // 2. Leer los datos locales de la reserva
+        function pintarDatos(data) {
+            document.getElementById('v-folio').textContent = folioParam || data.folio || 'STC-0000';
+            document.getElementById('v-nombre').textContent = data.nombre || 'No registrado';
+            document.getElementById('v-wa').textContent = data.whatsapp || 'No registrado';
+            document.getElementById('v-destino').textContent = `${data.hotel || ''} ${data.zona ? '(' + data.zona + ')' : ''}`;
+            document.getElementById('v-servicio').textContent = data.tipoViaje || 'Traslado Privado';
+            document.getElementById('v-vehiculo').textContent = `${data.vehiculo || 'Unidad Ejecutiva'} (${data.pasajeros || 'Estándar'} Pax)`;
+            document.getElementById('v-vuelo').textContent = data.vuelo || 'N/A';
+            document.getElementById('v-terminal').textContent = data.terminal || 'Punto Oficial STRATA CUN';
+            document.getElementById('v-total').textContent = data.total ? (String(data.total).includes('$') || String(data.total).includes('GRATIS') ? data.total : `$${data.total} MXN`) : '$0.00 MXN';
+            if (data.estado) document.getElementById('v-estatus').textContent = data.estado.toUpperCase();
+            if (data.fechaVuelo) {
+                const d = new Date(data.fechaVuelo);
+                document.getElementById('v-fecha').textContent = isNaN(d) ? data.fechaVuelo : d.toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            const dataStr = localStorage.getItem('strata_last_booking');
-            if(dataStr) {
-                const data = JSON.parse(dataStr);
-                document.getElementById('v-nombre').textContent = data.nombre || 'No registrado';
-                document.getElementById('v-wa').textContent = data.whatsapp || 'No registrado';
-                document.getElementById('v-destino').textContent = `${data.hotel} (${data.zona})`;
-                document.getElementById('v-servicio').textContent = data.tipoViaje || 'N/A';
-                document.getElementById('v-vehiculo').textContent = `${data.vehiculo.toUpperCase()} (Máx ${data.pasajeros} pax)`;
-                document.getElementById('v-vuelo').textContent = data.vuelo || 'N/A';
-                
-                // Formatear fecha
-                if(data.fechaVuelo) {
-                    const d = new Date(data.fechaVuelo);
-                    document.getElementById('v-fecha').textContent = d.toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
-                }
+            const localStr = localStorage.getItem('strata_last_booking');
+            if (localStr) pintarDatos(JSON.parse(localStr));
 
-                document.getElementById('v-terminal').textContent = data.terminal || 'Revisar con operador';
-                document.getElementById('v-total').textContent = data.total || '$0.00 MXN';
+            // Si viene un folio en la URL, también lo verifica en vivo con la Bóveda
+            if (folioParam) {
+                fetch(`${SCRIPT_URL}?action=buscar_folio&folio=${encodeURIComponent(folioParam)}`)
+                    .then(r => r.json())
+                    .then(res => { if (res.status === 'success') pintarDatos(res.reserva); })
+                    .catch(() => {});
             }
         });
 
-        // 3. Función Mágica: Convertir el HTML a PDF y descargar
         function descargarPDF() {
             const element = document.getElementById('voucher-container');
+            const folioActual = document.getElementById('v-folio').textContent;
             const opt = {
-                margin:       0.5,
-                filename:     `Voucher_STRATA_${folioParam}.pdf`,
+                margin:       0.3,
+                filename:     `Voucher_STRATACUN_${folioActual}.pdf`,
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
+                html2canvas:  { scale: 2, useCORS: true },
                 jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
             };
-            // Iniciar librería html2pdf
             html2pdf().set(opt).from(element).save();
         }
     </script>
