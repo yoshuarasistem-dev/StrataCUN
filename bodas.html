@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bodas & VIP | STRATA CUN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #050a18;
+            --bg-card: rgba(11, 20, 43, 0.82);
+            --bg-elevated: rgba(15, 26, 54, 0.92);
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --cyan: #1d4ed8; 
+            --cyan-glow: #3b82f6; 
+            --gold: #eab308;
+            --border-glass: rgba(59, 130, 246, 0.24);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-main); color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; overflow-x: hidden; }
+        .serif-lux { font-family: 'Cormorant Garamond', Georgia, serif; }
+        .container { max-width: 1340px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; height: 75px; background: rgba(5, 10, 24, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass); z-index: 1000; display: flex; align-items: center; }
+        .nav-content { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+        .brand-box { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text-primary); }
+        .brand-logo-img { height: 40px; width: auto; border-radius: 6px; }
+        .brand-text-container strong { font-size: 1.1rem; letter-spacing: 0.15em; }
+        .brand-text-container span { font-size: 0.55rem; letter-spacing: 0.2em; color: var(--text-secondary); text-transform: uppercase; display: block;}
+        
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; transition: color 0.25s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--cyan-glow); }
+
+        .btn-glass { background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border-glass); padding: 0.4rem 0.8rem; border-radius: 999px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; transition: all 0.25s ease; }
+        .btn-glass:hover { border-color: var(--cyan-glow); box-shadow: 0 0 18px rgba(59, 130, 246, 0.3); transform: translateY(-1px); }
+
+        /* HERO VIP */
+        .vip-hero { padding: 160px 0 80px; position: relative; border-bottom: 1px solid var(--border-glass); overflow: hidden; }
+        .vip-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(234, 179, 8, 0.08), transparent 50%), radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08), transparent 50%); z-index: -1; }
+        .hero-tag { color: var(--gold); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1rem; display: inline-block; }
+        .vip-title { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        .vip-desc { font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; margin-bottom: 2.5rem; }
+
+        /* SECCIONES DE CONTENIDO */
+        .vip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 4rem; align-items: center; }
+        .vip-grid.reverse { direction: rtl; }
+        .vip-grid.reverse > * { direction: ltr; }
+        .vip-image-box { position: relative; border-radius: 24px; overflow: hidden; border: 1px solid var(--border-glass); aspect-ratio: 4/3; }
+        .vip-image-box img { width: 100%; height: 100%; object-fit: cover; }
+        .vip-content h2 { font-size: 2.5rem; margin-bottom: 1rem; color: #fff; }
+        .vip-content p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 1.5rem; }
+        .vip-features { list-style: none; display: grid; gap: 1rem; margin-bottom: 2rem; }
+        .vip-features li { display: flex; align-items: center; gap: 0.8rem; font-size: 0.95rem; color: #e2e8f0; }
+        .vip-features li::before { content: '✓'; color: var(--gold); font-weight: 800; }
+
+        /* CTA FINAL */
+        .cta-section { text-align: center; padding: 6rem 0; background: rgba(11, 20, 43, 0.5); border-top: 1px solid var(--border-glass); margin-top: 5rem; }
+        .btn-gold { background: var(--gold); color: #000; padding: 1.2rem 2.5rem; border-radius: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; display: inline-block; transition: transform 0.2s, box-shadow 0.2s; border: none; }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(234, 179, 8, 0.3); }
+
+        @media (max-width: 992px) {
+            .vip-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .vip-grid.reverse { direction: ltr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="brand-box">
+                <img src="assets/Strata1CUNlogo.jpg" alt="Strata CUN" class="brand-logo-img" onerror="this.src='assets/StrataCUNog.jpg'">
+                <div class="brand-text-container">
+                    <strong>STRATA <span style="color: var(--cyan-glow);">CUN</span></strong>
+                    <span>Executive Transfer</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#flota">Flota</a></li>
+                <li><a href="bodas.html" class="active">Bodas & VIP</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+            </ul>
+            <div class="nav-controls" style="display: flex; gap: 1rem;">
+                <a href="https://wa.me/5219987864835" target="_blank" class="btn-glass" style="border-color: #25d366; color: #25d366;">💬 Asesoría VIP</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="vip-hero container">
+        <span class="hero-tag">High-End Logistics</span>
+        <h1 class="vip-title serif-lux">Logística Nupcial y <span style="color: var(--gold);">Aviación Privada</span>.</h1>
+        <p class="vip-desc">Diseñamos operaciones de transporte milimétricas para eventos de clase mundial, bodas de destino y ejecutivos que exigen absoluta discreción en el Aeropuerto de Cancún y terminales FBO.</p>
+        <a href="#contacto-vip" class="btn-gold">Solicitar Cotización de Grupo</a>
+    </div>
+
+    <div class="container" style="padding-bottom: 4rem;">
+        
+        <!-- SECCIÓN 1: BODAS -->
+        <div class="vip-grid">
+            <div class="vip-image-box">
+                <!-- Puedes cambiar esta imagen después por una de bodas reales -->
+                <img src="assets/MINIBUS16.jpg" alt="Logística de Bodas Cancún" onerror="this.src='assets/SUV5.jpg'">
+            </div>
+            <div class="vip-content">
+                <h2 class="serif-lux">Bodas de Destino</h2>
+                <p>Nos encargamos del activo más valioso de su evento: el tiempo y la seguridad de sus invitados. Desde la llegada escalonada de cientos de personas hasta el traslado nupcial en unidades de ultra-lujo.</p>
+                <ul class="vip-features">
+                    <li>Coordinación maestra en Aeropuerto CUN (T2, T3, T4).</li>
+                    <li>Flota de Vans Privadas y Minibuses Sprinter para grupos.</li>
+                    <li>Suburban VIP exclusiva para los novios o VIPs.</li>
+                    <li>Asignación de un Logistics Manager dedicado 24/7.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: EJECUTIVO Y FBO -->
+        <div class="vip-grid reverse">
+            <div class="vip-image-box">
+                <img src="assets/BlackLOGOSUV.jpg" alt="Transporte Ejecutivo FBO" onerror="this.src='assets/SUV5.jpg'">
+            </div>
+            <div class="vip-content">
+                <h2 class="serif-lux">Recepción FBO y Corporativo</h2>
+                <p>Para diplomáticos, CEOs y celebridades. Acceso directo a terminales de aviación privada (FBO) en Cancún y Toluca, garantizando cero tiempos de espera y máxima confidencialidad.</p>
+                <ul class="vip-features">
+                    <li>Recepción directa en rampa (según permisos FBO).</li>
+                    <li>Choferes con protocolo ejecutivo y bilingües.</li>
+                    <li>Monitoreo de cola de vuelo en tiempo real.</li>
+                    <li>Unidades blindadas o Suburban Premier bajo solicitud.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section" id="contacto-vip">
+        <div class="container">
+            <h2 class="serif-lux" style="font-size: 3rem; margin-bottom: 1rem;">¿Planeando un evento de alto nivel?</h2>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem; font-size: 1.1rem;">Conecte directamente con nuestro equipo de planeación estratégica. Analizaremos su itinerario para ofrecerle una propuesta logística a la medida.</p>
+            <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+                <a href="https://wa.me/5219987864835?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20log%C3%ADstica%20para%20Bodas/Grupos%20VIP" target="_blank" class="btn-gold" style="background: #25d366; color: #fff;">💬 Contactar Logistics Manager</a>
+                <a href="index.html" class="btn-gold" style="background: transparent; border: 1px solid var(--border-glass); color: #fff;">← Volver al Cotizador</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
