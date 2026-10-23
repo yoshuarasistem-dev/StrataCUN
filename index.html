@@ -9,67 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --bg-main: #050a18;
-            --bg-card: rgba(11, 20, 43, 0.82);
-            --bg-elevated: rgba(15, 26, 54, 0.92);
-            --bg-input: rgba(5, 10, 24, 0.92);
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --cyan: #1d4ed8; 
-            --cyan-glow: #3b82f6; 
-            --gold: #eab308;
-            --emerald: #10b981;
-            --border-glass: rgba(59, 130, 246, 0.24);
-            --border-subtle: rgba(148, 163, 184, 0.14);
-            --shadow-luxury: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 35px rgba(59, 130, 246, 0.12);
-        }
-        [data-theme="light"] {
-            --bg-main: #f8fafc;
-            --bg-card: rgba(255, 255, 255, 0.92);
-            --bg-elevated: #ffffff;
-            --bg-input: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --cyan: #1e3a8a;
-            --cyan-glow: #2563eb;
-            --border-glass: rgba(37, 99, 235, 0.3);
-            --border-subtle: rgba(15, 23, 42, 0.12);
-            --shadow-luxury: 0 20px 50px -15px rgba(15, 23, 42, 0.15);
-        }
-        
+        :root { --bg-main: #050a18; --bg-card: rgba(11, 20, 43, 0.82); --bg-elevated: rgba(15, 26, 54, 0.92); --bg-input: rgba(5, 10, 24, 0.92); --text-primary: #ffffff; --text-secondary: #94a3b8; --cyan: #1d4ed8; --cyan-glow: #3b82f6; --gold: #eab308; --emerald: #10b981; --border-glass: rgba(59, 130, 246, 0.24); --border-subtle: rgba(148, 163, 184, 0.14); --shadow-luxury: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 35px rgba(59, 130, 246, 0.12); }
+        [data-theme="light"] { --bg-main: #f8fafc; --bg-card: rgba(255, 255, 255, 0.92); --bg-elevated: #ffffff; --bg-input: #ffffff; --text-primary: #0f172a; --text-secondary: #475569; --cyan: #1e3a8a; --cyan-glow: #2563eb; --border-glass: rgba(37, 99, 235, 0.3); --border-subtle: rgba(15, 23, 42, 0.12); --shadow-luxury: 0 20px 50px -15px rgba(15, 23, 42, 0.15); }
         * { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
         img { max-width: 100%; height: auto; display: block; }
-        
         body { background-color: var(--bg-main); color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; overflow-x: hidden; transition: background 0.4s ease, color 0.4s ease; }
         .serif-lux { font-family: 'Cormorant Garamond', Georgia, serif; }
         .container { max-width: 1340px; margin: 0 auto; padding: 0 1.5rem; }
-
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0;
-            height: auto; min-height: 75px; padding: 0.5rem 0;
-            background: rgba(5, 10, 24, 0.95);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-glass);
-            z-index: 1000; display: flex; align-items: center; transition: background 0.4s;
-        }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; height: auto; min-height: 75px; padding: 0.5rem 0; background: rgba(5, 10, 24, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass); z-index: 1000; display: flex; align-items: center; transition: background 0.4s; }
         [data-theme="light"] .navbar { background: rgba(255, 255, 255, 0.95); }
         .nav-content { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem; }
-        
         .brand-box { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text-primary); flex-shrink: 0; }
         .brand-logo-img { height: 40px; width: auto; border-radius: 6px; object-fit: contain; }
         .brand-text-container { display: flex; flex-direction: column; justify-content: center; }
         .brand-text-container strong { font-size: 1.1rem; letter-spacing: 0.15em; line-height: 1; }
         .brand-text-container span { font-size: 0.55rem; letter-spacing: 0.2em; color: var(--text-secondary); text-transform: uppercase; margin-top: 2px; }
-        
         .nav-links { display: flex; gap: 1.5rem; list-style: none; margin: 0 auto; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.25s; }
         .nav-links a:hover { color: var(--cyan-glow); }
-        
         .nav-controls { display: flex; align-items: center; gap: 0.4rem; flex-shrink: 0; }
         .btn-glass { background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border-glass); padding: 0.4rem 0.6rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; text-decoration: none; transition: all 0.25s ease; }
         .btn-glass:hover { border-color: var(--cyan-glow); box-shadow: 0 0 18px rgba(59, 130, 246, 0.3); transform: translateY(-1px); }
-
         .hero-section { position: relative; min-height: 100vh; padding: 125px 0 70px; display: flex; align-items: center; overflow: hidden; }
         .hero-backdrop { position: absolute; inset: 0; z-index: -1; }
         .hero-backdrop img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.38) contrast(1.1); transform: scale(1.03); }
@@ -80,7 +40,6 @@
         .shield-badge-row img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
         .hero-headline { font-size: clamp(2.5rem, 4.4vw, 4.1rem); line-height: 1.06; margin-bottom: 1.2rem; font-weight: 700; }
         .hero-headline span { background: linear-gradient(90deg, #ffffff, var(--cyan-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
         .pos-master-card { background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border-glass); border-radius: 26px; padding: 1.85rem; box-shadow: var(--shadow-luxury); width: 100%; }
         .service-pills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.45rem; background: var(--bg-input); padding: 0.4rem; border-radius: 14px; border: 1px solid var(--border-subtle); margin-bottom: 1.2rem; }
         .service-pill-btn { background: transparent; border: none; color: var(--text-secondary); padding: 0.6rem 0.3rem; border-radius: 10px; font-size: 0.76rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
@@ -91,15 +50,12 @@
         .veh-option-title { font-size: 0.85rem; font-weight: 700; display: block; }
         .veh-option-pax { font-size: 0.72rem; color: var(--text-secondary); display: block;}
         .veh-option-price { font-weight: 800; color: var(--cyan-glow); font-size: 1rem; margin-top: 0.2rem; }
-        
         .pos-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
         .pos-field { display: flex; flex-direction: column; gap: 0.35rem; }
         .pos-field.full { grid-column: span 2; }
         .pos-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); font-weight: 700; display: flex; justify-content: space-between; }
-        
         .pos-input { background: var(--bg-input); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 0.75rem 0.95rem; border-radius: 12px; font-size: 0.88rem; font-family: inherit; outline: none; transition: border 0.2s; width: 100%; color-scheme: dark; }
         [data-theme="light"] .pos-input { color-scheme: light; }
-        
         .pos-input:focus { border-color: var(--cyan-glow); }
         .map-zone-container { grid-column: span 2; background: var(--bg-input); border: 1px solid var(--border-glass); border-radius: 16px; padding: 0.85rem; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0.85rem; align-items: stretch; }
         .google-map-frame { width: 100%; height: 155px; border: 0; border-radius: 10px; }
@@ -109,12 +65,10 @@
         .btn-book-now { grid-column: span 2; background: linear-gradient(135deg, var(--cyan), var(--cyan-glow)); color: #ffffff; border: none; padding: 1rem; border-radius: 14px; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; box-shadow: 0 12px 28px -6px rgba(59, 130, 246, 0.55); transition: transform 0.2s; width: 100%; }
         .btn-book-now:hover { transform: translateY(-2px); }
         .btn-book-now:disabled { opacity: 0.6; cursor: not-allowed; }
-
         .section-block { padding: 90px 0; position: relative; }
         .section-header { max-width: 800px; margin-bottom: 3.5rem; }
         .section-tag { color: var(--cyan-glow); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.8rem; display: inline-block; }
         .section-title { font-size: clamp(2.2rem, 3.5vw, 3.2rem); line-height: 1.1; margin-bottom: 1.2rem; }
-        
         .terminals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
         .terminal-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s; }
         .terminal-card:hover { border-color: var(--cyan-glow); transform: translateY(-5px); box-shadow: var(--shadow-luxury); }
@@ -122,48 +76,27 @@
         .terminal-img-box img { width: 100%; height: 100%; object-fit: cover; }
         .terminal-badge { position: absolute; top: 1rem; right: 1rem; background: rgba(5, 10, 24, 0.85); color: var(--cyan-glow); padding: 0.4rem 0.8rem; border-radius: 8px; font-weight: 800; font-size: 0.75rem; border: 1px solid var(--border-glass); }
         .terminal-content { padding: 1.5rem; flex-grow: 1; }
-
         .fleet-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
         .fleet-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
         .fleet-visual { height: 260px; width: 100%; position: relative; overflow: hidden; background: #000; border-bottom: 1px solid var(--border-subtle); }
         .fleet-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.95; }
         .fleet-visual-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-card) 0%, transparent 40%); }
         .fleet-body { padding: 1.8rem; position: relative; z-index: 2; margin-top: -2rem; }
-        
         .map-section-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 0; background: var(--bg-card); border-radius: 28px; border: 1px solid var(--border-glass); overflow: hidden; margin-top: 2rem; }
         .map-visual-box { width: 100%; height: 100%; min-height: 400px; max-height: 500px; overflow: hidden; position: relative; border-right: 1px solid var(--border-subtle); }
         .map-visual-box img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
         .map-content-box { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
-
         .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); z-index: 2000; display: none; place-items: center; padding: 1rem; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay.active { display: grid; opacity: 1; }
         .modal-box { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 2.5rem; width: 100%; max-width: 480px; box-shadow: var(--shadow-luxury); position: relative; transform: translateY(20px); transition: transform 0.3s ease; }
         .modal-overlay.active .modal-box { transform: translateY(0); }
         .modal-close { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
         .modal-close:hover { color: var(--cyan-glow); }
-
-        @media (max-width: 1024px) {
-            .hero-layout, .map-section-grid, .fleet-grid { grid-template-columns: 1fr; }
-            .map-visual-box { max-height: 300px; border-right: none; border-bottom: 1px solid var(--border-subtle); }
-            .nav-links { display: none; }
-            .terminals-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 640px) {
-            .navbar { padding: 0.5rem 1rem; }
-            .nav-content { flex-direction: row; gap: 0.5rem; justify-content: space-between; }
-            .brand-text-container span { display: none; } 
-            .nav-controls { gap: 0.3rem; }
-            .btn-glass { font-size: 0.65rem; padding: 0.35rem 0.5rem; gap: 0.2rem;}
-            .btn-glass span { display: none; } 
-            .vehicle-selector-grid, .pos-form-grid, .terminals-grid { grid-template-columns: 1fr; }
-            .pos-field.full, .map-zone-container, .price-bar-live, .btn-book-now { grid-column: span 1; }
-            .service-pills { grid-template-columns: repeat(2, 1fr); }
-            .map-content-box { padding: 1.8rem; }
-        }
+        @media (max-width: 1024px) { .hero-layout, .map-section-grid, .fleet-grid { grid-template-columns: 1fr; } .map-visual-box { max-height: 300px; border-right: none; border-bottom: 1px solid var(--border-subtle); } .nav-links { display: none; } .terminals-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) { .navbar { padding: 0.5rem 1rem; } .nav-content { flex-direction: row; gap: 0.5rem; justify-content: space-between; } .brand-text-container span { display: none; } .nav-controls { gap: 0.3rem; } .btn-glass { font-size: 0.65rem; padding: 0.35rem 0.5rem; gap: 0.2rem;} .btn-glass span { display: none; } .vehicle-selector-grid, .pos-form-grid, .terminals-grid { grid-template-columns: 1fr; } .pos-field.full, .map-zone-container, .price-bar-live, .btn-book-now { grid-column: span 1; } .service-pills { grid-template-columns: repeat(2, 1fr); } .map-content-box { padding: 1.8rem; } }
     </style>
 </head>
 <body>
-
     <header class="navbar">
         <div class="container nav-content">
             <a href="#" class="brand-box">
@@ -190,27 +123,18 @@
     </header>
 
     <section class="hero-section">
-        <div class="hero-backdrop">
-            <img src="assets/SUV5.jpg" alt="Flota de Lujo Strata CUN" onerror="this.style.display='none'">
-        </div>
-
+        <div class="hero-backdrop"><img src="assets/SUV5.jpg" alt="Flota Strata CUN" onerror="this.style.display='none'"></div>
         <div class="container hero-layout">
             <div>
                 <div class="shield-badge-row">
-                    <img data-asset="Shield" alt="100% Private Secure Transport">
+                    <img data-asset="Shield" alt="Shield">
                     <div>
                         <strong style="font-size: 0.75rem; color: var(--cyan-glow); display: block; text-transform: uppercase; letter-spacing: 0.12em;">100% Private & Secure Transport</strong>
                         <span style="font-size: 0.72rem; color: var(--text-secondary);" data-es="Aeropuerto CUN • Sin Tiempos Compartidos" data-en="CUN Airport • No Timeshares">Aeropuerto CUN • Sin Tiempos Compartidos</span>
                     </div>
                 </div>
-                
-                <h1 class="hero-headline serif-lux" data-es="Recepción Ejecutiva y <span style='color: var(--cyan-glow)'>Traslado Privado</span> en Cancún." data-en="Executive Reception & <span style='color: var(--cyan-glow)'>Private Transfer</span> in Cancun.">
-                    Recepción Ejecutiva y <span style="color: var(--cyan-glow);">Traslado Privado</span> en Cancún.
-                </h1>
-                
-                <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem;" data-es="Tarifas por zona desde <strong>$700 MXN (Van Privada)</strong> y <strong>Suburban VIP</strong>. Monitoreo de vuelos y punto de encuentro blindado." data-en="Zone rates starting at <strong>$700 MXN (Private Van)</strong> and <strong>Suburban VIP</strong>. Flight tracking and shielded meeting points.">
-                    Tarifas por zona desde <strong>$700 MXN (Van Privada)</strong> y <strong>Suburban VIP</strong>. Monitoreo de vuelos y punto de encuentro blindado.
-                </p>
+                <h1 class="hero-headline serif-lux" data-es="Recepción Ejecutiva y <span style='color: var(--cyan-glow)'>Traslado Privado</span> en Cancún." data-en="Executive Reception & <span style='color: var(--cyan-glow)'>Private Transfer</span> in Cancun.">Recepción Ejecutiva y <span style="color: var(--cyan-glow);">Traslado Privado</span> en Cancún.</h1>
+                <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem;" data-es="Tarifas por zona desde <strong>$700 MXN (Van Privada)</strong> y <strong>Suburban VIP</strong>. Monitoreo de vuelos y punto de encuentro blindado." data-en="Zone rates starting at <strong>$700 MXN (Private Van)</strong> and <strong>Suburban VIP</strong>. Flight tracking and shielded meeting points.">Tarifas por zona desde <strong>$700 MXN (Van Privada)</strong> y <strong>Suburban VIP</strong>.</p>
             </div>
 
             <div class="pos-master-card">
@@ -252,7 +176,6 @@
                 </div>
 
                 <form id="bookingPosForm" onsubmit="handleQuoteSubmit(event)" class="pos-form-grid">
-                    
                     <div class="pos-field full">
                         <label class="pos-label" data-es="Nombre Completo del Titular" data-en="Full Name (Lead Passenger)">Nombre Completo del Titular</label>
                         <input type="text" id="posNombre" class="pos-input" placeholder="Ej. Juan Pérez" required>
@@ -639,22 +562,33 @@
             const cuponInput = document.getElementById('posCupon') ? document.getElementById('posCupon').value.toUpperCase().trim() : '';
             const formData = new URLSearchParams();
             
-            formData.append('nombre', document.getElementById('posNombre').value);
-            formData.append('whatsapp', document.getElementById('posWhatsApp').value);
-            formData.append('correo', document.getElementById('posCorreo').value);
-            formData.append('cupon', cuponInput);
-            formData.append('tipoViaje', currentService);
-            formData.append('vehiculo', currentVehicle);
-            formData.append('pasajeros', document.getElementById('posPax').value);
-            formData.append('zona', document.getElementById('posZoneSelect').options[document.getElementById('posZoneSelect').selectedIndex].text);
-            formData.append('hotel', document.getElementById('posHotelInput').value);
-            formData.append('terminal', document.getElementById('posTerminal').options[document.getElementById('posTerminal').selectedIndex].text);
-            formData.append('vuelo', document.getElementById('posFlight').value);
-            formData.append('fechaVuelo', document.getElementById('posDate').value);
-            formData.append('total', document.getElementById('liveTotalAmount').textContent);
+            // 1. Recolectar datos para enviar a Google y para guardar localmente (Voucher PDF)
+            const bookingData = {
+                nombre: document.getElementById('posNombre').value,
+                whatsapp: document.getElementById('posWhatsApp').value,
+                correo: document.getElementById('posCorreo').value,
+                cupon: cuponInput,
+                tipoViaje: currentService,
+                vehiculo: currentVehicle,
+                pasajeros: document.getElementById('posPax').value,
+                zona: document.getElementById('posZoneSelect').options[document.getElementById('posZoneSelect').selectedIndex].text,
+                hotel: document.getElementById('posHotelInput').value,
+                terminal: document.getElementById('posTerminal').options[document.getElementById('posTerminal').selectedIndex].text,
+                vuelo: document.getElementById('posFlight').value,
+                fechaVuelo: document.getElementById('posDate').value,
+                total: document.getElementById('liveTotalAmount').textContent
+            };
+
+            // 2. Guardar en memoria local temporal para que la página de Éxito lo pueda leer y generar el PDF
+            localStorage.setItem('strata_last_booking', JSON.stringify(bookingData));
+
+            // 3. Añadir todo a formData para mandarlo a Apps Script
+            for (const key in bookingData) {
+                formData.append(key, bookingData[key]);
+            }
 
             // =========================================================================
-            // AQUÍ ESTÁ TU URL EXACTA VERSIÓN 7
+            // URL DE APPS SCRIPT (Versión 9)
             // =========================================================================
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec'; 
 
@@ -662,6 +596,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
+                        // Redirige directo a la página de éxito o Clip
                         window.location.href = data.paymentUrl;
                     } else {
                         alert('Error al conectar con pasarela: ' + data.message);
