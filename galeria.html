@@ -134,13 +134,20 @@
     </div>
 
     <script>
-        // Array con las fotos de tu marca (usa los nombres exactos que tienes en tu carpeta "assets")
+        // Array con las fotos actualizadas de la carpeta "assets"
         const fotos = [
             { src: "SUV5.jpg", title: "Suburban VIP", tag: "Flota Exclusiva" },
             { src: "BlackLOGOSUV.jpg", title: "Interior Ejecutivo", tag: "Confort" },
+            { src: "Black1SUV.jpg", title: "Suburban Exterior", tag: "Elegancia" },
+            { src: "JACBLAMCA.jpg", title: "Unidad JAC Ejecutiva", tag: "Modernidad" },
+            { src: "JAC1.jpg", title: "Flota JAC", tag: "Alta Capacidad" },
             { src: "VANPRIVADA8.jpg", title: "Van Privada", tag: "Grupos y Familias" },
+            { src: "VANBLANCA.jpg", title: "Van Ejecutiva", tag: "Confort" },
+            { src: "VAN1.jpg", title: "Recepción Van", tag: "Traslados" },
             { src: "FLEXI4.jpg", title: "Servicio Flexi", tag: "Traslados Ágiles" },
             { src: "MINIBUS16.jpg", title: "Minibús Sprinter", tag: "Alta Capacidad" },
+            { src: "SEDAN.jpg", title: "Sedán VIP", tag: "Ejecutivo" },
+            { src: "SUB6OAX.jpg", title: "Servicio Foráneo", tag: "Rutas Especiales" },
             { src: "T3PUNTO.jpg", title: "Punto de Encuentro T3", tag: "Operaciones" },
             { src: "T4PUNTO.jpg", title: "Punto de Encuentro T4", tag: "Operaciones" },
             { src: "T2INTER.jpg", title: "Punto de Encuentro T2", tag: "Operaciones" }
@@ -148,7 +155,6 @@
 
         const grid = document.getElementById('galleryGrid');
 
-        // Generar la galería
         fotos.forEach(foto => {
             const item = document.createElement('div');
             item.className = 'gallery-item';

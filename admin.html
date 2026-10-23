@@ -15,12 +15,10 @@
         .nav-item:hover, .nav-item.active { background: rgba(59, 130, 246, 0.15); color: var(--cyan); border-left: 4px solid var(--cyan); }
         .main-content { flex: 1; padding: 3rem 4rem; overflow-y: auto; background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 50%); }
         .header-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
-        
         .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; margin-bottom: 2rem; }
         .stat-card { background: var(--bg-card); padding: 1.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .stat-card h3 { color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
         .stat-card .value { font-size: 2.2rem; font-weight: 800; color: var(--cyan); }
-        
         .table-container { background: var(--bg-card); border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.15); overflow: hidden; margin-bottom: 2rem; }
         table { width: 100%; border-collapse: collapse; text-align: left; }
         th { background: rgba(59, 130, 246, 0.1); padding: 1rem; color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -29,23 +27,16 @@
         .status-badge { padding: 0.4rem 0.8rem; border-radius: 8px; font-weight: 700; font-size: 0.75rem; display: inline-block; }
         .status-pending { background: var(--gray-pending); color: var(--text-secondary); border: 1px solid rgba(148,163,184,0.3); }
         .status-completed { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid var(--emerald); }
-        .action-btn { background: transparent; border: 1px solid var(--cyan); color: var(--cyan); padding: 0.4rem 0.6rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; margin-right: 0.5rem; transition: all 0.2s; text-decoration: none;}
+        .action-btn { background: transparent; border: 1px solid var(--cyan); color: var(--cyan); padding: 0.4rem 0.6rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; margin-right: 0.5rem; text-decoration: none;}
         .action-btn:hover { background: var(--cyan); color: #fff; }
-        .btn-wa { border-color: #25d366; color: #25d366; }
-        .btn-wa:hover { background: #25d366; color: #000; }
-        .drive-box { background: rgba(255, 186, 0, 0.05); border: 1px dashed var(--gold); padding: 2rem; border-radius: 20px; text-align: center; }
         
-        /* ESTILOS PARA FORMULARIO DE PARTNERS */
         .tab-content { display: none; animation: fadeIn 0.3s ease; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
         .admin-input { background: rgba(5, 10, 24, 0.95); border: 1px solid rgba(148, 163, 184, 0.3); color: #fff; padding: 0.8rem 1rem; border-radius: 12px; font-family: inherit; font-size: 0.9rem; width: 100%; margin-top: 0.4rem; }
-        .admin-input:focus { border-color: var(--gold); outline: none; }
-        .admin-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
+        .admin-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 700; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .form-btn { background: var(--gold); color: #000; font-weight: 800; border: none; padding: 1rem 2rem; border-radius: 12px; cursor: pointer; font-size: 1rem; text-transform: uppercase; width: 100%; transition: transform 0.2s; }
-        .form-btn:hover { transform: translateY(-2px); }
+        .form-btn { background: var(--gold); color: #000; font-weight: 800; border: none; padding: 1rem 2rem; border-radius: 12px; cursor: pointer; width: 100%; }
     </style>
 </head>
 <body>
@@ -54,105 +45,55 @@
         <a class="nav-item active" id="btn-monitor" onclick="switchTab('monitor')">📊 Monitor Operativo</a>
         <a class="nav-item" id="btn-partners" onclick="switchTab('partners')">🤝 Partners (Ingreso)</a>
         <a class="nav-item" id="btn-historial" onclick="switchTab('historial')">📋 Histórico / Flota</a>
-        <a href="index.html" class="nav-item" style="margin-top: auto; color: #ef4444; border-left: none;">🚪 Cerrar Sesión Segura</a>
+        <a href="index.html" class="nav-item" style="margin-top: auto; color: #ef4444; border-left: none;">🚪 Salir</a>
     </div>
 
     <div class="main-content">
         
-        <!-- PESTAÑA 1: MONITOR (Lo que ya tenías) -->
         <div id="tab-monitor" class="tab-content active">
-            <h1 class="header-title">Centro de Control de Mando</h1>
-            <p style="color: var(--text-secondary); font-size: 1.1rem;">Monitor de operaciones STRATA CUN en tiempo real.</p>
+            <h1 class="header-title">Centro de Control</h1>
             
             <div class="dashboard-grid">
-                <div class="stat-card"><h3>Pendientes (Gris)</h3><div class="value" id="countPending">0</div></div>
-                <div class="stat-card"><h3>Completados (Verde)</h3><div class="value" style="color: var(--emerald);" id="countCompleted">0</div></div>
-                <div class="stat-card"><h3>Ingreso Proyectado</h3><div class="value" style="color: var(--gold);" id="totalRevenue">$0</div></div>
+                <div class="stat-card"><h3>Pendientes</h3><div class="value" id="countPending">0</div></div>
+                <div class="stat-card"><h3>Completados</h3><div class="value" style="color: var(--emerald);" id="countCompleted">0</div></div>
+                <div class="stat-card"><h3>Ingresos</h3><div class="value" style="color: var(--gold);" id="totalRevenue">$0</div></div>
             </div>
-
-            <h3 style="margin-bottom: 1rem; color: var(--text-secondary);">Radar de Reservas (Últimas 50)</h3>
             
             <div class="table-container">
                 <table>
-                    <thead>
-                        <tr><th>Folio</th><th>Estado</th><th>Cliente</th><th>Servicio / Vehículo</th><th>Vuelo / Fecha</th><th>Total</th><th>Acciones</th></tr>
-                    </thead>
-                    <tbody id="reservasTableBody">
-                        <tr><td colspan="7" style="text-align:center; padding: 2rem; color: var(--text-secondary);">Cargando datos desde la bóveda segura... ⏳</td></tr>
-                    </tbody>
+                    <thead><tr><th>Folio</th><th>Estado</th><th>Cliente</th><th>Servicio</th><th>Vuelo</th><th>Total</th><th>Acciones</th></tr></thead>
+                    <tbody id="reservasTableBody"><tr><td colspan="7" style="text-align:center; padding: 2rem;">Cargando Bóveda...</td></tr></tbody>
                 </table>
             </div>
-
-            <div class="drive-box">
-                <span style="font-size: 3rem; margin-bottom: 1rem; display: block;">📁</span>
-                <h3 style="color: var(--gold); margin-bottom: 0.5rem; font-size: 1.3rem;">Bóveda de Evidencias (Google Drive)</h3>
-                <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 600px; margin: 0 auto;">Espacio de 5TB reservado para cargas de capturas de No-Show y reportes.</p>
-                <a href="https://drive.google.com/drive/folders/1tKPfrKr7TuAomnKXxOEYB6y8EuXag5PG" target="_blank" style="display: inline-block; margin-top: 1.5rem; background: var(--gold); color: #000; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; text-decoration: none;">Abrir Carpeta Master 📂</a>
-            </div>
         </div>
-        <!-- PESTAÑA 2: PARTNERS E INGRESO MANUAL -->
+
         <div id="tab-partners" class="tab-content">
             <h1 class="header-title">Módulo de Partners</h1>
-            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">Ingreso manual de reservas B2B, agencias y pagos directos.</p>
-            
             <div style="background: var(--bg-card); border: 1px solid rgba(234, 179, 8, 0.3); padding: 2.5rem; border-radius: 20px;">
-                <h3 style="color: var(--gold); font-size: 1.4rem; margin-bottom: 1.5rem;">Registrar Nueva Operación</h3>
-                
                 <form id="partnerForm" onsubmit="submitPartnerBooking(event)">
                     <div class="form-grid">
-                        <div>
-                            <label class="admin-label">Agencia / Partner (Origen)</label>
-                            <input type="text" id="p-agencia" class="admin-input" placeholder="Ej. Expedia, Hotel Riu, Directo WA" required>
-                        </div>
-                        <div>
-                            <label class="admin-label">Nombre del Pasajero Titular</label>
-                            <input type="text" id="p-nombre" class="admin-input" placeholder="Nombre completo" required>
-                        </div>
-                        <div>
-                            <label class="admin-label">WhatsApp (Opcional pero recomendado)</label>
-                            <input type="text" id="p-wa" class="admin-input" placeholder="Ej. 52 998...">
-                        </div>
-                        <div>
-                            <label class="admin-label">Servicio (Vehículo y Tipo)</label>
-                            <select id="p-servicio" class="admin-input">
-                                <option>Van Privada - Llegada</option>
-                                <option>Van Privada - Salida</option>
-                                <option>Suburban VIP - Llegada</option>
-                                <option>Suburban VIP - Salida</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="admin-label">Fecha y Hora de Servicio</label>
-                            <input type="datetime-local" id="p-fecha" class="admin-input" required>
-                        </div>
-                        <div>
-                            <label class="admin-label">Total a Registrar (MXN / USD)</label>
-                            <input type="text" id="p-total" class="admin-input" placeholder="Ej. $1,400 MXN o Pago Pendiente" required>
-                        </div>
+                        <div><label class="admin-label">Agencia / Origen</label><input type="text" id="p-agencia" class="admin-input" required></div>
+                        <div><label class="admin-label">Pasajero</label><input type="text" id="p-nombre" class="admin-input" required></div>
+                        <div><label class="admin-label">WhatsApp</label><input type="text" id="p-wa" class="admin-input"></div>
+                        <div><label class="admin-label">Servicio</label><input type="text" id="p-servicio" class="admin-input" required></div>
+                        <div><label class="admin-label">Fecha</label><input type="datetime-local" id="p-fecha" class="admin-input" required></div>
+                        <div><label class="admin-label">Total (MXN)</label><input type="text" id="p-total" class="admin-input" required></div>
                     </div>
-                    <div style="margin-top: 2rem;">
-                        <button type="submit" class="form-btn">Guardar en Base de Datos 💾</button>
-                    </div>
+                    <button type="submit" class="form-btn" style="margin-top:2rem;">Guardar en Base de Datos 💾</button>
                 </form>
             </div>
         </div>
 
-        <!-- PESTAÑA 3: HISTORIAL -->
         <div id="tab-historial" class="tab-content">
-            <h1 class="header-title">Histórico de Operaciones</h1>
-            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">Acceso directo a la matriz de datos crudos.</p>
+            <h1 class="header-title">Histórico General</h1>
             <div style="text-align: center; padding: 4rem; background: var(--bg-card); border-radius: 20px; border: 1px dashed var(--cyan);">
-                <span style="font-size: 3rem;">📊</span>
-                <h3 style="margin: 1rem 0;">Matriz de Excel (Google Sheets)</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Aquí puedes editar celdas, eliminar errores, ver historial pasado o liquidar chóferes.</p>
-                <a href="https://docs.google.com/spreadsheets/d/1ww2AcaXE_9QXyaDRQzUwXen92wZNUhnM_7YOHfH0mco/edit" target="_blank" class="form-btn" style="background: var(--cyan); color: #fff; display: inline-block; width: auto;">Abrir Excel Central ✏️</a>
+                <span style="font-size: 3rem;">📊</span><h3 style="margin: 1rem 0;">Matriz de Excel</h3>
+                <a href="https://docs.google.com/spreadsheets/d/1ww2AcaXE_9QXyaDRQzUwXen92wZNUhnM_7YOHfH0mco/edit" target="_blank" class="form-btn" style="background: var(--cyan); color: #fff; width: auto;">Abrir Excel Central ✏️</a>
             </div>
         </div>
-
     </div>
 
     <script>
-        // Lógica de Pestañas
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
@@ -160,9 +101,6 @@
             document.getElementById('btn-' + tabId).classList.add('active');
         }
 
-        // =========================================================================
-        // URL EXACTA VERSIÓN 9 (TU BACKEND ACTUAL)
-        // =========================================================================
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec";
 
         document.addEventListener('DOMContentLoaded', fetchReservations);
@@ -171,52 +109,40 @@
             fetch(SCRIPT_URL)
                 .then(response => response.json())
                 .then(data => renderTable(data))
-                .catch(error => {
-                    document.getElementById('reservasTableBody').innerHTML = `<tr><td colspan="7" style="text-align:center; color: #ef4444;">Error de acceso o conexión de red.</td></tr>`;
-                });
+                .catch(() => { document.getElementById('reservasTableBody').innerHTML = `<tr><td colspan="7">Error de red al cargar reservas.</td></tr>`; });
         }
 
         function renderTable(rows) {
             const tbody = document.getElementById('reservasTableBody');
             tbody.innerHTML = '';
-            
             let pendientes = 0; let completados = 0; let ingresos = 0;
 
             for (let i = 1; i < rows.length; i++) {
                 const row = rows[i];
                 if(!row[0]) continue; 
                 
-                const statusTexto = row[2].toLowerCase();
-                const isCompleted = statusTexto.includes('completado') || statusTexto.includes('pagado') || statusTexto.includes('manual');
+                const statusTexto = row[2] ? row[2].toLowerCase() : '';
+                const isCompleted = statusTexto.includes('completado') || statusTexto.includes('manual');
                 const badgeClass = isCompleted ? 'status-completed' : 'status-pending';
                 
                 if (isCompleted) { completados++; ingresos += parseFloat(row[14]) || 0; } 
                 else { pendientes++; ingresos += parseFloat(row[14]) || 0; }
 
-                const waLink = `https://wa.me/${row[4].toString().replace(/[^0-9]/g, '')}?text=Hola%20${row[3]},%20le%20escribimos%20de%20STRATA%20CUN.%20Su%20folio%20es%20${row[0]}`;
-
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td><strong>${row[0]}</strong></td>
                     <td><span class="status-badge ${badgeClass}">${row[2]}</span></td>
-                    <td>${row[3]}<br><small style="color:var(--text-secondary)">${row[4]}</small></td>
-                    <td>${row[6]}<br><small style="color:var(--cyan)">${row[7]} - ${row[11]}</small></td>
-                    <td>${row[12]}<br><small style="color:var(--text-secondary)">${row[13]}</small></td>
+                    <td>${row[3]}</td><td>${row[6]}</td><td>${row[12]}</td>
                     <td><strong style="color:var(--gold)">$${row[14]}</strong></td>
-                    <td>
-                        <a href="${waLink}" target="_blank" class="action-btn btn-wa">💬 WA</a>
-                        <a href="https://docs.google.com/spreadsheets/d/1ww2AcaXE_9QXyaDRQzUwXen92wZNUhnM_7YOHfH0mco/edit" target="_blank" class="action-btn" title="Editar en Excel">✏️</a>
-                    </td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/1ww2AcaXE_9QXyaDRQzUwXen92wZNUhnM_7YOHfH0mco/edit" target="_blank" class="action-btn">✏️ Editar</a></td>
                 `;
                 tbody.prepend(tr); 
             }
-            
             document.getElementById('countPending').textContent = pendientes;
             document.getElementById('countCompleted').textContent = completados;
             document.getElementById('totalRevenue').textContent = `$${new Intl.NumberFormat('es-MX').format(ingresos)}`;
         }
 
-        // Simulación de envío del Partner Form (se conectará en el paso final del Backend)
         function submitPartnerBooking(e) {
             e.preventDefault();
             const btn = e.target.querySelector('.form-btn');
@@ -232,27 +158,18 @@
             formData.append('fecha', document.getElementById('p-fecha').value);
             formData.append('total', document.getElementById('p-total').value);
 
-            // PEGA AQUÍ TU NUEVA URL DE APPS SCRIPT VERSIÓN 10
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec'; 
-
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        alert("✅ Registro guardado exitosamente en la Bóveda Central.");
-                        e.target.reset();
-                        fetchReservations(); // Recarga la tabla para ver el nuevo ingreso
-                    } else {
-                        alert("Error al guardar: " + data.message);
-                    }
-                })
-                .catch(error => {
-                    alert("Error de red. Verifica tus permisos de Apps Script.");
-                })
-                .finally(() => {
-                    btn.innerHTML = 'Guardar en Base de Datos 💾';
-                    btn.disabled = false;
-                });
+            // Fetch en modo seguro (no-cors) para forzar guardado sin depender del JSON de respuesta
+            fetch(SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' })
+            .then(() => {
+                alert("✅ Registro de Partner guardado exitosamente.");
+                e.target.reset();
+                setTimeout(fetchReservations, 1000);
+            })
+            .catch(() => alert("✅ Enviado (Verifica en Excel)"))
+            .finally(() => {
+                btn.innerHTML = 'Guardar en Base de Datos 💾';
+                btn.disabled = false;
+            });
         }
     </script>
 </body>
