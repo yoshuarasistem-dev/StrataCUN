@@ -17,71 +17,41 @@
             --emerald: #10b981;
             --gray-pending: rgba(148, 163, 184, 0.2);
         }
-        body { 
-            background-color: var(--bg-main); 
-            color: var(--text-primary); 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            margin: 0; 
-            display: flex; 
-            height: 100vh; 
-            overflow: hidden;
-        }
-        
-        /* BARRA LATERAL */
-        .sidebar { 
-            width: 280px; 
-            background: var(--bg-card); 
-            border-right: 1px solid rgba(59, 130, 246, 0.2); 
-            padding: 2rem; 
-            display: flex; 
-            flex-direction: column; 
-        }
+        body { background-color: var(--bg-main); color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { width: 280px; background: var(--bg-card); border-right: 1px solid rgba(59, 130, 246, 0.2); padding: 2rem; display: flex; flex-direction: column; }
         .sidebar h2 { color: var(--gold); font-size: 1.1rem; margin-bottom: 2.5rem; letter-spacing: 0.15em; text-transform: uppercase; }
         .nav-item { padding: 1rem 1.2rem; color: var(--text-secondary); text-decoration: none; display: block; border-radius: 12px; margin-bottom: 0.5rem; transition: all 0.3s; font-weight: 600; font-size: 0.9rem; }
         .nav-item:hover, .nav-item.active { background: rgba(59, 130, 246, 0.15); color: var(--cyan); border-left: 4px solid var(--cyan); }
-        
-        /* CONTENIDO PRINCIPAL */
         .main-content { flex: 1; padding: 3rem 4rem; overflow-y: auto; background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 50%); }
         .header-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
-        
-        /* MÉTRICAS */
         .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; margin-bottom: 2rem; }
         .stat-card { background: var(--bg-card); padding: 1.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .stat-card h3 { color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
         .stat-card .value { font-size: 2.2rem; font-weight: 800; color: var(--cyan); }
-
-        /* TABLA DE OPERACIONES */
         .table-container { background: var(--bg-card); border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.15); overflow: hidden; margin-bottom: 2rem; }
         table { width: 100%; border-collapse: collapse; text-align: left; }
         th { background: rgba(59, 130, 246, 0.1); padding: 1rem; color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
         td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; color: var(--text-primary); }
         tr:hover td { background: rgba(255,255,255,0.02); }
-        
         .status-badge { padding: 0.4rem 0.8rem; border-radius: 8px; font-weight: 700; font-size: 0.75rem; display: inline-block; }
         .status-pending { background: var(--gray-pending); color: var(--text-secondary); border: 1px solid rgba(148,163,184,0.3); }
         .status-completed { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid var(--emerald); }
-        
         .action-btn { background: transparent; border: 1px solid var(--cyan); color: var(--cyan); padding: 0.4rem 0.6rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; margin-right: 0.5rem; transition: all 0.2s; text-decoration: none;}
         .action-btn:hover { background: var(--cyan); color: #fff; }
         .btn-wa { border-color: #25d366; color: #25d366; }
         .btn-wa:hover { background: #25d366; color: #000; }
-        
-        /* MÓDULO GOOGLE DRIVE */
         .drive-box { background: rgba(255, 186, 0, 0.05); border: 1px dashed var(--gold); padding: 2rem; border-radius: 20px; text-align: center; }
     </style>
 </head>
 <body>
-    <!-- MENÚ LATERAL -->
     <div class="sidebar">
         <h2>Bóveda Master 🔒</h2>
         <a href="#" class="nav-item active">📊 Monitor Operativo</a>
         <a href="#" class="nav-item">📋 Histórico de Reservas</a>
         <a href="#" class="nav-item">🚙 Liquidación Flota</a>
-        
         <a href="index.html" class="nav-item" style="margin-top: auto; color: #ef4444; border-left: none;">🚪 Cerrar Sesión Segura</a>
     </div>
 
-    <!-- PANEL CENTRAL -->
     <div class="main-content">
         <h1 class="header-title">Centro de Control de Mando</h1>
         <p style="color: var(--text-secondary); font-size: 1.1rem;">Monitor de operaciones STRATA CUN en tiempo real.</p>
@@ -112,15 +82,12 @@
                 </tbody>
             </table>
         </div>
-
         <div class="drive-box">
             <span style="font-size: 3rem; margin-bottom: 1rem; display: block;">📁</span>
             <h3 style="color: var(--gold); margin-bottom: 0.5rem; font-size: 1.3rem;">Bóveda de Evidencias (Google Drive)</h3>
             <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 600px; margin: 0 auto;">
                 Espacio de 5TB reservado para cargas de capturas de No-Show, reportes fotográficos de la flota aliada y respaldos semanales automáticos.
             </p>
-            
-            <!-- ENLACE DIRECTO A TU CARPETA DE DRIVE -->
             <a href="https://drive.google.com/drive/folders/1tKPfrKr7TuAomnKXxOEYB6y8EuXag5PG" target="_blank" style="display: inline-block; margin-top: 1.5rem; background: var(--gold); color: #000; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; transition: transform 0.2s;">
                 Abrir Carpeta Master 📂
             </a>
@@ -128,7 +95,9 @@
     </div>
 
     <script>
-        // EL ENLACE A TU BASE DE DATOS (Google Apps Script)
+        // =========================================================================
+        // !!! AQUÍ DEBES PEGAR LA NUEVA URL QUE TE DA APPS SCRIPT !!!
+        // =========================================================================
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec";
 
         document.addEventListener('DOMContentLoaded', fetchReservations);
@@ -140,7 +109,7 @@
                     renderTable(data);
                 })
                 .catch(error => {
-                    document.getElementById('reservasTableBody').innerHTML = `<tr><td colspan="7" style="text-align:center; color: #ef4444;">Error al conectar con la base de datos. Verifica tu conexión.</td></tr>`;
+                    document.getElementById('reservasTableBody').innerHTML = `<tr><td colspan="7" style="text-align:center; color: #ef4444;">Error de acceso: Recuerda que Apps Script debe estar en "Cualquier Persona" (Anyone).</td></tr>`;
                     console.error('Error:', error);
                 });
         }

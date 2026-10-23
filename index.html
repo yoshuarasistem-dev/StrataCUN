@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* 1. VARIABLES Y TEMA (NUEVO AZUL ZAFIRO EJECUTIVO) */
         :root {
             --bg-main: #050a18;
             --bg-card: rgba(11, 20, 43, 0.82);
@@ -17,8 +16,8 @@
             --bg-input: rgba(5, 10, 24, 0.92);
             --text-primary: #ffffff;
             --text-secondary: #94a3b8;
-            --cyan: #1d4ed8; /* Azul Zafiro */
-            --cyan-glow: #3b82f6; /* Azul brillante cálido */
+            --cyan: #1d4ed8; 
+            --cyan-glow: #3b82f6; 
             --gold: #eab308;
             --emerald: #10b981;
             --border-glass: rgba(59, 130, 246, 0.24);
@@ -46,7 +45,6 @@
         .serif-lux { font-family: 'Cormorant Garamond', Georgia, serif; }
         .container { max-width: 1340px; margin: 0 auto; padding: 0 1.5rem; }
 
-        /* 2. NAVBAR */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0;
             height: auto; min-height: 75px; padding: 0.5rem 0;
@@ -72,7 +70,6 @@
         .btn-glass { background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border-glass); padding: 0.4rem 0.6rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; text-decoration: none; transition: all 0.25s ease; }
         .btn-glass:hover { border-color: var(--cyan-glow); box-shadow: 0 0 18px rgba(59, 130, 246, 0.3); transform: translateY(-1px); }
 
-        /* 3. HERO (INICIO) */
         .hero-section { position: relative; min-height: 100vh; padding: 125px 0 70px; display: flex; align-items: center; overflow: hidden; }
         .hero-backdrop { position: absolute; inset: 0; z-index: -1; }
         .hero-backdrop img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.38) contrast(1.1); transform: scale(1.03); }
@@ -84,7 +81,6 @@
         .hero-headline { font-size: clamp(2.5rem, 4.4vw, 4.1rem); line-height: 1.06; margin-bottom: 1.2rem; font-weight: 700; }
         .hero-headline span { background: linear-gradient(90deg, #ffffff, var(--cyan-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* 4. COTIZADOR POS */
         .pos-master-card { background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border-glass); border-radius: 26px; padding: 1.85rem; box-shadow: var(--shadow-luxury); width: 100%; }
         .service-pills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.45rem; background: var(--bg-input); padding: 0.4rem; border-radius: 14px; border: 1px solid var(--border-subtle); margin-bottom: 1.2rem; }
         .service-pill-btn { background: transparent; border: none; color: var(--text-secondary); padding: 0.6rem 0.3rem; border-radius: 10px; font-size: 0.76rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
@@ -101,7 +97,6 @@
         .pos-field.full { grid-column: span 2; }
         .pos-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); font-weight: 700; display: flex; justify-content: space-between; }
         
-        /* FIX: COLOR SCHEME PARA QUE EL CALENDARIO SE VEA EN MODO CLARO */
         .pos-input { background: var(--bg-input); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 0.75rem 0.95rem; border-radius: 12px; font-size: 0.88rem; font-family: inherit; outline: none; transition: border 0.2s; width: 100%; color-scheme: dark; }
         [data-theme="light"] .pos-input { color-scheme: light; }
         
@@ -115,7 +110,6 @@
         .btn-book-now:hover { transform: translateY(-2px); }
         .btn-book-now:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        /* 5. SECCIONES Y TARJETAS */
         .section-block { padding: 90px 0; position: relative; }
         .section-header { max-width: 800px; margin-bottom: 3.5rem; }
         .section-tag { color: var(--cyan-glow); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.8rem; display: inline-block; }
@@ -148,7 +142,6 @@
         .modal-close { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
         .modal-close:hover { color: var(--cyan-glow); }
 
-        /* RESPONSIVIDAD ESTRICTA */
         @media (max-width: 1024px) {
             .hero-layout, .map-section-grid, .fleet-grid { grid-template-columns: 1fr; }
             .map-visual-box { max-height: 300px; border-right: none; border-bottom: 1px solid var(--border-subtle); }
@@ -185,7 +178,6 @@
                 <li><a href="#terminales" data-es="Terminales" data-en="Terminals">Terminales</a></li>
                 <li><a href="#flota" data-es="Flota" data-en="Fleet">Flota</a></li>
                 <li><a href="#zonas" data-es="Zonas" data-en="Zones">Zonas</a></li>
-                <!-- NUEVAS PESTAÑAS -->
                 <li><a href="#bodas" data-es="Bodas & VIP" data-en="Weddings & VIP">Bodas & VIP</a></li>
                 <li><a href="#galeria" data-es="Galería" data-en="Gallery">Galería</a></li>
             </ul>
@@ -223,7 +215,6 @@
                 </p>
             </div>
 
-            <!-- COTIZADOR CON CAMPOS DE CLIENTE -->
             <div class="pos-master-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                     <div>
@@ -327,7 +318,6 @@
                         <input type="text" id="posCupon" class="pos-input" placeholder="Ej. STRATA100" oninput="recalculateTotal()" style="border-color: var(--border-glass);">
                     </div>
 
-                    <!-- Resumen Activo -->
                     <div class="price-bar-live">
                         <div>
                             <span style="font-size: 0.75rem; color: var(--text-secondary); display: block;" id="liveSummaryText">Van Privada • Zona 1 Local • Llegada</span>
@@ -339,14 +329,12 @@
                         </div>
                     </div>
                     
-                    <!-- NUEVO BOTÓN DE PAGO DINÁMICO CLIP -->
                     <button type="submit" class="btn-book-now" data-es="Reservar y Pagar 💳" data-en="Book & Pay 💳">Reservar y Pagar 💳</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- GUÍA VISUAL DE TERMINALES -->
     <section class="section-block" id="terminales">
         <div class="container">
             <div class="section-header text-center mx-auto" style="text-align: center;">
@@ -386,7 +374,6 @@
         </div>
     </section>
 
-    <!-- FLOTA Y CAPACIDAD -->
     <section class="section-block" id="flota" style="background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.03)); border-top: 1px solid var(--border-subtle);">
         <div class="container">
             <div class="section-header">
@@ -443,7 +430,6 @@
         </div>
     </section>
 
-    <!-- ZONAS Y TECNOLOGIA -->
     <section class="section-block" id="zonas">
         <div class="container">
             <div class="map-section-grid">
@@ -513,7 +499,6 @@
         </div>
     </div>
 
-    <!-- SCRIPT JAVASCRIPT CON REDIRECCIÓN A CLIP Y APPS SCRIPT V1 -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const imageElements = document.querySelectorAll('img[data-asset]');
@@ -644,16 +629,12 @@
             if(term.includes('FBO')) hint.innerHTML = '🛡️ Recepción FBO: Rampa Ejecutiva';
         }
 
-        // ========================================================
-        // ENVÍO DE DATOS Y REDIRECCIÓN A CLIP VIA BACKEND 
-        // ========================================================
         function handleQuoteSubmit(e) {
             e.preventDefault();
             const btn = document.querySelector('.btn-book-now[type="submit"]');
             const originalText = btn.innerHTML;
             
-            // Efecto visual mientras procesa Clip
-            btn.innerHTML = 'Conectando con pasarela segura... 💳⏳';
+            btn.innerHTML = 'Procesando conexión segura... 💳⏳';
             btn.disabled = true;
 
             const cuponInput = document.getElementById('posCupon') ? document.getElementById('posCupon').value.toUpperCase().trim() : '';
@@ -673,17 +654,19 @@
             formData.append('fechaVuelo', document.getElementById('posDate').value);
             formData.append('total', document.getElementById('liveTotalAmount').textContent);
 
-            // TU ENCHUFE DE APPS SCRIPT (NUEVA VERSIÓN FASE 2)
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec';
+            // =========================================================================
+            // !!! AQUÍ DEBES PEGAR LA NUEVA URL QUE TE DA APPS SCRIPT !!!
+            // =========================================================================
+            const scriptURL = 'PEGAR_NUEVA_URL_AQUI'; 
 
             fetch(scriptURL, { method: 'POST', body: formData })
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        // Redirigir a la URL de cobro que devolvió Clip
+                        // Redirige al pago o a la página de éxito si es cupón 100%
                         window.location.href = data.paymentUrl;
                     } else {
-                        alert('Error al generar enlace de pago: ' + data.message);
+                        alert('Error al conectar con Clip: ' + data.message);
                         btn.innerHTML = originalText;
                         btn.disabled = false;
                     }
