@@ -219,8 +219,40 @@
         // Simulación de envío del Partner Form (se conectará en el paso final del Backend)
         function submitPartnerBooking(e) {
             e.preventDefault();
-            alert("⚠️ Interfaz Lista: Esta función conectará los datos con tu base de datos central en la última actualización del Backend. Por ahora, el módulo visual está 100% operativo.");
-            e.target.reset();
+            const btn = e.target.querySelector('.form-btn');
+            btn.innerHTML = 'Guardando... ⏳';
+            btn.disabled = true;
+
+            const formData = new URLSearchParams();
+            formData.append('origen', 'partner_manual');
+            formData.append('agencia', document.getElementById('p-agencia').value);
+            formData.append('nombre', document.getElementById('p-nombre').value);
+            formData.append('whatsapp', document.getElementById('p-wa').value);
+            formData.append('servicio', document.getElementById('p-servicio').value);
+            formData.append('fecha', document.getElementById('p-fecha').value);
+            formData.append('total', document.getElementById('p-total').value);
+
+            // PEGA AQUÍ TU NUEVA URL DE APPS SCRIPT VERSIÓN 10
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyVA0l-cieOQotyRm9HEtMBxrLOnHFYNfm0x1W6UhB-CHuxqJ6vOjQgc20HeLgH5fteYQ/exec'; 
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert("✅ Registro guardado exitosamente en la Bóveda Central.");
+                        e.target.reset();
+                        fetchReservations(); // Recarga la tabla para ver el nuevo ingreso
+                    } else {
+                        alert("Error al guardar: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    alert("Error de red. Verifica tus permisos de Apps Script.");
+                })
+                .finally(() => {
+                    btn.innerHTML = 'Guardar en Base de Datos 💾';
+                    btn.disabled = false;
+                });
         }
     </script>
 </body>
