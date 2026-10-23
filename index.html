@@ -8,8 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- ==========================================
+         PARTE 1: ESTILOS Y CANDADOS PARA MÓVILES
+         ========================================== -->
     <style>
-        /* 1. VARIABLES Y TEMA */
         :root {
             --bg-main: #050a18;
             --bg-card: rgba(11, 20, 43, 0.82);
@@ -38,24 +40,16 @@
             --border-subtle: rgba(15, 23, 42, 0.12);
             --shadow-luxury: 0 20px 50px -15px rgba(7, 13, 31, 0.15);
         }
-        
-        /* CANDADOS GLOBALES ANTI-DESBORDAMIENTO (Imágenes Gigantes) */
-        * { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
-        img { max-width: 100%; height: auto; display: block; }
-        
-        body { background-color: var(--bg-main); color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; overflow-x: hidden; transition: background 0.4s ease, color 0.4s ease; }
-        .serif-lux { font-family: 'Cormorant Garamond', Georgia, serif; }
-        .container { max-width: 1340px; margin: 0 auto; padding: 0 1.5rem; }
 
-        /* 2. NAVBAR (MENÚ SUPERIOR) */
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0;
-            height: auto; min-height: 75px; padding: 0.5rem 0;
-            background: rgba(5, 10, 24, 0.95);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-glass);
-            z-index: 1000; display: flex; align-items: center; transition: background 0.4s;
-        }
+        /* CANDADO GLOBAL: Evita que cualquier elemento rompa la pantalla */
+        * { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
+        html, body { overflow-x: hidden; width: 100%; }
+        body { background-color: var(--bg-main); color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; transition: background 0.4s ease, color 0.4s ease; }
+        .serif-lux { font-family: 'Cormorant Garamond', Georgia, serif; }
+        .container { max-width: 1340px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
+
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; height: auto; min-height: 75px; padding: 0.5rem 0; background: rgba(5, 10, 24, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass); z-index: 1000; display: flex; align-items: center; transition: background 0.4s; }
         [data-theme="light"] .navbar { background: rgba(255, 255, 255, 0.95); }
         .nav-content { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem; }
         .brand-box { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text-primary); flex-shrink: 0; }
@@ -70,22 +64,19 @@
         .btn-glass { background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border-glass); padding: 0.4rem 0.8rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; transition: all 0.25s ease; }
         .btn-glass:hover { border-color: var(--cyan-glow); box-shadow: 0 0 18px rgba(0, 180, 216, 0.3); transform: translateY(-1px); }
 
-        /* 3. HERO (INICIO) */
+        /* HERO & COTIZADOR */
         .hero-section { position: relative; min-height: 100vh; padding: 125px 0 70px; display: flex; align-items: center; overflow: hidden; }
         .hero-backdrop { position: absolute; inset: 0; z-index: -1; }
         .hero-backdrop img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.38) contrast(1.1); transform: scale(1.03); }
-        [data-theme="light"] .hero-backdrop img { filter: brightness(0.85) opacity(0.25); }
         .hero-backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg-main) 15%, rgba(5, 10, 24, 0.55) 55%, var(--bg-main) 100%), linear-gradient(180deg, transparent 60%, var(--bg-main) 100%); }
+        
         .hero-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 2.75rem; align-items: start; width: 100%; }
         .shield-badge-row { display: inline-flex; align-items: center; gap: 0.85rem; background: rgba(14, 165, 233, 0.12); border: 1px solid var(--border-glass); padding: 0.45rem 1.1rem 0.45rem 0.55rem; border-radius: 999px; margin-bottom: 1.4rem; }
         .shield-badge-row img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
-        .hero-headline { font-size: clamp(2.5rem, 4.4vw, 4.1rem); line-height: 1.06; margin-bottom: 1.2rem; font-weight: 700; }
+        .hero-headline { font-size: clamp(2.5rem, 4vw, 3.8rem); line-height: 1.06; margin-bottom: 1.2rem; font-weight: 700; }
         .hero-headline span { background: linear-gradient(90deg, #ffffff, var(--cyan-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-showcase-box { margin-top: 1.75rem; position: relative; border-radius: 22px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-luxury); width: 100%; height: 250px; }
-        .hero-showcase-box img { width: 100%; height: 100%; object-fit: cover; }
-        .hero-showcase-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.25rem; background: linear-gradient(transparent, rgba(5, 10, 24, 0.95)); display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: #fff; }
-
-        /* 4. COTIZADOR POS */
+        
+        /* COTIZADOR GPS */
         .pos-master-card { background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border-glass); border-radius: 26px; padding: 1.85rem; box-shadow: var(--shadow-luxury); width: 100%; }
         .service-pills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.45rem; background: var(--bg-input); padding: 0.4rem; border-radius: 14px; border: 1px solid var(--border-subtle); margin-bottom: 1.2rem; }
         .service-pill-btn { background: transparent; border: none; color: var(--text-secondary); padding: 0.6rem 0.3rem; border-radius: 10px; font-size: 0.76rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
@@ -93,9 +84,6 @@
         .vehicle-selector-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; margin-bottom: 1.1rem; }
         .veh-option-card { background: var(--bg-input); border: 1.5px solid var(--border-subtle); border-radius: 14px; padding: 0.75rem 0.9rem; cursor: pointer; transition: all 0.25s; display: flex; justify-content: space-between; align-items: center; }
         .veh-option-card.selected { border-color: var(--cyan-glow); background: rgba(14, 165, 233, 0.12); box-shadow: 0 0 20px rgba(14, 165, 233, 0.18); }
-        .veh-option-title { font-size: 0.85rem; font-weight: 700; display: block; }
-        .veh-option-pax { font-size: 0.72rem; color: var(--text-secondary); }
-        .veh-option-price { text-align: right; font-weight: 800; color: var(--cyan-glow); font-size: 0.95rem; }
         .pos-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
         .pos-field { display: flex; flex-direction: column; gap: 0.35rem; }
         .pos-field.full { grid-column: span 2; }
@@ -105,55 +93,59 @@
         .map-zone-container { grid-column: span 2; background: var(--bg-input); border: 1px solid var(--border-glass); border-radius: 16px; padding: 0.85rem; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0.85rem; align-items: stretch; }
         .google-map-frame { width: 100%; height: 155px; border: 0; border-radius: 10px; }
         .zone-confirm-box { display: flex; flex-direction: column; justify-content: space-between; font-size: 0.78rem; }
-        .zone-status-pill { display: inline-block; padding: 0.3rem 0.65rem; border-radius: 8px; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--emerald); color: var(--emerald); font-weight: 700; font-size: 0.72rem; margin-bottom: 0.4rem; }
         .price-bar-live { grid-column: span 2; background: linear-gradient(90deg, rgba(14, 165, 233, 0.15), rgba(0, 180, 216, 0.05)); border: 1px solid var(--border-glass); border-radius: 14px; padding: 0.85rem 1.1rem; display: flex; justify-content: space-between; align-items: center; }
         .btn-book-now { grid-column: span 2; background: linear-gradient(135deg, var(--cyan), var(--cyan-glow)); color: #050a18; border: none; padding: 1rem; border-radius: 14px; font-size: 0.92rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; box-shadow: 0 12px 28px -6px rgba(0, 180, 216, 0.55); transition: transform 0.2s; width: 100%; }
-        .btn-book-now:hover { transform: translateY(-2px); }
 
-        /* 5. SECCIONES Y TARJETAS RESTRINGIDAS */
+        /* SECCIONES Y TARJETAS GENERALES */
         .section-block { padding: 90px 0; position: relative; }
-        .section-header { max-width: 800px; margin-bottom: 3.5rem; }
+        .section-header { max-width: 800px; margin-bottom: 3.5rem; text-align: center; margin-inline: auto; }
         .section-tag { color: var(--cyan-glow); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.8rem; display: inline-block; }
         .section-title { font-size: clamp(2.2rem, 3.5vw, 3.2rem); line-height: 1.1; margin-bottom: 1.2rem; }
-        
+
+        /* TERMINALES */
         .terminals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
         .terminal-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s; }
-        .terminal-card:hover { border-color: var(--cyan-glow); transform: translateY(-5px); box-shadow: var(--shadow-luxury); }
         .terminal-img-box { height: 180px; width: 100%; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-subtle); }
         .terminal-img-box img { width: 100%; height: 100%; object-fit: cover; }
         .terminal-badge { position: absolute; top: 1rem; right: 1rem; background: rgba(5, 10, 24, 0.85); color: var(--cyan-glow); padding: 0.4rem 0.8rem; border-radius: 8px; font-weight: 800; font-size: 0.75rem; border: 1px solid var(--border-glass); }
         .terminal-content { padding: 1.5rem; flex-grow: 1; }
 
-        /* FLOTA - CUADRÍCULA 2x2 PARA LAS 4 FOTOS */
+        /* FLOTA - CANDADO ESTÉTICO PARA MÓVILES (SOLUCIÓN DEFINITIVA) */
         .fleet-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
         .fleet-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
-        .fleet-visual { height: 260px; width: 100%; position: relative; overflow: hidden; background: #000; border-bottom: 1px solid var(--border-subtle); }
-        .fleet-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.95; }
-        .fleet-visual-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-card) 0%, transparent 40%); }
-        .fleet-body { padding: 1.8rem; position: relative; z-index: 2; margin-top: -2rem; }
+        
+        /* ESTO EVITA QUE LA IMAGEN SE VEA GIGANTE EN EL CELULAR */
+        .fleet-visual { width: 100%; height: 260px; position: relative; overflow: hidden; background: #050a18; border-bottom: 1px solid var(--border-subtle); }
+        .fleet-visual img { width: 100%; height: 100%; object-fit: cover; object-position: left center; display: block; opacity: 0.95; }
+        .fleet-visual-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-card) 0%, transparent 50%); pointer-events: none; }
+        
+        .fleet-body { padding: 1.8rem; position: relative; z-index: 2; margin-top: -2.5rem; }
         .fleet-specs-box { background: rgba(14, 165, 233, 0.08); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1rem; display: flex; gap: 1rem; align-items: center; margin-top: 1.2rem; }
         .fleet-specs-box img { height: 35px; width: auto; }
 
-        /* MAPA DE ZONAS ESTRICTO */
+        /* ZONAS Y MAPA */
         .map-section-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 0; background: var(--bg-card); border-radius: 28px; border: 1px solid var(--border-glass); overflow: hidden; margin-top: 2rem; }
-        .map-visual-box { width: 100%; height: 100%; min-height: 400px; max-height: 500px; overflow: hidden; position: relative; border-right: 1px solid var(--border-subtle); }
+        .map-visual-box { width: 100%; height: 100%; min-height: 400px; overflow: hidden; position: relative; border-right: 1px solid var(--border-subtle); }
         .map-visual-box img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
         .map-content-box { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
 
-        /* VENTANAS MODALES */
+        /* MODALES (VENTANAS POP-UP) */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); z-index: 2000; display: none; place-items: center; padding: 1rem; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay.active { display: grid; opacity: 1; }
         .modal-box { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 2.5rem; width: 100%; max-width: 480px; box-shadow: var(--shadow-luxury); position: relative; transform: translateY(20px); transition: transform 0.3s ease; }
         .modal-overlay.active .modal-box { transform: translateY(0); }
         .modal-close { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
-        .modal-close:hover { color: var(--cyan-glow); }
-
-        /* RESPONSIVIDAD ESTRICTA */
+        
+        /* RESPONSIVIDAD ESTRICTA (CELULARES Y TABLETS) */
         @media (max-width: 1024px) {
-            .hero-layout, .map-section-grid, .fleet-grid { grid-template-columns: 1fr; }
-            .map-visual-box { max-height: 300px; border-right: none; border-bottom: 1px solid var(--border-subtle); }
+            .hero-layout, .map-section-grid { grid-template-columns: 1fr; }
+            .map-visual-box { min-height: 250px; border-right: none; border-bottom: 1px solid var(--border-subtle); }
             .nav-links { display: none; }
             .terminals-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .fleet-grid { grid-template-columns: 1fr; } /* FLOTA A 1 COLUMNA EN CELULAR */
+            .fleet-visual { height: 220px; } /* LIMITA ALTURA EN CELULAR */
         }
         @media (max-width: 640px) {
             .vehicle-selector-grid, .pos-form-grid, .terminals-grid { grid-template-columns: 1fr; }
@@ -165,7 +157,9 @@
 </head>
 <body>
 
-    <!-- MENÚ SUPERIOR -->
+    <!-- ==========================================
+         PARTE 2: NAVBAR, HERO Y COTIZADOR
+         ========================================== -->
     <header class="navbar">
         <div class="container nav-content">
             <a href="#" class="brand-box">
@@ -183,65 +177,17 @@
             <div class="nav-controls">
                 <button id="langToggleBtn" class="btn-glass" onclick="toggleLanguage()">🌐 <span id="langDisplay">ES</span></button>
                 <button id="themeToggleBtn" class="btn-glass" onclick="toggleTheme()">☀️/🌙</button>
-                <!-- BOTÓN PARA PASAJEROS (NORMAL) -->
                 <button onclick="openModal('userModal')" class="btn-glass">👤 <span data-es="Mi Reserva" data-en="My Booking">Mi Reserva</span></button>
                 <a href="https://wa.me/5219987864835" target="_blank" class="btn-glass" style="border-color: #25d366; color: #25d366;">💬 24/7</a>
             </div>
         </div>
     </header>
 
-    <!-- VENTANAS MODALES -->
-    
-    <!-- Modal 1: Portal de Pasajero -->
-    <div id="userModal" class="modal-overlay">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('userModal')">✕</button>
-            <h3 class="serif-lux" style="font-size: 1.8rem; margin-bottom: 0.5rem;" data-es="Portal de Pasajero" data-en="Passenger Portal">Portal de Pasajero</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.85rem;" data-es="Gestione su servicio y ubicación del chofer." data-en="Manage your service and driver location.">Gestione su servicio y ubicación del chofer.</p>
-            <input type="text" class="pos-input" placeholder="Código de Reserva (Ej. STC-8492)" style="margin-bottom: 1rem;">
-            <button class="btn-book-now" onclick="closeModal('userModal')" data-es="Buscar Mi Servicio" data-en="Search My Service">Buscar Mi Servicio</button>
-        </div>
-    </div>
-
-    <!-- Modal 2: Acceso Administrador (Oculto en Footer) -->
-    <div id="adminModal" class="modal-overlay">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('adminModal')">✕</button>
-            <h3 class="serif-lux" style="font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--gold);">Acceso Bóveda Master</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.85rem;">Ingreso exclusivo para administración de plataforma y OneDrive.</p>
-            <!-- El placeholder ya NO muestra la contraseña -->
-            <input type="password" id="adminPassword" class="pos-input" placeholder="Ingrese Credenciales Maestras" style="margin-bottom: 1rem;">
-            <button class="btn-book-now" style="background: var(--gold); color: #000;" onclick="verifyAdmin()">Desbloquear Bóveda</button>
-            <div id="adminError" style="color: #ef4444; font-size: 0.8rem; margin-top: 0.8rem; display: none;">Credenciales incorrectas. Acceso denegado.</div>
-            <div id="adminSuccess" style="color: var(--emerald); font-size: 0.85rem; margin-top: 0.8rem; display: none; padding: 1rem; border: 1px solid var(--emerald); border-radius: 12px; background: rgba(16, 185, 129, 0.1);">
-                ✅ Acceso Concedido. Redirigiendo a la central operativa...
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 3: Confirmación de Cotización -->
-    <div id="checkoutModal" class="modal-overlay">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('checkoutModal')">✕</button>
-            <h3 class="serif-lux" style="font-size: 1.8rem; margin-bottom: 0.5rem;" data-es="Reserva Inicializada" data-en="Booking Initialized">Reserva Inicializada</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;" data-es="Su unidad ha sido separada en nuestro sistema." data-en="Your vehicle has been secured in our system.">Su unidad ha sido separada en nuestro sistema.</p>
-            <div style="background: var(--bg-input); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-glass); margin-bottom: 1.5rem;">
-                <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);" data-es="Monto Oficial a Pagar:" data-en="Official Amount:">Monto Oficial a Pagar:</span><strong id="modalTotalAmount" style="color: var(--cyan-glow); font-size: 1.2rem;"></strong></div>
-            </div>
-            <button class="btn-book-now" onclick="closeModal('checkoutModal')" data-es="Proceder a Pago Seguro" data-en="Proceed to Secure Payment">Proceder a Pago Seguro</button>
-        </div>
-    </div>
-    <!-- ESTRUCTURA PRINCIPAL (HERO + COTIZADOR GPS) -->
     <section class="hero-section">
-        <!-- Fondo del Hero -->
         <div class="hero-backdrop">
             <img src="assets/SUV5.jpg" alt="Flota de Lujo Strata CUN" onerror="this.style.display='none'">
         </div>
-
-        <!-- Contenedor de la Cuadrícula a 2 Columnas -->
         <div class="container hero-layout">
-            
-            <!-- COLUMNA IZQUIERDA: Textos y Fotografía de Impacto -->
             <div>
                 <div class="shield-badge-row">
                     <img data-asset="Shield" alt="100% Private Secure Transport">
@@ -250,25 +196,14 @@
                         <span style="font-size: 0.72rem; color: var(--text-secondary);" data-es="Aeropuerto CUN • Sin Tiempos Compartidos" data-en="CUN Airport • No Timeshares">Aeropuerto CUN • Sin Tiempos Compartidos</span>
                     </div>
                 </div>
-                
                 <h1 class="hero-headline serif-lux" data-es="Recepción Ejecutiva y <span>Traslado Privado</span> en Cancún." data-en="Executive Reception & <span>Private Transfer</span> in Cancun.">
                     Recepción Ejecutiva y <span>Traslado Privado</span> en Cancún.
                 </h1>
-                
                 <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem;" data-es="Tarifas por zona desde <strong>$700 MXN (Van Privada)</strong> y <strong>Suburban VIP</strong>. Monitoreo de vuelos y punto de encuentro blindado." data-en="Zone rates starting at <strong>$700 MXN (Private Van)</strong> and <strong>Suburban VIP</strong>. Flight tracking and shielded meeting points.">
                     Tarifas por zona desde <strong>$700 MXN (Van Privada)</strong> y <strong>Suburban VIP</strong>. Monitoreo de vuelos y punto de encuentro blindado.
                 </p>
-                
-                <div class="hero-showcase-box">
-                    <img src="assets/SUV5.jpg" alt="Suburban VIP" class="hero-showcase-img" onerror="this.style.display='none'">
-                    <div class="hero-showcase-caption">
-                        <span data-es="✨ <strong>Flota:</strong> Van (1-8 pax) &amp; Suburban VIP (1-6 pax)" data-en="✨ <strong>Fleet:</strong> Van (1-8 pax) &amp; Suburban VIP (1-6 pax)">✨ <strong>Flota:</strong> Van (1-8 pax) &amp; Suburban VIP (1-6 pax)</span>
-                        <span style="color: var(--cyan-glow); font-weight: 700;" data-es="Tolerancia 1h 20m" data-en="1h 20m Tolerance">Tolerancia 1h 20m</span>
-                    </div>
-                </div>
             </div>
 
-            <!-- COLUMNA DERECHA: Cotizador Oficial (POS) y Mapa -->
             <div class="pos-master-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                     <div>
@@ -278,7 +213,6 @@
                     <img src="assets/Strata4CUN.jpg" alt="Strata CUN" style="height: 38px; border-radius: 8px;" onerror="this.style.display='none'">
                 </div>
 
-                <!-- Tabs de Viaje -->
                 <div class="service-pills" id="tripTypeTabs">
                     <button type="button" class="service-pill-btn active" onclick="setTripType('llegada', this)" data-es="✈️ Llegada" data-en="✈️ Arrival">✈️ Llegada</button>
                     <button type="button" class="service-pill-btn" onclick="setTripType('salida', this)" data-es="🛫 Salida" data-en="🛫 Departure">🛫 Salida</button>
@@ -286,7 +220,6 @@
                     <button type="button" class="service-pill-btn" onclick="setTripType('multi', this)" data-es="📍 Multidestino" data-en="📍 Multi-dest">📍 Multidestino</button>
                 </div>
 
-                <!-- Selección de Vehículo -->
                 <div class="vehicle-selector-grid">
                     <div class="veh-option-card selected" id="card-van" onclick="selectUnitType('van')">
                         <div><span class="veh-option-title" data-es="🚐 Van Privada" data-en="🚐 Private Van">🚐 Van Privada</span><span class="veh-option-pax" data-es="1 a 8 Pax" data-en="1 to 8 Pax">1 a 8 Pax</span></div>
@@ -306,7 +239,6 @@
                     </div>
                 </div>
 
-                <!-- Formulario -->
                 <form id="bookingPosForm" onsubmit="handleQuoteSubmit(event)" class="pos-form-grid">
                     <div class="pos-field">
                         <label class="pos-label" data-es="Terminal CUN" data-en="CUN Terminal">Terminal CUN</label>
@@ -350,12 +282,17 @@
 
                     <div class="pos-field"><label class="pos-label" data-es="N° de Vuelo" data-en="Flight N°">N° de Vuelo</label><input type="text" id="posFlight" class="pos-input" required></div>
                     <div class="pos-field"><label class="pos-label" data-es="Fecha y Hora" data-en="Date & Time">Fecha y Hora</label><input type="datetime-local" id="posDate" class="pos-input" required></div>
+                    
+                    <!-- SISTEMA DE CUPONES AÑADIDO AQUI -->
+                    <div class="pos-field full">
+                        <label class="pos-label" data-es="Cupón de Descuento (Opcional)" data-en="Promo Code (Optional)">Cupón de Descuento (Opcional)</label>
+                        <input type="text" id="posPromo" class="pos-input" placeholder="Ej. STRATA100" oninput="recalculateTotal()">
+                    </div>
 
-                    <!-- Botón y Resumen Activo -->
                     <div class="price-bar-live">
                         <div>
-                            <span style="font-size: 0.75rem; color: var(--text-secondary); display: block;" id="liveSummaryText">Van Privada • Zona 1 Local • LLEGADA / ARRIVAL</span>
-                            <strong style="font-size: 0.82rem; color: var(--emerald);" id="terminalSafeNote">🛡️ Punto T3: Air Margaritaville</strong>
+                            <span style="font-size: 0.7rem; color: var(--text-secondary); display: block;" id="liveSummaryText">Van Privada • Zona 1 Local • LLEGADA / ARRIVAL</span>
+                            <strong style="font-size: 0.8rem; color: var(--emerald);" id="terminalSafeNote">🛡️ Punto T3: Air Margaritaville</strong>
                         </div>
                         <div style="text-align: right;">
                             <span style="font-size: 0.7rem; color: var(--text-secondary); display: block;" data-es="Total Oficial" data-en="Official Total">Total Oficial</span>
@@ -367,10 +304,13 @@
             </div>
         </div>
     </section>
-    <!-- GUÍA VISUAL DE TERMINALES -->
+
+    <!-- ==========================================
+         PARTE 3: TERMINALES, FLOTA, MAPA Y FOOTER
+         ========================================== -->
     <section class="section-block" id="terminales">
         <div class="container">
-            <div class="section-header text-center mx-auto" style="text-align: center;">
+            <div class="section-header">
                 <span class="section-tag">Anti-Timeshare Shield</span>
                 <h2 class="section-title serif-lux" data-es="Puntos Blindados." data-en="Shielded Points.">Puntos Blindados.</h2>
             </div>
@@ -407,7 +347,6 @@
         </div>
     </section>
 
-    <!-- FLOTA Y CAPACIDAD (4 UNIDADES) -->
     <section class="section-block" id="flota" style="background: linear-gradient(180deg, transparent, rgba(14, 165, 233, 0.03)); border-top: 1px solid var(--border-subtle);">
         <div class="container">
             <div class="section-header">
@@ -466,7 +405,7 @@
                             <li>✔️ <strong data-es="Límite:" data-en="Limit:">Límite:</strong> 1 a 4 Pasajeros</li>
                             <li>✔️ <strong data-es="Tarifa:" data-en="Rate:">Tarifa:</strong> Altamente Competitiva</li>
                         </ul>
-                        <div class="fleet-specs-box"><img data-asset="Multidestination"><div style="font-size: 0.8rem;" data-es="Perfecto para viajes ligeros o de negocios." data-en="Perfect for light or business travel.">Perfecto para viajes ligeros o de negocios.</div></div>
+                        <div class="fleet-specs-box"><img data-asset="Multidestination"><div style="font-size: 0.8rem;" data-es="Perfecto para viajes ligeros o negocios." data-en="Perfect for light or business travel.">Perfecto para viajes ligeros o de negocios.</div></div>
                     </div>
                 </div>
 
@@ -484,14 +423,13 @@
                             <li>✔️ <strong data-es="Capacidad:" data-en="Capacity:">Capacidad:</strong> 9 a 16+ Pasajeros</li>
                             <li>✔️ <strong data-es="Formato:" data-en="Format:">Formato:</strong> Convoy o Unidad Única</li>
                         </ul>
-                        <div class="fleet-specs-box"><img data-asset="Multidestination"><div style="font-size: 0.8rem;" data-es="Diseñado para bodas, congresos y grupos grandes." data-en="Designed for weddings, conventions, and large groups.">Diseñado para bodas, congresos y grupos grandes.</div></div>
+                        <div class="fleet-specs-box"><img data-asset="Multidestination"><div style="font-size: 0.8rem;" data-es="Bodas, congresos y grupos grandes." data-en="Weddings, conventions, and large groups.">Diseñado para bodas, congresos y grupos grandes.</div></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ZONAS DE COBERTURA -->
     <section class="section-block" id="zonas">
         <div class="container">
             <div class="map-section-grid">
@@ -510,39 +448,6 @@
         </div>
     </section>
 
-    <!-- PORTAL Y TECNOLOGÍA -->
-    <section class="section-block" id="tecnologia" style="border-top: 1px solid var(--border-subtle);">
-        <div class="container">
-            <div class="section-header text-center mx-auto" style="text-align: center; margin-bottom: 4rem;">
-                <span class="section-tag" data-es="Zero-Click Philosophy" data-en="Zero-Click Philosophy">Zero-Click Philosophy</span>
-                <h2 class="section-title serif-lux" data-es="Control Total." data-en="Total Control.">Control Total.</h2>
-                <p class="section-desc max-w-2xl mx-auto" data-es="Gestione su reserva y comuníquese con su chofer 100% seguro." data-en="Manage your booking and contact your driver 100% securely.">Gestione su reserva y comuníquese con su chofer 100% seguro.</p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 3rem 2.5rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
-                    <img data-asset="Smartphone" style="height: 140px; object-fit: contain; margin-bottom: 2rem; filter: drop-shadow(0 15px 25px rgba(14, 165, 233, 0.2));">
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem; font-weight: 700;" data-es="Portal de Pasajero" data-en="Passenger Portal">Portal de Pasajero</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;" data-es="Acceda a su itinerario y actualice la hora de su vuelo." data-en="Access your itinerary and update your flight time.">Acceda a su itinerario y actualice la hora de su vuelo.</p>
-                    <button onclick="openModal('userModal')" class="btn-glass" style="margin-top: auto; padding: 0.8rem 1.5rem;" data-es="👤 Abrir Mi Reserva" data-en="👤 Open My Booking">👤 Abrir Mi Reserva</button>
-                </div>
-                <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 3rem 2.5rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
-                    <img data-asset="Clock3" style="height: 140px; object-fit: contain; margin-bottom: 2rem; filter: drop-shadow(0 15px 25px rgba(0, 180, 216, 0.2));">
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem; font-weight: 700;" data-es="Monitoreo en Vivo" data-en="Live Tracking">Monitoreo en Vivo</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;" data-es="Rastreamos su vuelo por radar con 1h 20m de tolerancia gratuita." data-en="We track your flight by radar with 1h 20m of free tolerance.">Rastreamos su vuelo por radar con 1h 20m de tolerancia gratuita.</p>
-                    <div style="margin-top: auto; color: var(--emerald); font-weight: 700; font-size: 0.85rem; padding: 0.6rem 1.2rem; background: rgba(16, 185, 129, 0.1); border-radius: 12px; border: 1px solid var(--emerald);" data-es="✓ Ajuste Automático" data-en="✓ Automatic Adjustment">✓ Ajuste Automático</div>
-                </div>
-                <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 3rem 2.5rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
-                    <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem;"><span style="font-size: 4rem;">🤝</span><span style="font-size: 4rem;">🌎</span></div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem; font-weight: 700;" data-es="Partners B2B" data-en="B2B Partners">Partners B2B</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;" data-es="Respaldados por agencias en Costa Rica y Uruguay." data-en="Backed by agencies in Costa Rica and Uruguay.">Respaldados por agencias en Costa Rica y Uruguay.</p>
-                    <a href="https://wa.me/5219987864835" target="_blank" class="btn-glass" style="margin-top: auto; padding: 0.8rem 1.5rem; border-color: #25d366; color: #25d366;" data-es="💬 Hablar al WhatsApp" data-en="💬 Chat on WhatsApp">💬 Hablar al WhatsApp</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER CORPORATIVO MEJORADO -->
     <footer style="background: #02050e; border-top: 1px solid var(--border-glass); padding: 5rem 0 2rem; margin-top: 2rem;">
         <div class="container">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 4rem; margin-bottom: 4rem;">
@@ -574,9 +479,45 @@
     <!-- WIDGET WHATSAPP -->
     <a href="https://wa.me/5219987864835" target="_blank" style="position: fixed; bottom: 30px; right: 30px; z-index: 999; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-size: 2rem; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); text-decoration: none; transition: transform 0.3s;"><svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.333.158 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.332 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
 
-    <!-- CEREBRO JAVASCRIPT: IDIOMAS, PRECIOS Y LOGICA DE MODALES -->
+    <!-- VENTANAS MODALES -->
+    <div id="userModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('userModal')">✕</button>
+            <h3 class="serif-lux" style="font-size: 1.8rem; margin-bottom: 0.5rem;" data-es="Portal de Pasajero" data-en="Passenger Portal">Portal de Pasajero</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.85rem;" data-es="Gestione su servicio y ubicación del chofer." data-en="Manage your service and driver location.">Gestione su servicio y ubicación del chofer.</p>
+            <input type="text" class="pos-input" placeholder="Código de Reserva (Ej. STC-8492)" style="margin-bottom: 1rem;">
+            <button class="btn-book-now" onclick="closeModal('userModal')" data-es="Buscar Mi Servicio" data-en="Search My Service">Buscar Mi Servicio</button>
+        </div>
+    </div>
+
+    <div id="adminModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('adminModal')">✕</button>
+            <h3 class="serif-lux" style="font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--gold);">Acceso Bóveda Master</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.85rem;">Ingreso exclusivo para administración de plataforma y OneDrive.</p>
+            <input type="password" id="adminPassword" class="pos-input" placeholder="Ingrese Credenciales Maestras" style="margin-bottom: 1rem;">
+            <button class="btn-book-now" style="background: var(--gold); color: #000;" onclick="verifyAdmin()">Desbloquear Bóveda</button>
+            <div id="adminError" style="color: #ef4444; font-size: 0.8rem; margin-top: 0.8rem; display: none;">Credenciales incorrectas. Acceso denegado.</div>
+            <div id="adminSuccess" style="color: var(--emerald); font-size: 0.85rem; margin-top: 0.8rem; display: none; padding: 1rem; border: 1px solid var(--emerald); border-radius: 12px; background: rgba(16, 185, 129, 0.1);">
+                ✅ Acceso Concedido. Redirigiendo a la central operativa...
+            </div>
+        </div>
+    </div>
+
+    <div id="checkoutModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('checkoutModal')">✕</button>
+            <h3 class="serif-lux" style="font-size: 1.8rem; margin-bottom: 0.5rem;" data-es="Reserva Inicializada" data-en="Booking Initialized">Reserva Inicializada</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;" data-es="Su unidad ha sido separada en nuestro sistema." data-en="Your vehicle has been secured in our system.">Su unidad ha sido separada en nuestro sistema.</p>
+            <div style="background: var(--bg-input); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-glass); margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);" data-es="Monto Oficial a Pagar:" data-en="Official Amount:">Monto Oficial a Pagar:</span><strong id="modalTotalAmount" style="color: var(--cyan-glow); font-size: 1.2rem;"></strong></div>
+            </div>
+            <button class="btn-book-now" onclick="closeModal('checkoutModal')" data-es="Proceder a Pago Seguro" data-en="Proceed to Secure Payment">Proceder a Pago Seguro</button>
+        </div>
+    </div>
+
+    <!-- CEREBRO JAVASCRIPT: PRECIOS, MAPAS, CUPONES Y MODALES -->
     <script>
-        // Cargador Automático de Imágenes
         document.addEventListener('DOMContentLoaded', () => {
             const imageElements = document.querySelectorAll('img[data-asset]');
             const extensions = ['.jpg', '.png', '.jpeg', '.webp'];
@@ -595,30 +536,22 @@
             });
         });
 
-        // Control de Tema Oscuro / Claro
         function toggleTheme() {
             const html = document.documentElement;
-            const isDark = html.getAttribute('data-theme') === 'dark';
-            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
         }
 
-        // Traductor Automático
         let currentLang = 'es';
         function toggleLanguage() {
             currentLang = currentLang === 'es' ? 'en' : 'es';
             document.getElementById('langDisplay').textContent = currentLang.toUpperCase();
-            document.querySelectorAll('[data-es]').forEach(el => {
-                el.innerHTML = el.getAttribute(`data-${currentLang}`);
-            });
+            document.querySelectorAll('[data-es]').forEach(el => { el.innerHTML = el.getAttribute(`data-${currentLang}`); });
             recalculateTotal(); updateTerminalHint();
         }
 
-        // Control de Ventanas Modales
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-        }
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
+        function openModal(modalId) { document.getElementById(modalId).classList.add('active'); }
+        function closeModal(modalId) { 
+            document.getElementById(modalId).classList.remove('active'); 
             if(modalId === 'adminModal') {
                 document.getElementById('adminPassword').value = '';
                 document.getElementById('adminError').style.display = 'none';
@@ -626,22 +559,18 @@
             }
         }
 
-        // AUTENTICADOR Y REDIRECCIÓN A ADMIN.HTML
         function verifyAdmin() {
             const pass = document.getElementById('adminPassword').value;
             if (pass === 'EN1AMADR3') {
                 document.getElementById('adminError').style.display = 'none';
                 document.getElementById('adminSuccess').style.display = 'block';
-                setTimeout(() => {
-                    window.location.href = 'admin.html';
-                }, 1000);
+                setTimeout(() => { window.location.href = 'admin.html'; }, 1000);
             } else {
                 document.getElementById('adminSuccess').style.display = 'none';
                 document.getElementById('adminError').style.display = 'block';
             }
         }
 
-        // Precios y Vehículos
         const pricingData = {
             'van':      { cap: 8, rates: { z1: 700, z2: 850, z3: 1100, z4: 1500, z5: 2200 } },
             'suburban': { cap: 6, rates: { z1: 1450, z2: 1600, z3: 1900, z4: 2400, z5: 3200 } },
@@ -666,30 +595,35 @@
             const inputPax = document.getElementById('posPax');
             inputPax.max = vehicleCode === 'minibus' ? 40 : maxPax;
             if(parseInt(inputPax.value) > maxPax && vehicleCode !== 'minibus') inputPax.value = maxPax;
-            
-            const limitText = currentLang === 'es' ? `Máx ${maxPax}` : `Max ${maxPax}`;
-            document.getElementById('paxLimitHint').textContent = limitText;
+            document.getElementById('paxLimitHint').textContent = currentLang === 'es' ? `Máx ${maxPax}` : `Max ${maxPax}`;
             recalculateTotal();
         }
 
         function recalculateTotal() {
             const zone = document.getElementById('posZoneSelect').value;
             const isRoundTrip = currentService === 'redondo' ? 2 : 1;
-            const finalPrice = pricingData[currentVehicle].rates[zone] * isRoundTrip;
-            const formattedPrice = `$${new Intl.NumberFormat('es-MX').format(finalPrice)} MXN`;
+            let finalPrice = pricingData[currentVehicle].rates[zone] * isRoundTrip;
             
+            // LÓGICA DE CUPÓN AÑADIDA AQUÍ
+            const promoInput = document.getElementById('posPromo').value.trim().toUpperCase();
+            let discountText = "";
+            if(promoInput === 'STRATA100') {
+                finalPrice = 0; // 100% de descuento
+                discountText = " (CUPÓN APLICADO)";
+            }
+            
+            const formattedPrice = finalPrice === 0 ? "GRATIS" : `$${new Intl.NumberFormat('es-MX').format(finalPrice)} MXN`;
             document.getElementById('liveTotalAmount').textContent = formattedPrice;
             
             const zoneNamesES = { z1:'Zona 1 Local', z2:'Zona 2 Playa Mujeres', z3:'Zona 3 Pto. Morelos', z4:'Zona 4 Playa del Carmen', z5:'Zona 5 Tulum' };
             const zoneNamesEN = { z1:'Zone 1 Local', z2:'Zone 2 Playa Mujeres', z3:'Zone 3 Pto. Morelos', z4:'Zone 4 Playa del Carmen', z5:'Zone 5 Tulum' };
             const vehNames = { van: 'Van Privada', suburban: 'Suburban VIP', flexi: 'Opción Flexi', minibus: 'Minibús' };
-            const serviceNames = { llegada: 'LLEGADA / ARRIVAL', salida: 'SALIDA / DEPARTURE', redondo: 'REDONDO / ROUNDTRIP', multi: 'MULTIDESTINO' };
+            const serviceNames = { llegada: 'LLEGADA', salida: 'SALIDA', redondo: 'REDONDO', multi: 'MULTIDESTINO' };
             
             const activeZoneName = currentLang === 'es' ? zoneNamesES[zone] : zoneNamesEN[zone];
-            document.getElementById('liveSummaryText').textContent = `${vehNames[currentVehicle]} • ${activeZoneName} • ${serviceNames[currentService]}`;
+            document.getElementById('liveSummaryText').textContent = `${vehNames[currentVehicle]} • ${activeZoneName} • ${serviceNames[currentService]}${discountText}`;
         }
 
-        // Buscador GPS y Zonas
         function onHotelInputChange() {
             const input = document.getElementById('posHotelInput').value;
             const iframe = document.getElementById('liveGoogleMap');
